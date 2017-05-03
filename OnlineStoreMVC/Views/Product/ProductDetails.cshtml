@@ -1,0 +1,82 @@
+﻿@model OnlineStore.Model.ViewModel.ProductDetailsView
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/DisplayProduct/DetailProduct.js"></script>
+<link href="~/Content/display-product/detail-product.css" rel="stylesheet" />
+<script src="~/Scripts/webjs/jquery.zoomtoo.js"></script>
+<script>
+    $(function () {
+        $("#picture-frame").zoomToo({
+            magnify: 1
+        });
+
+        $('body').scrollspy({ target: '#scrollSpy_ProductDetails' });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        DetailProductManagement.init();
+    });
+</script>
+<!-- single -->
+<div class="single">
+    <div class="container">
+        <div class="col-md-6 single-right-left animated wow slideInUp animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInUp;">
+            <div class="single-w3agile">
+                <div id="picture-frame">
+                    <img src="@Model.CoverImageUrl.largeImagePath" data-src="@Model.CoverImageUrl.largeImagePath" alt="" class="img-responsive" />
+                </div>
+            </div>
+            <div id="thumbs_list">
+                <ul id="thumbs_list_frame">
+                    @foreach (var item in Model.share_Images)
+                    {
+                        <li id="thumbnail_120" data-imagepath='@item.largeImagePath'>
+                            <a href="javascript:void(0);" title='@Model.Name'>
+                                <img class="img-responsive" id="thumb_120" data-zoom-image='@item.largeImagePath' src='@item.smallImagePath' alt='@Model.Name' title='@Model.Name' height="80" width="80" itemprop="image">
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6 single-right-left simpleCart_shelfItem animated wow slideInRight animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInRight;">
+            <h3>@Model.Name</h3>
+            <p style="color:red;font-size:30px;"><span class="item_price">@Model.PriceFormatCurrency</span></p>
+            <p>Thương hiệu: <span>@Model.BrandName</span></p>
+            <div class="description">
+                <h5 style="color:#000;font-style: italic;">@Model.Description</h5>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+
+        <div class="narbar-description" id="scrollSpy_ProductDetails">
+                <ul class="nav nav-tabs" style="background-color:#000">
+                    <li class="active"><a href="#productDescription_Tab">Mô tả sản phẩm</a></li>
+                    <li><a href="#productSpecification_Tab">Thông Số Kỹ Thuật</a></li>
+                </ul>
+            <div class="my-content">
+                <div id="productDescription_Tab">
+                    <h5 class="tabtitle-narbar-description">CHI TIẾT SẢN PHẨM</h5>
+                    <p>
+                        @Html.Raw(Model.Description2)
+                    </p>
+                </div>
+                <div id="productSpecification_Tab" style="margin-top:15px;">
+                    <h5 class="tabtitle-narbar-description">THÔNG SỐ KỸ THUẬT</h5>
+                    <p>
+                        @Html.Raw(Model.Specification)
+                    </p>
+                </div>
+            </div>
+            </div>
+    </div>
+</div>
+<!-- //single -->
+
+<div class="content-top offer-w3agile bootstrap-tab-text">
+    @Html.Partial("_GroupProductsPartial", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.NewProductList, new ViewDataDictionary { { "Title", "Sản Phẩm Mới" } })
+</div>

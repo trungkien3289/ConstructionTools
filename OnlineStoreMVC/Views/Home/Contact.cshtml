@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Liên hệ";
+}
+@section css{
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+}
+
+@section scripts{
+
+    <script>
+        function initMap() {
+            var uluru = { lat: 16.0486971, lng: 108.2354558 };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 16,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+    </script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJW4PuEwBlrwteqERcoU4E-D3-QApQ-t0&callback=initMap">
+</script>
+}
+<!-- contact -->
+<div class="contact">
+    <div class="container">
+        <div class="contact-grids">
+            <div class="col-md-4 contact-grid text-center animated wow slideInLeft" data-wow-delay=".5s">
+                <div class="contact-grid1">
+                    <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
+                    <h4>Địa Chỉ</h4>
+                    <p>Hải Châu <span>Đà Nẵng.</span></p>
+                </div>
+            </div>
+            <div class="col-md-4 contact-grid text-center animated wow slideInUp" data-wow-delay=".5s">
+                <div class="contact-grid2">
+                    <i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>
+                    <h4>Điện Thoại</h4>
+                    <p>+1234 758 839<span>+1273 748 730</span></p>
+                </div>
+            </div>
+            <div class="col-md-4 contact-grid text-center animated wow slideInRight" data-wow-delay=".5s">
+                <div class="contact-grid3">
+                    <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
+                    <h4>Email</h4>
+                    <p><a href="mailto:info@example.com">info@example1.com</a><span><a href="mailto:info@example.com">info@example2.com</a></span></p>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="map wow fadeInDown animated" data-wow-delay=".5s">
+            <h3 class="tittle">Vị Trí</h3>
+            <div id="map"></div>
+        </div>
+        <h3 class="tittle">Liên Hệ</h3>
+        <form action="/Home/Contact" method="post">
+            @Html.AntiForgeryToken()
+            <div class="contact-form2">
+                <input type="text" name="Name" onfocus="this.value = '';" placeholder="Tên" required="">
+                <input type="email" name="Email" onfocus="this.value = '';" placeholder="Email" required="">
+                <textarea type="text" name="Message" onfocus="this.value = '';" placeholder="Tin Nhắn" required=""></textarea>
+                <input type="submit" value="Gửi">
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- //contact -->

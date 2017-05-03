@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Construction Tools</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-language" content="vi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Description" content="Construction tools">
+    <link rel="icon" type="image/ico" href="~/Content/Images/Banners/faviorIcon.jpg">
+    
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/webCss")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/argularjs")
+
+    <script type="application/x-javascript">
+         addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+        function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Custom Theme files -->
+    <script src="~/Scripts/webjs/simpleCart.min.js"></script>
+    <script src="~/Scripts/webjs/jquery.easing.min.js"></script>
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
+    <!-- Fonts -->
+    @RenderSection("css", required:false)
+    @RenderSection("scripts", required: false)
+</head>
+<body id="index" class="index hide-left-column hide-right-column lang_en one-column">
+    <div id="page">
+        @Html.Action("_HeaderPartial", "Home", new { @searchType = Request.QueryString["searchType"] })
+
+        <div class="columns-container top-space-body">
+            @RenderBody()
+        </div>
+
+        @RenderPage("_FooterPartial.cshtml")
+    </div>
+</body>
+</html>
+

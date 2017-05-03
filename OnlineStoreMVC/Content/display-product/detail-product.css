@@ -1,0 +1,50 @@
+﻿
+#thumbs_list_frame{
+    list-style:none;
+    margin-top:5px;
+    overflow:auto;
+}
+
+#thumbs_list_frame li{
+    display: inline-block;
+    float: left;
+    margin-right: 5px;
+    cursor:pointer;
+    border:1px solid #ccc;
+}
+
+#thumbs_list_frame li:hover{
+    border:1px solid #FDA30E;
+    cursor:pointer;
+    box-sizing:border-box;
+}
+
+.narbar-description{
+    margin-top:10px;
+}
+
+.narbar-description ul{
+    background-color:#000;
+    margin-bottom:0;
+}
+
+.narbar-description ul>li>a{
+    background-color:#000;
+    color:#fff!important;
+}
+
+.narbar-description .nav-tabs > li {
+    margin-bottom:0;
+}
+
+.narbar-description .tabtitle-narbar-description{
+    text-transform: uppercase;
+    font-size: 24px;
+    color: #FDA30E;
+    margin: 2em 0;
+}
+
+.narbar-description .my-content{
+    border: 1px solid #ccc;
+    padding: 10px;
+}

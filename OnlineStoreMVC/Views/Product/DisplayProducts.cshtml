@@ -1,0 +1,185 @@
+﻿@model OnlineStore.Service.Messaging.GetProductsByCategoryResponse
+
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/plugins/pagingcontrol/simplePagination.css" rel="stylesheet" />
+<link href="~/Content/plugins/price-range/price-range.css" rel="stylesheet" />
+<link href="~/Content/display-product/display-product-view.css" rel="stylesheet" />
+<script src="~/Content/plugins/pagingcontrol/jquery.simplePagination.js"></script>
+<script src="~/Content/plugins/price-range/price-range.js"></script>
+<script src="~/Scripts/DisplayProduct/DisplayProduct.js"></script>
+<script src="~/Content/plugins/spin/spin.min.js"></script>
+
+@*<!--content-->
+<div class="product">
+    <div class="container">
+        <div class="col-md-3 col-sm-3 col-xs-12 b-filterItems">
+            <div class="filter-header">
+                <div class="filter-decorator-first-header"></div>
+                <div class="filter-decorator-second-header"></div>
+                <div class="filter-title">Categories</div>
+            </div>
+            <div class="category-filterItems">
+                @Html.Partial("_CategoryTreeView", (IEnumerable<OnlineStore.Model.ViewModel.SummaryCategoryTreeViewItemModel>)ViewBag.CategoryTreeViewDataSource, new ViewDataDictionary { { "SelectedCategory", Model.SelectedCategory } })
+            </div>
+            <div class="filter-header">
+                <div class="filter-decorator-first-header"></div>
+                <div class="filter-decorator-second-header"></div>
+                <div class="filter-title">Price</div>
+            </div>
+            <div class="price-filterItems">
+                <div class="price-range-input-panel">
+                    <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="50000000" data-slider-step="100000" data-slider-value="[200000,20000000]" id="Sl_PriceRange">
+                    <br />
+                    <b class="pull-left">0 Đ</b> <b class="pull-right">50.000.000 Đ</b>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="col-md-9 col-sm-9 col-xs-12 b-productItems">
+                <div class="spec ">
+                    <h3>Products</h3>
+                    <div class="ser-t">
+                        <b></b>
+                        <span><i></i></span>
+                        <b class="line"></b>
+                    </div>
+                </div>
+                <div class="products-right-grids">
+                    <span class="display hidden-xs pull-right">Have @Model.TotalProducts items</span>
+                    <div class="sorting">
+                        <label>Order By</label>
+                        @Html.DropDownList("SortProductOptionsSelectListItems")
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+                <div class=" con-w3l agileinf list-product-container">
+                    @Html.Partial("ListProduct", Model.Products)
+                </div>
+                <div class="clearfix"></div>
+                <div class="content_sortPagiBar">
+                    <div class="bottom-pagination-content clearfix">
+                        <div class="paging-control-filtercontent pull-right"></div>
+                    </div>
+                </div><!-- sort bar -->
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        DisplayProductManagement.init(@Model.SelectedCategory,@Model.NumberOfTitlesFound,@Model.CurrentPage);
+    });
+</script>
+
+<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!-- //smooth scrolling -->
+<script src="~/Scripts/webjs/jquery.mycart.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var goToCartIcon = function ($addTocartBtn) {
+            var $cartIcon = $(".my-cart-icon");
+            var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({ "position": "fixed", "z-index": "999" });
+            $addTocartBtn.prepend($image);
+            var position = $cartIcon.position();
+            $image.animate({
+                top: position.top,
+                left: position.left
+            }, 500, "linear", function () {
+                $image.remove();
+            });
+        }
+
+        $('.my-cart-btn').myCart({
+            classCartIcon: 'my-cart-icon',
+            classCartBadge: 'my-cart-badge',
+            affixCartIcon: true,
+            checkoutCart: function (products) {
+                console.log(products);
+                window.location.replace("/Order/CheckOut");
+            },
+            clickOnAddToCart: function ($addTocart) {
+                goToCartIcon($addTocart);
+            },
+            getDiscountPrice: function (products) {
+                var total = 0;
+                $.each(products, function () {
+                    total += this.quantity * this.price;
+                });
+                return total * 1;
+            }
+        });
+
+    });
+</script>*@
+
+<!-- banner -->
+@*<div class="page-head">
+    <div class="container">
+        <h3>@Model.SelectedCategoryName</h3>
+    </div>
+</div>*@
+<!-- //banner -->
+<!-- mens -->
+<div class="men-wear">
+    <div class="container">
+        <div class="col-md-3 products-left b-filterItems">
+            <div class="css-treeview">
+                <h4>Giá</h4>
+                <div class="price-filterItems">
+                    <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="50000000" data-slider-step="100000" data-slider-value="[200000,20000000]" id="Sl_PriceRange">
+                    <br />
+                    <b class="pull-left">0 Đ</b> <b class="pull-right">50.000.000 Đ</b>
+                </div>
+            </div>
+            <div class="css-treeview category-filterItems">
+                <h4>Danh Mục</h4>
+                <div class="listcategories-displayproduct">
+                    @Html.Partial("_CategoryTreeView", (IEnumerable<OnlineStore.Model.ViewModel.SummaryCategoryTreeViewItemModel>)ViewBag.CategoryTreeViewDataSource, new ViewDataDictionary { { "SelectedCategory", Model.SelectedCategory } })
+                </div>
+            </div>
+            <div class="community-poll branchfilter-displayproduct">
+                <h4>Thương Hiệu</h4>
+                <div class="listbranch-displayproduct">
+                    @Html.Partial("_BranchFilterPartialView", Model.Brands)
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-md-9 products-right b-productItems">
+            <h5>Sản Phẩm</h5>
+            <div class="sort-grid">
+                <div class="sorting">
+                    @Html.DropDownList("SortProductOptionsSelectListItems")
+                    <div class="clearfix"></div>
+                </div>
+                <div class="sorting">
+                    <span class="display hidden-xs pull-right">Có @Model.TotalProducts sản phẩm</span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="productlist-displayproduct">
+                @Html.Partial("ListProduct", Model.Products)
+            </div>
+            <div class="clearfix"></div>
+            <div class="content_sortPagiBar">
+                <div class="bottom-pagination-content clearfix">
+                    <div class="paging-control-filtercontent pull-right"></div>
+                </div>
+            </div><!-- sort bar -->
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //mens -->
+
+<script>
+    $(document).ready(function(){
+        DisplayProductManagement.init(@Model.SelectedCategory,@Model.NumberOfTitlesFound,@Model.CurrentPage);
+    });
+</script>

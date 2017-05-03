@@ -1,0 +1,33 @@
+﻿.noresult-panel{
+    margin-left:15px;
+    font-style:italic;
+}
+/* css for list product on main content panel */
+.productimage-listproduct-displayproductview{
+    width:250px!important;
+    height:250px!important;
+}
+
+/* start search form */
+.search-form input[type='text'] {
+    color: #000; 
+    border: 1px solid #000; 
+    background: rgba(255, 255, 255, 0.45); 
+    float:left;
+}
+.search-form input[type='submit'] {
+    float:left;
+}
+
+.search-form{
+    margin-top:20px;
+}
+
+/* end search form */
+
+.b-productItems h5 {
+    color: #FDA30E;
+    font-size: 25px;
+    text-transform: uppercase;
+    margin: 18px 0;
+}
