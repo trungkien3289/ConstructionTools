@@ -2232,17 +2232,14 @@ border-bottom: 1px solid #e5e3db;
 }
 
 /* webkit adjacent element selector bugfix */
-@media screen and (-webkit-min-device-pixel-ratio:0)
-{
-	.css-treeview 
-	{
-		-webkit-animation: webkit-adjacent-element-selector-bugfix infinite 1s;
-	}
-	
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .css-treeview {
+        -webkit-animation: webkit-adjacent-element-selector-bugfix infinite 1s;
+    }
+}
 	@-webkit-keyframes webkit-adjacent-element-selector-bugfix 
 	{
-		from 
-		{ 
+		from {
 			padding: 0;
 		} 
 		to 
@@ -2250,7 +2247,7 @@ border-bottom: 1px solid #e5e3db;
 			padding: 0;
 		}
 	}
-}
+
 /*-- //treeview --*/
 .css-treeview {
     border: 1px solid #d2d2d2;
@@ -3248,7 +3245,7 @@ td.invert-image a img {
 	}
 	.product-men {
 		float: left;
-		width: 33.333%;
+		/*width: 33.333%;*/
 		margin: 25px 0 0;
 	}
 	.resp-tabs-list {
@@ -3591,7 +3588,7 @@ td.invert-image a img {
 	.navbar-nav > li {
 		margin: 0 0px 0 0;
 		width: 100%;
-		text-align: center;
+		text-align: left;
 	}
 	.nav > li > a {
 		display: inline-block;

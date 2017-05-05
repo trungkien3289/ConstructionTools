@@ -8,3 +8,15 @@
 .font-size-child-menu, .left-menu-product {
 font-size: 10.5pt !important;
 }
+
+/*#region Menu bar Home page */
+
+.navbar_menu_HomePage {
+    max-height: 100% !important;
+}
+
+.navbar_HomePage {
+    width: 100% !important;
+}
+
+/*#endregion */
