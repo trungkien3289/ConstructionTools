@@ -223,6 +223,17 @@ namespace OnlineStore.Service.Implements
         }
 
         /// <summary>
+        /// Get random a number product belong to a specific category
+        /// </summary>
+        /// <param name="categoryId">category id</param>
+        /// <param name="count">number of products</param>
+        /// <returns></returns>
+        public IEnumerable<ProductSummaryView> GetRandomProductsByCategoryId(int categoryId, int count)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Get list product after category
         /// </summary>
         /// <param name="request">condition for filter</param>
@@ -453,7 +464,6 @@ namespace OnlineStore.Service.Implements
         }
 
         #endregion
-
     }
 }
 

@@ -3248,7 +3248,7 @@ td.invert-image a img {
 	}
 	.product-men {
 		float: left;
-		width: 33.333%;
+		/*width: 33.333%;*/
 		margin: 25px 0 0;
 	}
 	.resp-tabs-list {
@@ -4077,7 +4077,7 @@ td.invert-image a img {
 	}
 	.product-men {
 		float: left;
-		width: 33.333%;
+		/*width: 33.333%;*/
 		padding:0 5px ;
 	}
 	.no-pad-men {
@@ -4317,7 +4317,7 @@ td.invert-image a img {
 	}
 	.product-men {
 		float: left;
-		width: 50%;
+		/*width: 50%;*/
 		padding: 0 5px;
 	}
 	.pignose-layerslider .slide-visual .script-wrap {
@@ -4413,7 +4413,7 @@ td.invert-image a img {
 	}
 	.product-men {
 		float: none;
-		width: 57%;
+		/*width: 57%;*/
 		padding: 0 5px;
 		margin: 30px auto 0;
 	}
@@ -4638,7 +4638,7 @@ td.invert-image a img {
 	}
 	.product-men {
 		float: none;
-		width: 65%;
+		/*width: 65%;*/
 	}
 	.coupons-gd h3 {
 		font-size: 18px;
@@ -4801,7 +4801,7 @@ td.invert-image a img {
 	}
 	.product-men {
 		float: none;
-		width: 74%;
+		/*width: 74%;*/
 	}
 	.sign-gd-two ul li i {
 		margin-right: .5em;

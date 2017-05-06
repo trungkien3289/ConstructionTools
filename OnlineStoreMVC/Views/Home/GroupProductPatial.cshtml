@@ -15,40 +15,37 @@
         </div>
     </div>
     <div class="products-groupproduct wrap" style="display: block; width: 100%; margin: 0px;">
-        <div class="frame">
-            <ul class="clearfix">
-                @foreach (var item in Model.products)
-                {
-                    <li>
-                        <div class="product-men" data-toggle="popover" title="@item.Name" data-content="@item.ShortDescription">
-                            <div class="men-pro-item simpleCart_shelfItem">
-                                <div class="men-thumb-item">
-                                    <img src="@item.CoverImageUrl" alt="" class="pro-image-front">
-                                    <img src="@item.CoverImageUrl" alt="" class="pro-image-back">
-                                    <div class="men-cart-pro">
-                                        <div class="inner-men-cart-pro">
-                                            @Html.ActionLink("Chi Tiết", "ProductDetails", "Product", new { @id = item.Id }, new { @class = "link-product-add-cart" })
-                                        </div>
-                                    </div>
-                                    @if (item.IsNew)
-                                    {
-                                        <span class="product-new-top">Mới</span>
-                                    }
-                                </div>
-                                <div class="item-info-product ">
-                                    <h4 style="height:60px;overflow:hidden;">@Html.ActionLink(item.Name, "ProductDetails", "Product", new { @id = item.Id }, null)</h4>
-                                    <div class="info-product-price">
-                                        <span class="item_price">@item.PriceFormatCurrency</span>
-                                    </div>
-                                    @*<a href="#" class="item_add single-item hvr-outline-out button2">Thêm Vào Giỏ</a>*@
+        <div class="owl-carousel owl-theme">
+            @foreach (var item in Model.products)
+            {
+                <div class="product-men item" data-toggle="popover" title="@item.Name" data-content="@item.ShortDescription">
+                    <div class="men-pro-item simpleCart_shelfItem">
+                        <div class="men-thumb-item">
+                            <img src="@item.CoverImageUrl" alt="" class="pro-image-front">
+                            <img src="@item.CoverImageUrl" alt="" class="pro-image-back">
+                            <div class="men-cart-pro">
+                                <div class="inner-men-cart-pro">
+                                    @Html.ActionLink("Chi Tiết", "ProductDetails", "Product", new { @id = item.Id }, new { @class = "link-product-add-cart" })
                                 </div>
                             </div>
+                            @if (item.IsNew)
+                            {
+                                <span class="product-new-top">Mới</span>
+                            }
                         </div>
-                    </li>
-                }
-            </ul>
+                        <div class="item-info-product ">
+                            <h4 style="height:60px;overflow:hidden;">@Html.ActionLink(item.Name, "ProductDetails", "Product", new { @id = item.Id }, null)</h4>
+                            <div class="info-product-price">
+                                <span class="item_price">@item.PriceFormatCurrency</span>
+                            </div>
+                            @*<a href="#" class="item_add single-item hvr-outline-out button2">Thêm Vào Giỏ</a>*@
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 
     <div style="display:block;height:30px;">@Html.ActionLink("thêm...", "GetProductByCategory", "Product", new { @id = Model.CategoryId }, new { @class = "pull-right" })</div>
 </div>
+

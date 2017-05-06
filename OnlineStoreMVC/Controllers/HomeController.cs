@@ -44,6 +44,24 @@ namespace OnlineStoreMVC.Controllers
             }
         }
 
+        /// <summary>
+        /// Get random a number of product in a specific category
+        /// </summary>
+        /// <param name="mainCategoryId">category id</param>
+        /// <param name="count">number of products</param>
+        /// <returns></returns>
+        private IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView> GetRandomProducts(int mainCategoryId, int count)
+        {
+            try
+            {
+                return service.GetTopProductsByCategoryId(mainCategoryId, count);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         #endregion
 
         #region Actions

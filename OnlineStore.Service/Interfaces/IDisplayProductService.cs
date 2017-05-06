@@ -13,6 +13,7 @@ namespace OnlineStore.Service.Interfaces
     {
         void RefreshAll();
         IEnumerable<ProductSummaryView> GetTopProductsByCategoryId(int categoryId, int top);
+        IEnumerable<ProductSummaryView> GetRandomProductsByCategoryId(int categoryId, int count);
         GetProductsByCategoryResponse GetProductsByCategory(GetProductsByCategoryRequest request);
         ProductDetailsView GetProductDetails(int id);
         IEnumerable<ProductSummaryView> GetAllNewProduct();

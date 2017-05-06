@@ -19,38 +19,51 @@
         }
         var initProductGroupSlider = function () {
             // Init slider of products for each category
-
-            var $frame = $('.products-groupproduct .frame');
-
-            $.each($frame, function (i, groupProductPanel) {
-                $(groupProductPanel).sly({
-                    horizontal: 1,
-                    itemNav: 'basic',
-                    smart: 1,
-                    activateOn: 'click',
-                    mouseDragging: 1,
-                    touchDragging: 1,
-                    releaseSwing: 1,
-                    startAt: 0,
-                    scrollBy: 1,
-                    activatePageOn: 'click',
-                    speed: 300,
-                    elasticBounds: 1,
-                    easing: 'easeOutExpo',
-                    dragHandle: 1,
-                    dynamicHandle: 1,
-                    clickBar: 1,
-
-                    // Cycling
-                    cycleBy: "items",
-                    cycleInterval: 2000,
-                    pauseOnHover: true,
-                    startPaused: false,
-
-                    // Buttons
-                    prevPage: $(groupProductPanel).closest(".b-groupproduct").find('.title-groupproduct .btn-previous-groupproduct'),
-                    nextPage: $(groupProductPanel).closest(".b-groupproduct").find('.title-groupproduct .btn-next-groupproduct')
+            var owl = $('.groupproduct-panel .owl-carousel');
+            $.each(owl, function (i, groupProductPanel) {
+                $(groupProductPanel).owlCarousel({
+                    items: 6,
+                    loop: true,
+                    margin: 10,
+                    autoplay: true,
+                    autoplayTimeout: 1000,
+                    autoplayHoverPause: true,
+                    //responsiveClass: true,
+                    responsive: {
+                        0: {
+                            items: 1,
+                            nav: true
+                        },
+                        600: {
+                            items: 3,
+                            nav: false
+                        },
+                        800: {
+                            items: 4,
+                            nav: false
+                        },
+                        1000: {
+                            items: 5,
+                            nav: true,
+                            loop: true
+                        },
+                        1200: {
+                            items: 6,
+                            nav: true,
+                            loop: true
+                        }
+                    }
                 });
+                // Go to the next item
+                $(groupProductPanel).closest(".b-groupproduct").find('.title-groupproduct .btn-previous-groupproduct').click(function () {
+                    owl.trigger('next.owl.carousel');
+                })
+                // Go to the previous item
+                $(groupProductPanel).closest(".b-groupproduct").find('.title-groupproduct .btn-next-groupproduct').click(function () {
+                    // With optional speed parameter
+                    // Parameters has to be in square bracket '[]'
+                    owl.trigger('prev.owl.carousel', [300]);
+                })
             });
         }
         var initPopover = function () {
