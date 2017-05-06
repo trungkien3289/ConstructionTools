@@ -25,9 +25,9 @@
             });
         }
     </script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJW4PuEwBlrwteqERcoU4E-D3-QApQ-t0&callback=initMap">
-</script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJW4PuEwBlrwteqERcoU4E-D3-QApQ-t0&callback=initMap">
+    </script>
 }
 <!-- contact -->
 <div class="contact">
@@ -60,16 +60,19 @@
             <h3 class="tittle">Vị Trí</h3>
             <div id="map"></div>
         </div>
-        <h3 class="tittle">Liên Hệ</h3>
-        <form action="/Home/Contact" method="post">
-            @Html.AntiForgeryToken()
-            <div class="contact-form2">
-                <input type="text" name="Name" onfocus="this.value = '';" placeholder="Tên" required="">
-                <input type="email" name="Email" onfocus="this.value = '';" placeholder="Email" required="">
-                <textarea type="text" name="Message" onfocus="this.value = '';" placeholder="Tin Nhắn" required=""></textarea>
-                <input type="submit" value="Gửi">
-            </div>
-        </form>
+        <div class="contact-form">
+            <h3 class="tittle">Liên Hệ</h3>
+            <form action="/Home/Contact" method="post">
+                @Html.AntiForgeryToken()
+                <div class="contact-form2">
+                    <input type="text" name="Name" onfocus="this.value = '';" placeholder="Tên" required="">
+                    <input type="email" name="Email" onfocus="this.value = '';" placeholder="Email" required="">
+                    <textarea type="text" name="Message" onfocus="this.value = '';" placeholder="Tin Nhắn" required=""></textarea>
+                    <input type="submit" value="Gửi">
+                </div>
+            </form>
+        </div>
+
     </div>
 </div>
 

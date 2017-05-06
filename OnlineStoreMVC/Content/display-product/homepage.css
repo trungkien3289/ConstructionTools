@@ -62,34 +62,35 @@
   overflow: hidden;
 }
 
-.frame ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  /*font-size: 50px;*/
-}
-
-.frame ul li {
-  float: left;
-  width: 200px;
-  height: 100%;
-  margin: 0 1px 0 0;
-  padding: 0;
-  color: #ddd;
-  text-align: center;
-  cursor: pointer;
-border: 1px solid #ccc;
-margin: 0 5px;
-}
-
-.frame ul li.active {
-  background: #FDA30E;
-}
-
-    .frame ul li.active a{
-        color: #fff!important;
+    .frame ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        /*font-size: 50px;*/
     }
+
+        .frame ul li {
+            float: left;
+            width: 200px;
+            height: 100%;
+            margin: 0 1px 0 0;
+            padding: 0;
+            color: #ddd;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            margin: 0 5px;
+            background-color: #fff;
+        }
+
+            .frame ul li.active {
+                background: #FDA30E;
+            }
+
+                .frame ul li.active a {
+                    color: #fff !important;
+                }
 
     
 
