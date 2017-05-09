@@ -58,8 +58,12 @@ ProductManagement = {
         }).spin();
 
         // install CKEditor
-        CKEDITOR.replace('Description2');
-        CKEDITOR.replace('Specification');
+        var editor = CKEDITOR.instances['Description2'];
+        if (editor) { editor.destroy(true); }
+        CKEDITOR.replace('Description2', { enterMode: CKEDITOR.ENTER_BR });
+        CKEDITOR.replace('Specification', { enterMode: CKEDITOR.ENTER_BR });
+        CKFinder.setupCKEditor(null, "/Content/ckfinder/", null, null);
+
         // install chosen control
         $(".chzn-select").chosen();
 
