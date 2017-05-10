@@ -1,4 +1,4 @@
-﻿angular.module("ecom_HomePage", [])
+﻿var ecom_HomePage = angular.module("ecom_HomePage", [])
     .controller("ecom_Main_Controller", [function () {
         var self = this;
         var init = function () {
@@ -44,12 +44,17 @@
                         },
                         1000: {
                             items: 5,
-                            nav: true,
+                            nav: false,
                             loop: true
                         },
                         1200: {
                             items: 6,
-                            nav: true,
+                            nav: false,
+                            loop: true
+                        },
+                         1336: {
+                            items: 7,
+                            nav: false,
                             loop: true
                         }
                     }

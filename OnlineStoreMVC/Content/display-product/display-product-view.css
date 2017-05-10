@@ -111,7 +111,7 @@ ul.product_list.grid > li .product-container .product-image-container.image-cont
 }
 
 .listcategories-displayproduct{
-    padding-left:25px;
+    padding: 5px 5px 5px 35px;
     display:block;
 }
 .listbranch-displayproduct{

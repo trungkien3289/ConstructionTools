@@ -259,34 +259,9 @@ var DisplayProductManagement = {
         /// <param>N/A</param>
         /// <returns>N/A</returns>
 
-        //var template = "";
-        //template += "<div class=\"col-md-3 pro-1\">";
-        //template += "        <div class=\"col-m\">";
-        //template += "            <a href=\"/Product/ProductDetails?id=" + product.Id + "\" class=\"offer-img\">";
-        //template += "                <img src=\"" + product.CoverImageUrl + "\" class=\"img-responsive\" alt=\"\">";
-        //if (product.IsNew) {
-        //    template += "                <div class=\"offer\"><p><span>New<\/span><\/p><\/div>";
-        //}
-        //template += "            <\/a>";
-        //template += "            <div class=\"mid-1\">";
-        //template += "                <div class=\"item-name-productItem\">";
-        //template += "                    <h6><a title=" + product.Name + " href=\"/Product/ProductDetails?id=" + product.Id + "\">" + product.Name + "<\/a><\/h6>";
-        //template += "                <\/div>";
-        //template += "                <div class=\"mid-2\">";
-        //template += "<div class=\"item-price-productItem\">"+product.Price+"<\/div>";
-        //template += "                    <div class=\"clearfix\"><\/div>";
-        //template += "                <\/div>";
-        //template += "                <div class=\"add\">";
-        //template += "                    <button class=\"btn btn-danger my-cart-btn my-cart-b \" data-id=\"1\" data-name=\"" + product.Name + "\" data-summary=\"summary 1\" data-price=\"" + product.Price + "\" data-quantity=\"1\" data-image=\"" + product.CoverImageUrl + "\">Add to Cart<\/button>";
-        //template += "                <\/div>";
-        //template += "            <\/div>";
-        //template += "        <\/div>";
-        //template += "    <\/div>";
-
-
         var template = '   <div class="col-md-3 product-men" data-toggle="popover" title="' + product.Name + '" data-content="' + product.ShortDescription + '">  ';
         template += '           <div class="men-pro-item simpleCart_shelfItem">  ';
-        template += '               <div class="men-thumb-item">  ';
+        template += '               <a href="/Product/ProductDetails/' + product.Id + '" class="men-thumb-item">  ';
         template += '                   <img src="' + product.CoverImageUrl + '" alt="" class="pro-image-front">  ';
         template += '                   <img src="' + product.CoverImageUrl + '" alt="" class="pro-image-back">  ';
         template += '                   <div class="men-cart-pro">  ';
@@ -299,13 +274,13 @@ var DisplayProductManagement = {
 
         }
         template += '     ';
-        template += '               </div>  ';
+        template += '               </a>  ';
         template += '               <div class="item-info-product ">  ';
-        template += '                   <h4><a href="/Product/ProductDetails?id=' + product.Id + '">'+product.Name+'</a></h4>  ';
+        template += '                   <h4 class="productname-item-info-product"><a href="/Product/ProductDetails?id=' + product.Id + '">' + product.Name + '</a></h4>  ';
         template += '                   <div class="info-product-price">  ';
         template += '                       <span class="item_price">' + product.PriceFormatCurrency + '</span>  ';
         template += '                   </div>  ';
-        template += '                   <a href="#" class="item_add single-item hvr-outline-out button2">Thêm Vào Giỏ</a>  ';
+        //template += '                   <a href="#" class="item_add single-item hvr-outline-out button2">Thêm Vào Giỏ</a>  ';
         template += '               </div>  ';
         template += '           </div>  ';
         template += '      </div>  ';
@@ -361,7 +336,6 @@ var DisplayProductManagement = {
         $(".b-productItems .sorting .display").text("Có " + model.NumberOfTitlesFound + " sản phẩm");
         // update paging control
         DisplayProductManagement.initPagingControl(model.NumberOfTitlesFound, DisplayProductManagement.model.NumberOfResultsPerPage);
-        debugger
         // update list branchs
         DisplayProductManagement.updateListBranch(model);
     },

@@ -230,7 +230,13 @@ namespace OnlineStore.Service.Implements
         /// <returns></returns>
         public IEnumerable<ProductSummaryView> GetRandomProductsByCategoryId(int categoryId, int count)
         {
-            throw new NotImplementedException();
+            var searchQuery = PredicateBuilder.True<ecom_Products>();
+            searchQuery = searchQuery.And(p => p.ecom_Categories.Select(c => c.Id).Contains(categoryId));
+            searchQuery = searchQuery.And(p => p.Status == (int)Define.Status.Active);
+            IEnumerable<ecom_Products> productsMatchingRefinement = db.Get(
+                filter: searchQuery, includeProperties: "ecom_Brands,ecom_Categories,share_Images").OrderBy(c => Guid.NewGuid()).Take(count).OrderBy(p => p.Name).ToList();
+
+            return productsMatchingRefinement.ConvertToProductSummaryViews();
         }
 
         /// <summary>

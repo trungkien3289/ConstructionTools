@@ -77,8 +77,8 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
-            service.Dispose();
             base.Dispose(disposing);
+            service.Dispose();
         }
 
         #endregion

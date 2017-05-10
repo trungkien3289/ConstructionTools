@@ -54,7 +54,7 @@ namespace OnlineStoreMVC.Controllers
         {
             try
             {
-                return service.GetTopProductsByCategoryId(mainCategoryId, count);
+                return service.GetRandomProductsByCategoryId(mainCategoryId, count);
             }
             catch (Exception ex)
             {
@@ -146,7 +146,7 @@ namespace OnlineStoreMVC.Controllers
             try
             {
                 GroupProductViewModel model = new GroupProductViewModel();
-                model.products = GetTopProduct(categoryId, 10);
+                model.products = GetRandomProducts(categoryId, 10);
                 model.CategoryId = categoryId;
                 model.CategoryName = _categoryService.GetCategoryById(categoryId).Name;
                 model.childrenCategories = _categoryService.getChidrenCategories(categoryId);
@@ -171,6 +171,7 @@ namespace OnlineStoreMVC.Controllers
             base.Dispose(disposing);
             _cmsNewsService.Dispose();
             _categoryService.Dispose();
+            _bannerService.Dispose();
         }
 
         #endregion

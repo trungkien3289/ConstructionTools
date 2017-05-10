@@ -3,8 +3,8 @@
 <!-- header-bot -->
 <div class="header-bot">
     <div class="container">
-        <div class="col-md-3  col-sm-12 col-xs-12 header-left">
-            <h1><a href="index.html"><img src="~/Content/Images/TestImages/logo3.jpg"></a></h1>
+        <div class="col-md-2 col-sm-12 col-xs-12 header-left">
+            <h1><a href="/Home/Index"><img src="~/Content/Images/TestImages/logo3.jpg"></a></h1>
         </div>
         <div class="col-md-7  col-sm-12 col-xs-12 header-middle">
             <form action="/Product/SearchProduct" method="get">
@@ -12,12 +12,6 @@
                     <input type="search" value="@Request.QueryString["searchString"]" placeholder="Tìm Kiếm" name="searchString">
                 </div>
                 <div class="section_room">
-                    @*<select id="country" name="searchType" class="frm-field required">
-                        @*<option value="1">Tất cả các sản phẩm</option>
-                        <option value="2">Tìm kiếm theo từ khóa</option>
-                        <option value="3">Sản phẩm mới</option>
-                        <option value="4">Sản phẩm bán chạy nhất</option>
-                    </select>*@
                         @Html.DropDownList("searchType")
                     
                 </div>
@@ -27,7 +21,7 @@
                 <div class="clearfix"></div>
             </form>
         </div>
-        <div class="col-md-2 col-sm-12 col-xs-12 header-right footer-bottom">
+        <div class="col-md-3 col-sm-12 col-xs-12 header-right footer-bottom">
             <ul>
                 <li>
                     <a href="mailto:info@example.com">info@example.com</a>

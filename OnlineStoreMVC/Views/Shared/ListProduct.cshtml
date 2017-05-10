@@ -1,41 +1,10 @@
 ﻿@model IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>
 
-
-@*@foreach (var product in @Model)
-{
-    <div class="col-md-3 pro-1 b-productItem" data-toggle="popover" title="@product.Name" data-content="@product.ShortDescription">
-        <div class="col-m">
-            <a href="/Product/ProductDetails?id=@product.Id" class="offer-img">
-                <img src="@product.CoverImageUrl" class="img-responsive" alt="">
-                @if (@product.IsNew)
-                {
-                    <div class="offer"><p><span>New</span></p></div>
-                }
-            </a>
-            <div class="mid-1">
-                <div class="item-name-productItem">
-                    <h6><a title="@product.Name" href="/Product/ProductDetails?id=@product.Id">@product.Name</a></h6>
-                </div>
-                <div class="mid-2">
-                    <div class="item-price-productItem">
-                        @product.PriceFormatCurrency
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="add">
-                    <button class="btn btn-danger my-cart-btn my-cart-b " data-id="@product.Id" data-name="@product.Name" data-summary="@product.ShortDescription" data-price="@product.Price" data-quantity="1" data-image="@product.CoverImageUrl">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-    </div>
-}*@
-
-
 @foreach (var item in Model)
 {
     <div class="col-md-3 product-men" data-toggle="popover" title="@item.Name" data-content="@item.ShortDescription">
         <div class="men-pro-item simpleCart_shelfItem">
-            <div class="men-thumb-item">
+            <a href="/Product/ProductDetails/@item.Id" class="men-thumb-item">
                 <img src="@item.CoverImageUrl" alt="" class="pro-image-front">
                 <img src="@item.CoverImageUrl" alt="" class="pro-image-back">
                 <div class="men-cart-pro">
@@ -48,13 +17,13 @@
                     <span class="product-new-top">Mới</span>
                 }
 
-            </div>
+            </a>
             <div class="item-info-product ">
-                <h4>@Html.ActionLink(item.Name, "ProductDetails", "Product", new { @id = item.Id }, null)</h4>
+                <h4 class="productname-item-info-product">@Html.ActionLink(item.Name, "ProductDetails", "Product", new { @id = item.Id }, null)</h4>
                 <div class="info-product-price">
                     <span class="item_price">@item.PriceFormatCurrency</span>
                 </div>
-                <a href="#" class="item_add single-item hvr-outline-out button2">Thêm Vào Giỏ</a>
+                @*<a href="#" class="item_add single-item hvr-outline-out button2">Thêm Vào Giỏ</a>*@
             </div>
         </div>
     </div>
