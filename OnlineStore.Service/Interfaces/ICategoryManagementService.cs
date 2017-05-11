@@ -21,5 +21,6 @@ namespace OnlineStore.Service.Interfaces
         bool DeleteCategory(int id);
         CategoryViewModel getCategoryViewModel(int id);
         IEnumerable<SummaryCategoryViewModel> getChidrenCategories(int parentId);
+        IEnumerable<SummaryCategoryViewModel> GetTopCategories();
     }
 }

@@ -5,10 +5,8 @@ using OnlineStore.Service.Implements;
 using OnlineStore.Service.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace OnlineStoreMVC.Controllers
@@ -35,11 +33,14 @@ namespace OnlineStoreMVC.Controllers
 
         #region Private functions
 
-        private IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView> GetTopProduct(int mainCategoryId,int top)
+        private IEnumerable<ProductSummaryView> GetTopProduct(int mainCategoryId, int top)
         {
-            try{
+            try
+            {
                 return service.GetTopProductsByCategoryId(mainCategoryId, top);
-            }catch(Exception ex){
+            }
+            catch (Exception)
+            {
                 return null;
             }
         }
@@ -50,16 +51,21 @@ namespace OnlineStoreMVC.Controllers
         /// <param name="mainCategoryId">category id</param>
         /// <param name="count">number of products</param>
         /// <returns></returns>
-        private IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView> GetRandomProducts(int mainCategoryId, int count)
+        private IEnumerable<ProductSummaryView> GetRandomProducts(int mainCategoryId, int count)
         {
             try
             {
                 return service.GetRandomProductsByCategoryId(mainCategoryId, count);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
+        }
+
+        private IEnumerable<SummaryCategoryViewModel> GetTopCategoriesList()
+        {
+            return _categoryService.GetTopCategories();
         }
 
         #endregion
@@ -70,10 +76,9 @@ namespace OnlineStoreMVC.Controllers
         {
             PopulateNewProductList();
             PopulateBestSellProductList();
-           
+
             //PopulateHighPriorityOrderProductList();
             PopulateCategoryList();
-            //PopulateTopCategoryList();
 
             //ViewBag.Banner2 = _bannerService.GetBanners2ForHomePage();
             //ViewBag.BannerPopup = _bannerService.GetActivePopupForHomePage();
@@ -122,9 +127,9 @@ namespace OnlineStoreMVC.Controllers
 
         public ActionResult _HeaderPartial(int? searchType)
         {
-            PopulateSearchType(searchType!=null?(SearchType)searchType:SearchType.AllProduct);
+            PopulateSearchType(searchType != null ? (SearchType)searchType : SearchType.AllProduct);
             PopulateCategoryList();
-            PopulateTopCategoryList();
+            ViewBag.TopCategoriesList = GetTopCategoriesList();
             ViewBag.BakeryCategoryList = GetChildrenCategories(21);
             ViewBag.KitchenToolsCategoryList = GetChildrenCategories(22);
             return PartialView();
@@ -152,7 +157,7 @@ namespace OnlineStoreMVC.Controllers
                 model.childrenCategories = _categoryService.getChidrenCategories(categoryId);
                 return PartialView("GroupProductPatial", model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }

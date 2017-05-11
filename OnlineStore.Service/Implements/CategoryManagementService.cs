@@ -199,13 +199,22 @@ namespace OnlineStore.Service.Implements
         {
             var childrenCategories = db.GetChildrenByParentCategoryId(parentId);
             IEnumerable<SummaryCategoryViewModel> results = from c in childrenCategories
-                                                             select new SummaryCategoryViewModel()
-                                                             {
-                                                                 Id = c.Id,
-                                                                 Name = c.Name
-                                                             };
+                                                            select new SummaryCategoryViewModel()
+                                                            {
+                                                                Id = c.Id,
+                                                                Name = c.Name
+                                                            };
 
             return results;
+        }
+
+        public IEnumerable<SummaryCategoryViewModel> GetTopCategories()
+        {
+            return db.GetTopCategories().Select(x => new SummaryCategoryViewModel()
+            {
+                Id = x.Id,
+                Name = x.Name
+            });
         }
 
         #endregion
