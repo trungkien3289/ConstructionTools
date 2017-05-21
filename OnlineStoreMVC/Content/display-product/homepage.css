@@ -202,3 +202,14 @@
 #my-cart-modal .modal-body{
     overflow:auto;
 }
+
+/* Start brand panel */
+.brands-bar{
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: 1170px;
+}
+
+/* End brand panel */

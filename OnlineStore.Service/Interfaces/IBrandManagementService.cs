@@ -18,6 +18,13 @@ namespace OnlineStore.Service.Interfaces
         /// <param name="totalItems">return total products</param>
         /// <returns>list product of current page</returns>
         IEnumerable<ecom_Brands> GetBrands(int pageNumber, int pageSize, out int totalItems);
+
+        /// <summary>
+        /// Get all brands
+        /// </summary>
+        /// <returns></returns>
+        IList<BrandSummaryView> GetBrands();
+
         /// <summary>
         /// Get information of a brand
         /// </summary>

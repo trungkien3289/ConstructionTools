@@ -39,4 +39,10 @@ namespace OnlineStore.Model.ViewModel
         [DisplayName("THÔNG TIN VỀ THƯƠNG HIỆU")]
         public string Description { get; set; }
     }
+
+    public class BranchSummary
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
 }

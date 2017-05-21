@@ -1,0 +1,20 @@
+﻿@using OnlineStore.Model.ViewModel
+@model IEnumerable<CategoryFilterItem>
+<style>
+    .b-category-filtercontent .ckb-category-filtercontent{
+        margin-right:10px;
+    }
+    .lbl-category-filtercontent{
+        color:#333333;
+        font-weight:normal;
+        cursor:pointer;
+    }
+</style>
+<ul class="b-category-filtercontent">
+    @foreach (CategoryFilterItem item in Model)
+    {
+        <li>
+            <label class="lbl-category-filtercontent"><input type="checkbox" class="ckb-category-filtercontent" data-id="@item.Id">@item.Name</label>
+        </li>
+    }
+</ul>

@@ -22,6 +22,7 @@ namespace OnlineStore.Model.ViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string CoverImagePath { get; set; }
     }
 
     public class ProductDetailsView
@@ -31,9 +32,8 @@ namespace OnlineStore.Model.ViewModel
         public string Name { get; set; }
         public string PriceFormatCurrency { get; set; }
         public decimal Price { get; set; }
-        public string BrandName { get; set; }
+        //public string BrandName { get; set; }
         public ImageInfor CoverImageUrl { get; set; }
-        //public string SmallCoverImageUrl { get; set; }
         public string Description { get; set; }
         public string Description2 { get; set; }
         public string Specification { get; set; }
@@ -41,7 +41,9 @@ namespace OnlineStore.Model.ViewModel
         public bool IsNewProduct { get; set; }
         public bool IsBestSellProduct { get; set; }
 
-        public List<ImageInfor> share_Images { get; set; }
+        public List<ImageInfor> Images { get; set; }
+        public List<ProductGroupSummary> Groups { get; set; }
+        public BranchSummary Branch { get; set; }
     }
 
     public class ImageInfor

@@ -15,6 +15,8 @@ using OnlineStore.Model.MessageModel;
 using OnlineStore.Model.Mapper;
 using OnlineStore.Infractructure.Helper;
 using PagedList;
+using OnlineStoreMVC.Models.ImageModels;
+using System.IO;
 
 namespace OnlineStoreMVC.Areas.Admin.Controllers
 {
@@ -34,6 +36,36 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         }
 
         #endregion
+
+        /// <summary>
+        /// Upload product image with 2 size(large and small)
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="counter"></param>
+        /// <returns></returns>
+        public bool UploadProductImages(HttpPostedFileBase file, out string largeFileName, Int32 counter = 0)
+        {
+            try
+            {
+                ImageUpload largeImage = new ImageUpload { SavePath = DisplayProductConstants.LargeProductImageFolderPath };
+                ImageUpload smallImage = new ImageUpload { SavePath = DisplayProductConstants.SmallProductImageFolderPath };
+                var fileName = Path.GetFileName(file.FileName);
+                string finalFileName = "ProductImage_" + ((counter).ToString()) + "_" + fileName;
+                if (System.IO.File.Exists(HttpContext.Request.MapPath("~" + DisplayProductConstants.LargeProductImageFolderPath + finalFileName)) || System.IO.File.Exists(HttpContext.Request.MapPath("~" + DisplayProductConstants.SmallProductImageFolderPath + finalFileName)))
+                {
+                    return UploadProductImages(file, out largeFileName, ++counter);
+                }
+                ImageResult uploadLargeImage = largeImage.UploadProductImage(file, finalFileName, 1000);
+                ImageResult uploadSmallImage = smallImage.UploadProductImage(file, finalFileName, 700);
+                largeFileName = uploadSmallImage.ImageName;
+                return true;
+            }
+            catch (Exception)
+            {
+                largeFileName = null;
+                return false;
+            }
+        }
 
         #region Actions
 
@@ -83,19 +115,43 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         /// </summary>
         /// <param name="brand">information of new brand</param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Create(CreateBrandPostRequest brand)
         {
             if (ModelState.IsValid)
             {
-                bool isSuccess = brandService.AddBrand(brand.ConvertToBrandModel());
-                if (isSuccess)
+                var file = Request.Files["coverImage"];
+                if (file != null && file.ContentLength > 0)
                 {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    ModelState.AddModelError("ServerError", "Add new brand fail!");
+                        string largeFileName = null;
+                        bool isSuccess = UploadProductImages(file, out largeFileName);
+
+                        if (isSuccess)
+                        {
+                            share_Images largeImage = new share_Images
+                            {
+                                ImageName = largeFileName,
+                                ImagePath = Path.Combine(ImageUpload.LargeImagePath, largeFileName)
+                            };
+
+                            var imageId = service.AddImage(largeImage);
+                            // Add product
+                            brand.ImageId = imageId;
+                            bool isCreateBrandSuccess = brandService.AddBrand(brand.ConvertToBrandModel());
+                            if (isCreateBrandSuccess)
+                            {
+                                return RedirectToAction("Index");
+                            }
+                            else
+                            {
+                                ModelState.AddModelError("ServerError", "Add new brand fail!");
+                            }
+                        }
+                        else
+                        {
+                            // use imageResult.ErrorMessage to show the error
+                            ViewBag.Error = "Upload product image fail";
+                        }
                 }
             }
 

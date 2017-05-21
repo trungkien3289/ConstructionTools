@@ -17,7 +17,6 @@ namespace OnlineStoreMVC.Controllers
     {
         #region properties
 
-        //public IDisplayProductService service = new DisplayProductService();
         private static int productPerPage = 10;
 
         #endregion
@@ -65,7 +64,8 @@ namespace OnlineStoreMVC.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        private GetProductsByCategoryRequest GenarateProductSeachRequest(GetProductsByCategoryRequest request){
+        private GetProductsByCategoryRequest GenarateProductSeachRequest(GetProductsByCategoryRequest request)
+        {
             GetProductsByCategoryRequest productSeachRequest = new GetProductsByCategoryRequest()
             {
                 CategoryId = request.CategoryId,
@@ -158,7 +158,7 @@ namespace OnlineStoreMVC.Controllers
             PopulateNewProductList();
             PopulateCategoryTreeViewDataSource();
 
-            return View("DisplayProducts",response);
+            return View("DisplayProducts", response);
         }
 
         /// <summary>
@@ -182,7 +182,8 @@ namespace OnlineStoreMVC.Controllers
         /// <returns></returns>
         public ActionResult ProductDetails(int? id)
         {
-            if(id == null){
+            if (id == null)
+            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
@@ -251,8 +252,121 @@ namespace OnlineStoreMVC.Controllers
         public ActionResult GetSearchProductsByAjax(SearchProductRequest request)
         {
             SearchProductRequest productSearchRequest = GenarateSeachRequest(request);
-            SearchProductResponse response = service.SearchByProductName(productSearchRequest,SearchType.AllProduct);
+            SearchProductResponse response = service.SearchByProductName(productSearchRequest, SearchType.AllProduct);
             return Json(response);
+        }
+
+        /// <summary>
+        /// Get all product belong to a specific group 
+        /// </summary>
+        /// <param name="groupId"></param>
+        /// <returns></returns>
+        public ActionResult DisplayGroupProducts(int? groupId)
+        {
+            if (groupId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            PopulateStatusDropDownList();
+            GetProductInGroupReponse response = service.GetProductsInGroup((int)groupId, 1, (int)ProductsSortBy.ProductNameAToZ, productPerPage);
+            return View(response);
+        }
+
+        /// <summary>
+        /// Get all product belong to a specific group
+        /// </summary>
+        /// <param name="groupId"></param>
+        /// <param name="index"></param>
+        /// <param name="sortBy"></param>
+        /// <param name="numberOfResultsPerPage"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult DisplayGroupProducts(int groupId, int index = 1, ProductsSortBy sortBy = ProductsSortBy.ProductNameAToZ, int numberOfResultsPerPage = 10)
+        {
+            GetProductInGroupReponse response = service.GetProductsInGroup(groupId, index, (int)sortBy, numberOfResultsPerPage);
+
+            return Json(response);
+        }
+
+        /// <summary>
+        /// Get all products belong to a specific branch
+        /// </summary>
+        /// <param name="branchId">branch id</param>
+        /// <returns></returns>
+        public ActionResult DisplayProductsOfBranch(int id)
+        {
+            PopulateStatusDropDownList();
+            GetProductsOfBranchResponse response = service.GetProductsOfBranch(id, productPerPage);
+            return View(response);
+        }
+
+        /// <summary>
+        /// Get all products belong to a specific branch
+        /// </summary>
+        /// <param name="branchId">branch id</param>
+        /// <param name="categories">list categories using for filer products</param>
+        /// <param name="index">current page</param>
+        /// <param name="sortBy">sort type</param>
+        /// <param name="numberOfResultsPerPage">number products per page</param>
+        /// <returns>list products</returns>
+        [HttpPost]
+        public ActionResult DisplayProductsOfBranch(int? branchId, List<int> categories, int index = 1, ProductsSortBy sortBy = ProductsSortBy.ProductNameAToZ, int numberOfResultsPerPage = 10)
+        {
+            try
+            {
+                GetFilteredProductsOfBranchResponse response = service.GetProductsOfBranch((int)branchId, categories, index, (int)sortBy, numberOfResultsPerPage);
+                return Json(response);
+            }
+            catch (ApplicationException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        [ChildActionOnly]
+        public ActionResult GetListProductHasSameBranch(int productId, int branchId)
+        {
+            IEnumerable<ProductSummaryView> products = service.GetProductHasSameBranch(productId, branchId, 10);
+            if (products.Count() == 0)
+            {
+                return null;
+            }
+            else
+            {
+                ViewBag.Title = "Sản phẩm cùng thương hiệu";
+                return PartialView("_GroupProductsPartial", products);
+            }
+        }
+
+        [ChildActionOnly]
+        public ActionResult GetListProductHasSameGroup(int productId)
+        {
+            try
+            {
+                IEnumerable<ProductSummaryView> products = service.GetListProductHasSameGroup(productId, 10);
+                if (products == null || products.Count() == 0)
+                {
+                    return null;
+                }
+                else
+                {
+                    ViewBag.Title = "Sản phẩm liên quan";
+                    return PartialView("_GroupProductsPartial", products);
+                }
+
+            }
+            catch (ApplicationException ex)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         #endregion

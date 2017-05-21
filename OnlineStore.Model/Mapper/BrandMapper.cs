@@ -37,7 +37,8 @@ namespace OnlineStore.Model.Mapper
                 Id = brandRequest.Id,
                 Name = brandRequest.Name,
                 Status = brandRequest.Status,
-                Description = brandRequest.Description
+                Description = brandRequest.Description,
+                ImageId = brandRequest.ImageId
             };
 
             return brand;

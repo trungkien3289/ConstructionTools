@@ -79,4 +79,36 @@ namespace OnlineStore.Service.Messaging
         public object ListProductView { get; set; }
         public GetProductsByCategoryResponse Model { get; set; }
     }
+
+    public class GetProductInGroupReponse
+    {
+        public int GroupId { get; set; }
+        public string GroupName { get; set; }
+        public int NumberOfTitlesFound { get; set; }
+        public int TotalNumberOfPages { get; set; }
+        public int CurrentPage { get; set; }
+        public int SortBy { get; set; }
+        public IEnumerable<ProductSummaryView> Products { get; set; }
+    }
+
+    public class GetFilteredProductsOfBranchResponse
+    {
+        public int BranchId { get; set; }
+        public int NumberOfTitlesFound { get; set; }
+        public int TotalNumberOfPages { get; set; }
+        public int CurrentPage { get; set; }
+        public int SortBy { get; set; }
+        public IEnumerable<ProductSummaryView> Products { get; set; }
+        public List<int> Categories { get; set; }
+    }
+
+    public class GetProductsOfBranchResponse
+    {
+        public int BranchId { get; set; }
+        public string BranchName { get; set; }
+        public int NumberOfTitlesFound { get; set; }
+        public int TotalNumberOfPages { get; set; }
+        public IEnumerable<ProductSummaryView> Products { get; set; }
+        public List<CategoryFilterItem> Categories { get; set; }
+    }
 }

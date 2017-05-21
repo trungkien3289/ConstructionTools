@@ -1,52 +1,42 @@
-﻿@model OnlineStore.Service.Messaging.GetProductsByCategoryResponse
+﻿@model OnlineStore.Service.Messaging.GetProductsOfBranchResponse
 
 @{
-    ViewBag.Title = "Products";
+    ViewBag.Title = "Danh sách sản phẩm theo thương hiệu";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section css{
 <link href="~/Content/plugins/pagingcontrol/simplePagination.css" rel="stylesheet" />
 <link href="~/Content/plugins/price-range/price-range.css" rel="stylesheet" />
 <link href="~/Content/display-product/display-product-view.css" rel="stylesheet" />
-<script src="~/Content/plugins/pagingcontrol/jquery.simplePagination.js"></script>
-<script src="~/Content/plugins/price-range/price-range.js"></script>
-<script src="~/Scripts/DisplayProduct/DisplayProduct.js"></script>
+}
+
+@section scripts{
 <script src="~/Content/plugins/spin/spin.min.js"></script>
+<script src="~/Content/plugins/pagingcontrol/jquery.simplePagination.js"></script>
+<script src="~/Scripts/DisplayProduct/DisplayProductOfBranch.js"></script>
+}
 
 <div class="men-wear">
     <div class="container">
         <div class="col-md-3 products-left b-filterItems">
-            <div class="css-treeview">
-                <h4>Giá</h4>
-                <div class="price-filterItems">
-                    <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="50000000" data-slider-step="100000" data-slider-value="[200000,20000000]" id="Sl_PriceRange">
-                    <br />
-                    <b class="pull-left">0 Đ</b> <b class="pull-right">50.000.000 Đ</b>
-                </div>
-            </div>
-            <div class="css-treeview category-filterItems">
+            <div class="community-poll categoryfilter-displayproduct">
                 <h4>Danh Mục</h4>
-                <div class="listcategories-displayproduct">
-                    @Html.Partial("_CategoryTreeView", (IEnumerable<OnlineStore.Model.ViewModel.SummaryCategoryTreeViewItemModel>)ViewBag.CategoryTreeViewDataSource, new ViewDataDictionary { { "SelectedCategory", Model.SelectedCategory } })
-                </div>
-            </div>
-            <div class="community-poll branchfilter-displayproduct">
-                <h4>Thương Hiệu</h4>
                 <div class="listbranch-displayproduct">
-                    @Html.Partial("_BranchFilterPartialView", Model.Brands)
+                    @Html.Partial("_CategoryFilterPartialView", Model.Categories)
                 </div>
             </div>
             <div class="clearfix"></div>
         </div>
         <div class="col-md-9 products-right b-productItems">
-            <h5>Sản Phẩm</h5>
+            <h5>Thương hiệu : @Model.BranchName</h5>
             <div class="sort-grid">
                 <div class="sorting">
                     @Html.DropDownList("SortProductOptionsSelectListItems")
                     <div class="clearfix"></div>
                 </div>
                 <div class="sorting">
-                    <span class="display hidden-xs pull-right">Có @Model.TotalProducts sản phẩm</span>
+                    <span class="display hidden-xs pull-right">Có @Model.NumberOfTitlesFound sản phẩm</span>
                     <div class="clearfix"></div>
                 </div>
                 <div class="clearfix"></div>
@@ -68,6 +58,7 @@
 
 <script>
     $(document).ready(function(){
-        DisplayProductManagement.init(@Model.SelectedCategory,@Model.NumberOfTitlesFound,@Model.CurrentPage);
+        DisplayProductManagement.init(@Model.BranchId,@Model.NumberOfTitlesFound, 1);
     });
 </script>
+

@@ -76,4 +76,9 @@ namespace OnlineStore.Model.ViewModel
         public Nullable<int> Status { get; set; }
     }
 
+    public class CategoryFilterItem
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
 }

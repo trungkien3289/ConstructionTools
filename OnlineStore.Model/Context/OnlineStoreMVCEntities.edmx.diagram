@@ -37,6 +37,7 @@
         <AssociationConnector Association="OnlineStoreMVCModel.FK_cms_News_share_Images" />
         <EntityTypeShape EntityType="OnlineStoreMVCModel.ecom_ProductGroups" Width="1.5" PointX="3.25" PointY="0.75" />
         <AssociationConnector Association="OnlineStoreMVCModel.ecom_Products_ProductGroups1" />
+        <AssociationConnector Association="OnlineStoreMVCModel.FK_ecom_Brands_share_Images" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

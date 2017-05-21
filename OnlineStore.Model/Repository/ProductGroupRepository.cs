@@ -31,6 +31,11 @@ namespace OnlineStore.Model.Repository
             return dbSet.Where(b => b.Status!= (int)Define.Status.Delete).ToList();
         }
 
+        public ecom_ProductGroups GetGroupById(int groupId)
+        {
+            return dbSet.Where(b => b.Id == groupId && b.Status == (int)Define.Status.Active).FirstOrDefault();
+        }
+
         #endregion
     }
 }

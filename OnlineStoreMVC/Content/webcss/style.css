@@ -177,7 +177,8 @@ label{
 }
 .sear-sub{
     float: right;
-    width: 10%;		
+    width: 10%;	
+    height:50px;	
 }
 .header-middle {
     border: 1px solid #eee;
@@ -1243,8 +1244,7 @@ position:relative;
 
 /*-Product page-*/
 .con-w3l .product-men, .productlist-displayproduct .product-men {
-    width: 205px;
-    /*margin-right: 20px !important;*/
+    width: 155px;
     padding:5px;
 }
 /*-- easy responsive tabs style--*/
@@ -2969,6 +2969,9 @@ td.invert-image a img {
     }
 }
 @media (max-width: 1024px) and (min-device-width: 1081px){
+    .b-mainbrand-topmenu{
+        display:none;
+    }
 	.header ul li,.section_room select,.header-middle input[type="search"] {
 		font-size: 14px;
 	}
@@ -3014,6 +3017,9 @@ td.invert-image a img {
     }
 }
 @media (max-width: 1080px) and (min-device-width: 992px){
+    .b-mainbrand-topmenu{
+        display:none;
+    }
 	.footer-bottom a span {
     width: 21%;
     left: 24px;
@@ -3193,6 +3199,9 @@ td.invert-image a img {
     }
 }
 @media (max-width: 991px) and (min-device-width: 800px){
+    .b-mainbrand-topmenu{
+        display:none;
+    }
     .footer-bottom a span {
         width: 23%;
         left: 14px;
@@ -3230,6 +3239,7 @@ td.invert-image a img {
 	.sear-sub {
 		float: right;
 		width: 17%;
+        height: 50px;
 	}
 	.box_1 h3 {
 		font-size: 13px;
@@ -3554,6 +3564,9 @@ td.invert-image a img {
     }
 }
 @media (max-width: 768px) and (min-device-width: 668px){
+    .b-mainbrand-topmenu{
+        display:none;
+    }
 	.pignose-layerslider .slide-visual {
 		height: 400px;
 	}
@@ -3626,6 +3639,9 @@ td.invert-image a img {
     }
 }
 @media (max-width: 767px) and (min-device-width: 668px){
+    .b-mainbrand-topmenu{
+        display:none;
+    }
 	.navbar-toggle {
 		margin-left: 15px;
 		float: left;
@@ -3757,6 +3773,9 @@ td.invert-image a img {
     }
 }
 @media (max-width: 667px){
+    .b-mainbrand-topmenu{
+        display:none;
+    }
 	.header-middle form input[type="submit"] {
 		height: 37px;
 		background: url(../Images/TestImages/search.png) no-repeat -3px -4px #fda30e;
@@ -3764,6 +3783,7 @@ td.invert-image a img {
 	.sear-sub {
 		float: right;
 		width: 15%;
+        height: 50px;
 	}
 	.section_room select {
 		padding: 8px 10px;
@@ -3994,6 +4014,9 @@ td.invert-image a img {
     }
 }
 @media (max-width: 640px){
+    .b-mainbrand-topmenu{
+        display:none;
+    }
 	.header ul li, .section_room select, .header-middle input[type="search"] {
 		font-size: 13px;
 	}
@@ -4102,6 +4125,9 @@ td.invert-image a img {
     }
 }
 @media (max-width: 600px){
+    .b-mainbrand-topmenu{
+        display:none;
+    }
 	.top_nav_right {
 		width: 30%;
 	}
@@ -4324,6 +4350,9 @@ td.invert-image a img {
     }
 }
 @media (max-width: 568px){
+    .b-mainbrand-topmenu{
+        display:none;
+    }
 	.content-img-right {
 		padding: 35px 21px 0px;
 		min-height: 179.5px;
@@ -4345,6 +4374,9 @@ td.invert-image a img {
     }
 }
 @media (max-width: 480px){
+    .b-mainbrand-topmenu{
+        display:none;
+    }
 	.timetable_sub th, .timetable_sub td {
 	}
 	.timetable_sub th {
@@ -4469,6 +4501,7 @@ td.invert-image a img {
 	.sear-sub {
 		float: right;
 		width: 17%;
+        height: 50px;
 	}
 	.footer-bottom a span {
 		left: 9px;
@@ -4621,6 +4654,9 @@ td.invert-image a img {
     }
 }
 @media (max-width: 414px){
+    .b-mainbrand-topmenu{
+        display:none;
+    }
 	.header ul li span {
 		margin-right: 5px;
 	}
@@ -4645,6 +4681,7 @@ td.invert-image a img {
 	.sear-sub {
 		float: right;
 		width: 10%;
+        height: 50px;
 	}
 	.header-middle form input[type="submit"] {
 		background: url(../Images/TestImages/search.png) no-repeat -5px -8px #fda30e;
@@ -4808,6 +4845,9 @@ td.invert-image a img {
     }
 }
 @media (max-width: 384px){
+    .b-mainbrand-topmenu{
+        display:none;
+    }
 	.header ul li {
 		width: 100%;
 		padding: 6px 0;
@@ -4925,6 +4965,9 @@ td.invert-image a img {
     }
 }
 @media (max-width: 375px){
+    .b-mainbrand-topmenu{
+        display:none;
+    }
 	.wed-brandtwo {
 		top: 42%;
 		left: 16%;
@@ -4982,6 +5025,9 @@ td.invert-image a img {
     }
 }
 @media (max-width: 320px){
+    .b-mainbrand-topmenu{
+        display:none;
+    }
 	.header ul li {
 		padding: 4px 0;
 	}
@@ -5012,6 +5058,7 @@ td.invert-image a img {
 	.sear-sub {
 		float: right;
 		width: 12%;
+        height: 50px;
 	}
 	.header-middle form input[type="submit"] {
 		background: url(../Images/TestImages/search.png) no-repeat -7px -8px #fda30e;
@@ -5265,4 +5312,13 @@ td.invert-image a img {
     color: rgb(255, 255, 255);
     border-bottom-color: #FDA30E;
     border-radius:0;
+}
+
+.b-mainbrand-topmenu{
+    min-height: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.b-mainbrand-topmenu a:hover{
+    color:#FDA30E;
 }

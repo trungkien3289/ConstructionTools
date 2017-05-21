@@ -1,10 +1,20 @@
 ﻿@using OnlineStore.Model.ViewModel
 @model IEnumerable<BrandSummaryView>
-<ul>
+<style>
+    .b-branch-filtercontent .ckb-branch-filtercontent {
+        margin-right: 10px;
+    }
+    .lbl-branch-filtercontent {
+        color: #333333;
+        font-weight: normal;
+        cursor: pointer;
+    }
+</style>
+<ul class="b-branch-filtercontent">
     @foreach (BrandSummaryView item in Model)
     {
         <li>
-            <label><input type="checkbox" class="ckb-brand-filtercontent" data-id="@item.Id">@item.Name</label>
+            <label class="lbl-branch-filtercontent"><input type="checkbox" class="ckb-brand-filtercontent" data-id="@item.Id">@item.Name</label>
         </li>
     }
 </ul>

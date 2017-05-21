@@ -4,32 +4,26 @@
     ProductNameAToZ: 3,
     ProductNameZToA: 4
 }
-var GetProductsByCategoryRequest = function (categoryId, index) {
-    this.CategoryId = categoryId || null;
-    this.BrandIds = [];
-    this.SortBy = ProductSortEnum.ProductNameAToZ;
-    this.BeginPrice = null; // decimal?
-    this.EndPrice = null; // decimal?
-    this.Index = index || 0; // int
-    this.SearchString = ""; // string
-    this.NumberOfResultsPerPage = 10; // int
+var GetProductsByCategoryRequest = function (branchId, index) {
+    this.categories = [] || null;
+    this.branchId = branchId || null;
+    this.sortBy = ProductSortEnum.ProductNameAToZ;
+    this.index = index || 0; // int
+    this.numberOfResultsPerPage = 10; // int
 }
 var DisplayProductManagement = {
     model: {
-        CategoryId: null, // int
-        BrandIds: [], // List<int>
-        SortBy: ProductSortEnum.ProductNameAToZ,// int 
-        BeginPrice: null, // decimal?
-        EndPrice: null, // decimal?
-        Index: 0, // int
-        SearchString: "", // string
-        NumberOfResultsPerPage: 10 // int
+        branchId: null, // int
+        categories: [], // List<int>
+        sortBy: ProductSortEnum.ProductNameAToZ,// int 
+        index: 0, // int
+        numberOfResultsPerPage: 10 // int
     },
     controls: {
         priceRange: null,
         spin: null
     },
-    init: function (categoryId, numberItems, index) {
+    init: function (branchId, numberItems, index) {
         // Init spin
         this.controls.spin = new Spinner({
             lines: 15 // The number of lines to draw
@@ -54,26 +48,9 @@ var DisplayProductManagement = {
             , position: 'fixed' // Element positioning
         }).spin();
         // assign model
-        this.model = new GetProductsByCategoryRequest(categoryId, index);
+        this.model = new GetProductsByCategoryRequest(branchId, index);
         // init paging control
-        this.initPagingControl(numberItems, this.model.NumberOfResultsPerPage);
-        // Init price range control
-        var priceRangeElement = $('#Sl_PriceRange').slider({
-            from: 5000,
-            to: 150000,
-            heterogeneity: ['50/50000'],
-            step: 1000,
-            dimension: '&nbsp;$',
-            onstatechange: function (value) { console.log(value) }
-        }).on('slideStop', function (ev) {
-            var priceRange = ev.value;
-            var minPrice = priceRange[0];
-            var maxPrice = priceRange[1];
-            DisplayProductManagement.updatePriceRangeFilter(minPrice, maxPrice);
-        });
-
-        this.controls.priceRange = priceRangeElement.data("slider");
-
+        this.initPagingControl(numberItems, this.model.numberOfResultsPerPage);
         //Init layout
         if (numberItems != null && numberItems == 0) {
             $(".productlist-displayproduct").append(this.getNoResultMessage());
@@ -81,8 +58,7 @@ var DisplayProductManagement = {
         this.initShortDescriptionPopup();
         this.bindEvents();
     },
-
-    initShortDescriptionPopup:function(){
+    initShortDescriptionPopup: function () {
         // Init pop up show short description for product item
 
         $("body .popover").remove();
@@ -102,7 +78,7 @@ var DisplayProductManagement = {
             prevText: '<',
             nextText: '>',
             onPageClick: onPaging,
-            currentPage: DisplayProductManagement.model.Index
+            currentPage: DisplayProductManagement.model.index
         });
 
         function onPaging(pageNumber, event) {
@@ -111,32 +87,19 @@ var DisplayProductManagement = {
     },
     bindEvents: function () {
         // brand checkboxs
-        $(".branchfilter-displayproduct input:checkbox.ckb-brand-filtercontent").unbind("change").bind("change", function (sender) {
+        $(".listbranch-displayproduct input:checkbox.ckb-category-filtercontent").unbind("change").bind("change", function (sender) {
+            debugger
             var isCheck = $(this).is(":checked");
-            var brandId = $(this).data("id");
-            DisplayProductManagement.updateSelectedBrandList(brandId, isCheck);
+            var categoryId = $(this).data("id");
+            DisplayProductManagement.updateSelectedCategoryList(categoryId, isCheck);
         });
-
-        // bind event for category item
-        $(".b-filterItems .category-filterItems .category-link").unbind("click").bind("click", function () {
-            $(".b-filterItems .category-filterItems .category-link").removeClass("active");
-            $(this).addClass("active");
-            DisplayProductManagement.updateCategoryFilter($(this).data("id"));
-        });
-
         // sort
         $("#SortProductOptionsSelectListItems").unbind("change").bind("change", function () {
             var sortType = $("#SortProductOptionsSelectListItems").val();
             DisplayProductManagement.updateSortBy(sortType);
         });
-
-        // search control
-        $("#SearchProduct_Btn").unbind("click").bind("click", function () {
-            var searchString = $("#tm_search_query").val().trim();
-            DisplayProductManagement.updateSearch(searchString);
-        });
     },
-    updateSelectedBrandList: function (brandId, isAdd) {
+    updateSelectedCategoryList: function (categoryId, isAdd) {
         /// <summary>
         /// Update selected brands list when user add or remove a brand in filter
         /// </summary>
@@ -145,43 +108,22 @@ var DisplayProductManagement = {
 
         if (isAdd) {
             var isExist = false;
-            for (var i = 0; i < DisplayProductManagement.model.BrandIds.length; i++) {
-                if (DisplayProductManagement.model.BrandIds[i] == brandId) {
+            for (var i = 0; i < DisplayProductManagement.model.categories.length; i++) {
+                if (DisplayProductManagement.model.categories[i] == categoryId) {
                     isExist = true;
                 }
             }
             if (!isExist) {
-                DisplayProductManagement.model.BrandIds.push(brandId);
+                DisplayProductManagement.model.categories.push(categoryId);
             }
         } else {
-            for (var i = 0; i < DisplayProductManagement.model.BrandIds.length; i++) {
-                if (DisplayProductManagement.model.BrandIds[i] == brandId) {
-                    DisplayProductManagement.model.BrandIds.splice(i, 1);
+            for (var i = 0; i < DisplayProductManagement.model.categories.length; i++) {
+                if (DisplayProductManagement.model.categories[i] == categoryId) {
+                    DisplayProductManagement.model.categories.splice(i, 1);
                 }
             }
         }
 
-        DisplayProductManagement.updateListProducts();
-    },
-    updatePriceRangeFilter: function (minPrice, maxPrice) {
-        /// <summary>
-        /// Update price range in filter model 
-        /// </summary>
-        /// <param>N/A</param>
-        /// <returns>N/A</returns>
-
-        DisplayProductManagement.model.BeginPrice = minPrice;
-        DisplayProductManagement.model.EndPrice = maxPrice;
-        DisplayProductManagement.updateListProducts();
-    },
-    updateCategoryFilter: function (categoryId) {
-        /// <summary>
-        /// Update sort type in filter model 
-        /// </summary>
-        /// <param>N/A</param>
-        /// <returns>N/A</returns>
-
-        DisplayProductManagement.model.CategoryId = categoryId ? categoryId : null;
         DisplayProductManagement.updateListProducts();
     },
     updateSortBy: function (sortType) {
@@ -191,7 +133,7 @@ var DisplayProductManagement = {
         /// <param>N/A</param>
         /// <returns>N/A</returns>
 
-        DisplayProductManagement.model.SortBy = sortType ? sortType : ProductSortEnum.ProductNameAToZ;
+        DisplayProductManagement.model.sortBy = sortType ? sortType : ProductSortEnum.ProductNameAToZ;
         DisplayProductManagement.updateListProducts();
     },
     updatePaging: function (pageNumber) {
@@ -201,17 +143,7 @@ var DisplayProductManagement = {
         /// <param>N/A</param>
         /// <returns>N/A</returns>
 
-        DisplayProductManagement.model.Index = pageNumber;
-        DisplayProductManagement.updateListProducts();
-    },
-    updateSearch: function (searchString) {
-        /// <summary>
-        /// Update layout when search control changes 
-        /// </summary>
-        /// <param>N/A</param>
-        /// <returns>N/A</returns>
-
-        DisplayProductManagement.model.SearchString = searchString;
+        DisplayProductManagement.model.index = pageNumber;
         DisplayProductManagement.updateListProducts();
     },
     updateListProducts: function () {
@@ -221,10 +153,11 @@ var DisplayProductManagement = {
         /// <param>N/A</param>
         /// <returns>N/A</returns>
 
+        debugger
         DisplayProductManagement.showSpin();
         $.ajax({
             type: "POST",
-            url: "/Product/GetProductsByAjax",
+            url: "/Product/DisplayProductsOfBranch",
             data: JSON.stringify(DisplayProductManagement.model),
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -290,55 +223,14 @@ var DisplayProductManagement = {
 
         return template;
     },
-    updateListBranch: function (model) {
-        var generateBranchItem = function (item, isChecked) {
-            var template = '';
-            template +=  '<li>';
-            template += '<label class="lbl-branch-filtercontent">';
-            if(isChecked){
-                template += '<input type="checkbox" checked class="ckb-brand-filtercontent" data-id="' + item.Id + '">' + item.Name;
-            }else{
-                template += '<input type="checkbox" class="ckb-brand-filtercontent" data-id="' + item.Id + '">' + item.Name;
-            }
-            template += '</label>';
-            template +=  '</li>';
-
-            return template;
-        }
-
-        var isChoosed = function (branchId, selectedBranchList) {
-            for (var i = 0; i < selectedBranchList.length; i++) {
-                if (branchId == selectedBranchList[i]) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        $(".listbranch-displayproduct .b-branch-filtercontent>li").remove();
-        if (model.Brands != null) {
-            for (var i = 0; i < model.Brands.length; i++) {
-                $(".listbranch-displayproduct>ul").append(generateBranchItem(model.Brands[i], isChoosed(model.Brands[i].Id, model.BrandIds)));
-            }
-        }
-
-        // brand checkboxs
-        $(".branchfilter-displayproduct input:checkbox.ckb-brand-filtercontent").unbind("change").bind("change", function (sender) {
-            var isCheck = $(this).is(":checked");
-            var brandId = $(this).data("id");
-            DisplayProductManagement.updateSelectedBrandList(brandId, isCheck);
-        });
-    },
     getNoResultMessage: function () {
         return "<p class='noresult-panel'>Không có sản phẩm nào được tìm thấy</p>";
     },
     updateModelAndLayout: function (model) {
         // update title bar
         $(".b-productItems .sorting .display").text("Có " + model.NumberOfTitlesFound + " sản phẩm");
-        DisplayProductManagement.initPagingControl(model.NumberOfTitlesFound, DisplayProductManagement.model.NumberOfResultsPerPage);
-        DisplayProductManagement.updateListBranch(model);
-        DisplayProductManagement.initShortDescriptionPopup();
+        // update paging control
+        DisplayProductManagement.initPagingControl(model.NumberOfTitlesFound, DisplayProductManagement.model.numberOfResultsPerPage);
     },
     showSpin: function (target) {
         /// <summary>

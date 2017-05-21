@@ -18,6 +18,7 @@ namespace OnlineStoreMVC.Controllers
         IBannerService _bannerService;
         ICMSNewsService _cmsNewsService;
         ICategoryManagementService _categoryService;
+        IBrandManagementService _brandService;
         #endregion
 
         #region Constructures
@@ -27,6 +28,7 @@ namespace OnlineStoreMVC.Controllers
             _bannerService = new BannerService();
             _cmsNewsService = new CMSNewsService();
             _categoryService = new CategoryManagementService();
+            _brandService = new BrandManagementService();
         }
 
         #endregion
@@ -76,8 +78,6 @@ namespace OnlineStoreMVC.Controllers
         {
             PopulateNewProductList();
             PopulateBestSellProductList();
-
-            //PopulateHighPriorityOrderProductList();
             PopulateCategoryList();
 
             //ViewBag.Banner2 = _bannerService.GetBanners2ForHomePage();
@@ -162,6 +162,17 @@ namespace OnlineStoreMVC.Controllers
                 return null;
             }
         }
+        [ChildActionOnly]
+        public ActionResult GetListBrands()
+        {
+            IList<BrandSummaryView> brands = _brandService.GetBrands();
+            if (brands == null || brands.Count == 0)
+            {
+                return null;
+            }else{
+                return PartialView("_ListBrands", brands);
+            }
+        }
 
         #endregion
 
@@ -177,6 +188,7 @@ namespace OnlineStoreMVC.Controllers
             _cmsNewsService.Dispose();
             _categoryService.Dispose();
             _bannerService.Dispose();
+            _brandService.Dispose();
         }
 
         #endregion

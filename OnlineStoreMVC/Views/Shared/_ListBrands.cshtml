@@ -1,0 +1,67 @@
+﻿@using OnlineStore.Model.ViewModel;
+@model IEnumerable<BrandSummaryView>
+<script>
+    $(function () {
+        $(".b-brandlist-horizontalbar .owl-carousel").owlCarousel({
+            items: 6,
+            loop: true,
+            margin: 10,
+            autoplay: true,
+            autoplayTimeout: 1000,
+            autoplayHoverPause: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                600: {
+                    items: 3,
+                    nav: false
+                },
+                800: {
+                    items: 4,
+                    nav: false
+                },
+                1000: {
+                    items: 5,
+                    nav: false,
+                    loop: true
+                },
+                1200: {
+                    items: 6,
+                    nav: false,
+                    loop: true
+                },
+                1336: {
+                    items: 7,
+                    nav: false,
+                    loop: true
+                }
+            }
+        });
+    });
+</script>
+<style>
+.coverimage-brandlist-horizontalbar{
+    width:180px;
+    height:180px;
+}
+.brandname-brandlist-horizontalbar{
+    text-align:center;
+    text-decoration: none;
+    color: #333333;
+}
+</style>
+<div class="b-brandlist-horizontalbar" style="display:block;width:100%;">
+    <div class="owl-carousel owl-theme">
+        @foreach (var brand in Model)
+        {
+            <div class="item">
+                <a href="/Product/DisplayProductsOfBranch/@brand.Id">
+                    <img class="coverimage-brandlist-horizontalbar" src="@brand.CoverImagePath"/>
+                    <p class="brandname-brandlist-horizontalbar">@brand.Name</p>
+                </a>
+            </div>
+        }
+    </div>
+</div>

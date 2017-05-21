@@ -41,6 +41,9 @@
                                 TÊN
                             </th>
                             <th>
+                                ẢNH ĐẠI DIỆN
+                            </th>
+                            <th>
                                 MÔ TẢ THƯƠNG HIỆU
                             </th>
                             <th class="col-maxlarge"></th>
@@ -51,6 +54,16 @@
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @if (item.share_Images != null)
+                                    {
+                                        <img src="@item.share_Images.ImagePath" height="70" width="70" alt="ảnh không tồn tại" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/Images/no-image.png" height="70" width="70" alt="ảnh không tồn tại" />
+                                    }
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Description)

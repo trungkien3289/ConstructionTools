@@ -27,7 +27,7 @@ namespace OnlineStore.Model.Repository
         /// <returns></returns>
         public IList<ecom_Brands> GetAllAvailableBrands()
         {
-            return dbSet.Where(b => b.Status!= (int)Define.Status.Delete).ToList();
+            return dbSet.Include("share_Images").Where(b => b.Status != (int)Define.Status.Delete).ToList();
         }
 
         #endregion

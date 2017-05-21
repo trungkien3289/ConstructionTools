@@ -3,28 +3,26 @@
     ViewBag.Title = "Chi tiết sản phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<script src="~/Scripts/DisplayProduct/DetailProduct.js"></script>
-<link href="~/Content/display-product/detail-product.css" rel="stylesheet" />
-<script src="~/Scripts/webjs/jquery.zoomtoo.js"></script>
-<script>
-    $(function () {
-        $("#picture-frame").zoomToo({
-            magnify: 1
-        });
-
-        $('body').scrollspy({ target: '#scrollSpy_ProductDetails' });
-    });
-</script>
-<script>
+@section css{
+    <link href="~/Content/plugins/owl-sliderbar/css/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/Content/plugins/owl-sliderbar/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/display-product/detail-product.css" rel="stylesheet" />
+}
+@section scripts{
+    <script src="~/Scripts/webjs/jquery.zoomtoo.js"></script>
+    <script src="~/Content/plugins/owl-sliderbar/js/owl.carousel.min.js"></script>
+    <script src="~/Scripts/DisplayProduct/DetailProduct.js"></script>
+    <script>
     $(document).ready(function () {
         DetailProductManagement.init();
     });
-</script>
+    </script>
+}
+
 <!-- single -->
 <div class="single">
     <div class="container">
-        <div class="col-md-6 single-right-left animated wow slideInUp animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInUp;">
+        <div class="col-md-6 single-right-left animated wow slideInUp animated" style="max-width:500px;" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInUp;">
             <div class="single-w3agile">
                 <div id="picture-frame">
                     <img src="@Model.CoverImageUrl.largeImagePath" data-src="@Model.CoverImageUrl.largeImagePath" alt="" class="img-responsive" />
@@ -32,7 +30,7 @@
             </div>
             <div id="thumbs_list">
                 <ul id="thumbs_list_frame">
-                    @foreach (var item in Model.share_Images)
+                    @foreach (var item in Model.Images)
                     {
                         <li id="thumbnail_120" data-imagepath='@item.largeImagePath'>
                             <a href="javascript:void(0);" title='@Model.Name'>
@@ -46,7 +44,8 @@
         <div class="col-md-6 single-right-left simpleCart_shelfItem animated wow slideInRight animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInRight;">
             <h3>@Model.Name</h3>
             <p style="color:red;font-size:30px;"><span class="item_price">@Model.PriceFormatCurrency</span></p>
-            <p>Thương hiệu: <span>@Model.BrandName</span></p>
+            <p>Thương hiệu: @Html.ActionLink(Model.Branch.Name, "DisplayProductsOfBranch", "Product", new { @id = Model.Branch.Id }, null)</p>
+            <p>Tags: @Html.Partial("_ProductTagList", Model.Groups)</p>
             <div class="description">
                 <h5 style="color:#000;font-style: italic;">@Model.Description</h5>
             </div>
@@ -54,10 +53,10 @@
         <div class="clearfix"> </div>
 
         <div class="narbar-description" id="scrollSpy_ProductDetails">
-                <ul class="nav nav-tabs" style="background-color:#000">
-                    <li class="active"><a href="#productDescription_Tab">Mô tả sản phẩm</a></li>
-                    <li><a href="#productSpecification_Tab">Thông Số Kỹ Thuật</a></li>
-                </ul>
+            <ul class="nav nav-tabs" style="background-color:#000">
+                <li class="active"><a href="#productDescription_Tab">Mô tả sản phẩm</a></li>
+                <li><a href="#productSpecification_Tab">Thông Số Kỹ Thuật</a></li>
+            </ul>
             <div class="my-content">
                 <div id="productDescription_Tab">
                     <h5 class="tabtitle-narbar-description">CHI TIẾT SẢN PHẨM</h5>
@@ -72,11 +71,10 @@
                     </p>
                 </div>
             </div>
-            </div>
+        </div>
+        @Html.Action("GetListProductHasSameBranch", new { @productId = Model.Id, @branchId = Model.Branch.Id })
+        @Html.Action("GetListProductHasSameGroup", new { @productId = Model.Id })
+
     </div>
 </div>
-<!-- //single -->
 
-<div class="content-top offer-w3agile bootstrap-tab-text">
-    @Html.Partial("_GroupProductsPartial", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.NewProductList, new ViewDataDictionary { { "Title", "Sản Phẩm Mới" } })
-</div>

@@ -1,0 +1,9 @@
+﻿@using OnlineStore.Model.ViewModel;
+@model IEnumerable<ProductGroupSummary>
+
+    @foreach (var group in Model)
+    {
+        @Html.ActionLink(group.Name, "DisplayGroupProducts", "Product", new { @groupId = group.Id }, new { @class = "margin-right-10"})
+    }
+
+

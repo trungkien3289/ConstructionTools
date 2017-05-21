@@ -200,6 +200,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\constructiontools22052017.sql" />
     <Content Include="App_Data\update-bakery-database-16042017.sql" />
     <Content Include="checkout.html" />
     <Content Include="codes.html" />
@@ -1647,6 +1648,8 @@
     <Content Include="Areas\Admin\Views\Order\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Scripts\DisplayProduct\DisplayGroupProducts.js" />
+    <Content Include="Scripts\DisplayProduct\DisplayProductOfBranch.js" />
     <Content Include="Scripts\DisplayProduct\HomePage.js" />
     <Content Include="Scripts\webjs\imagezoom.js" />
     <Content Include="Scripts\webjs\jquery-ui.js" />
@@ -1883,6 +1886,11 @@
     <Content Include="Views\Home\GroupProductPatial.cshtml" />
     <Content Include="Views\Shared\_BranchFilterPartialView.cshtml" />
     <Content Include="Views\Home\Sent.cshtml" />
+    <Content Include="Views\Product\DisplayGroupProducts.cshtml" />
+    <Content Include="Views\Product\DisplayProductsOfBranch.cshtml" />
+    <Content Include="Views\Shared\_CategoryFilterPartialView.cshtml" />
+    <Content Include="Views\Product\_ProductTagList.cshtml" />
+    <Content Include="Views\Shared\_ListBrands.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

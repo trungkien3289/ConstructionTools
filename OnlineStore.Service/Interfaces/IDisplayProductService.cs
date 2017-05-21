@@ -23,5 +23,17 @@ namespace OnlineStore.Service.Interfaces
         IEnumerable<SummaryCategoryViewModel> GetTopCategories();
         SearchProductResponse SearchByProductName(SearchProductRequest request, SearchType searchType);
         IEnumerable<SummaryCategoryTreeViewItemModel> GetCategoryTreeViewData();
+        
+        /// <summary>
+        /// Get list products in a specific group
+        /// </summary>
+        /// <param name="groupId">group id</param>
+        /// <returns></returns>
+        GetProductInGroupReponse GetProductsInGroup(int groupId, int pageIndex, int sortBy, int numberOfResultsPerPage);
+        GetProductsOfBranchResponse GetProductsOfBranch(int branchId, int numberOfResultsPerPage);
+        GetFilteredProductsOfBranchResponse GetProductsOfBranch(int branchId, List<int> Categories, int pageIndex, int sortBy, int numberOfResultsPerPage);
+        IEnumerable<ProductSummaryView> GetProductHasSameBranch(int productId, int branchId, int numberOfProduct);
+
+        IEnumerable<ProductSummaryView> GetListProductHasSameGroup(int productId, int numberOfProduct);
     }
 }

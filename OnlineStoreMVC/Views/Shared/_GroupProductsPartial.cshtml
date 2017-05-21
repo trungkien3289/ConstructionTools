@@ -1,46 +1,101 @@
-﻿@model IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>
+﻿@using OnlineStore.Model.ViewModel
+@model IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>
 @{
-    string Title = ViewData["Title"] != null ? (string)ViewData["Title"] : String.Empty;
+    string Title = ViewBag.Title;
 }
 
-<div class="container">
-    <div class="spec ">
-        <h5>@Title</h5>
-        <div class="ser-t">
-            <b></b>
-            <span><i></i></span>
-            <b class="line"></b>
-        </div>
-    </div>
-    <div class=" con-w3l listProduct">
-        @foreach (var item in @Model)
-        {
-            <div class="col-md-3 product-men" data-toggle="popover" title="@item.Name" data-content="@item.ShortDescription">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item">
-                        <img src="@item.CoverImageUrl" alt="" class="pro-image-front">
-                        <img src="@item.CoverImageUrl" alt="" class="pro-image-back">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                @Html.ActionLink("Chi Tiết", "ProductDetails", "Product", new { @id = item.Id }, new { @class = "link-product-add-cart" })
-                            </div>
-                        </div>
-                        @if (item.IsNew)
-                        {
-                            <span class="product-new-top">Mới</span>
-                        }
+<style>
+    .b-groupproduct{
+        margin-top:20px;
+    }
 
-                    </div>
-                    <div class="item-info-product ">
-                        <h4>@Html.ActionLink(item.Name, "ProductDetails", "Product", new { @id = item.Id }, null)</h4>
-                        <div class="info-product-price">
-                            <span class="item_price">@item.PriceFormatCurrency</span>
+    .title-groupproduct{
+    display: block;
+    height: 40px;
+    border-bottom: 2px solid orange;
+    margin-bottom: 10px;
+}
+
+.category-title-groupproduct{
+    display: inline-block;
+    height: 100%;
+    font-size: 20px;
+    background-color: orange;
+    display:inline-block;
+    float:left;
+    color:#fff;
+    padding:6px;
+}
+
+.subcategory-groupproduct{
+    color:#000;
+}
+
+.subcategory-groupproduct:hover{
+    color:#FDA30E;
+}
+
+.b-groupproduct{
+    margin-bottom:25px;
+}
+
+.arrow-right {
+    width: 0px;
+    height: 0px;
+    border-top: 38px solid transparent;
+    border-left: 60px solid orange;
+    display:inline-block;
+    float:left;
+}
+
+.btn-next-groupproduct{
+    margin-left:5px;
+    border-radius:0;
+}
+
+.btn-previous-groupproduct{
+    margin-left:5px;
+    border-radius:0;
+}
+
+</style>
+
+<div class="sap_tabs b-groupproduct">
+    <div class="title-groupproduct" style="display:block;height:40px;">
+        <span class="category-title-groupproduct" style="display:inline-block;">@Title</span>
+        <div class="arrow-right"></div>
+        <a class="btn btn-next-groupproduct pull-right"><i class="glyphicon glyphicon-chevron-right"></i></a>
+        <a class="btn btn-previous-groupproduct pull-right"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    </div>
+    <div class="products-groupproduct wrap" style="display: block; width: 100%; margin: 0px;">
+        <div class="owl-carousel owl-theme">
+            @foreach (var item in Model)
+            {
+                <div class="product-men item" data-toggle="popover" title="@item.Name" data-content="@item.ShortDescription">
+                    <div class="men-pro-item simpleCart_shelfItem">
+                        <a href="/Product/ProductDetails/@item.Id" class="men-thumb-item">
+                            <img src="@item.CoverImageUrl" alt="" class="pro-image-front">
+                            <img src="@item.CoverImageUrl" alt="" class="pro-image-back">
+                            <div class="men-cart-pro">
+                                <div class="inner-men-cart-pro">
+                                    @Html.ActionLink("Chi Tiết", "ProductDetails", "Product", new { @id = item.Id }, new { @class = "link-product-add-cart" })
+                                </div>
+                            </div>
+                            @if (item.IsNew)
+                            {
+                                <span class="product-new-top">Mới</span>
+                            }
+                        </a>
+                        <div class="item-info-product ">
+                            <h4 style="height:60px;overflow:hidden;">@Html.ActionLink(item.Name, "ProductDetails", "Product", new { @id = item.Id }, null)</h4>
+                            <div class="info-product-price">
+                                <span class="item_price">@item.PriceFormatCurrency</span>
+                            </div>
+                            @*<a href="#" class="item_add single-item hvr-outline-out button2">Thêm Vào Giỏ</a>*@
                         </div>
-                        @*<a href="#" class="item_add single-item hvr-outline-out button2">Thêm Vào Giỏ</a>*@
                     </div>
                 </div>
-            </div>
-        }
-        <div class="clearfix"></div>
+            }
+        </div>
     </div>
 </div>

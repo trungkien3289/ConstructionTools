@@ -115,6 +115,7 @@
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="uniqueidentifier" />
           <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ImageId" Type="int" />
         </EntityType>
         <EntityType Name="ecom_Categories">
           <Key>
@@ -393,6 +394,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ecom_Brands_share_Images">
+          <End Role="share_Images" Type="Self.share_Images" Multiplicity="0..1" />
+          <End Role="ecom_Brands" Type="Self.ecom_Brands" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="share_Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ecom_Brands">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ecom_OrderDetails_ecom_Products">
           <End Role="ecom_Products" Type="Self.ecom_Products" Multiplicity="1" />
           <End Role="ecom_OrderDetails" Type="Self.ecom_OrderDetails" Multiplicity="*" />
@@ -561,6 +574,10 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_ecom_Brands_share_Images" Association="Self.FK_ecom_Brands_share_Images">
+            <End Role="share_Images" EntitySet="share_Images" />
+            <End Role="ecom_Brands" EntitySet="ecom_Brands" />
+          </AssociationSet>
           <AssociationSet Name="FK_ecom_OrderDetails_ecom_Products" Association="Self.FK_ecom_OrderDetails_ecom_Products">
             <End Role="ecom_Products" EntitySet="ecom_Products" />
             <End Role="ecom_OrderDetails" EntitySet="ecom_OrderDetails" />
@@ -636,6 +653,8 @@
           <Property Name="ModifiedBy" Type="Guid" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ecom_Products" Relationship="Self.FK_ecom_Products_ecom_Brands" FromRole="ecom_Brands" ToRole="ecom_Products" />
+          <Property Name="ImageId" Type="Int32" />
+          <NavigationProperty Name="share_Images" Relationship="OnlineStoreMVCModel.FK_ecom_Brands_share_Images" FromRole="ecom_Brands" ToRole="share_Images" />
         </EntityType>
         <EntityType Name="ecom_Categories">
           <Key>
@@ -759,6 +778,7 @@
           <NavigationProperty Name="ecom_Products1" Relationship="OnlineStoreMVCModel.FK_ecom_Products_share_Images" FromRole="share_Images" ToRole="ecom_Products" />
           <NavigationProperty Name="system_Banners" Relationship="OnlineStoreMVCModel.FK_system_Banners_share_Images" FromRole="share_Images" ToRole="system_Banners" />
           <NavigationProperty Name="cms_News" Relationship="OnlineStoreMVCModel.FK_cms_News_share_Images" FromRole="share_Images" ToRole="cms_News" />
+          <NavigationProperty Name="ecom_Brands" Relationship="OnlineStoreMVCModel.FK_ecom_Brands_share_Images" FromRole="share_Images" ToRole="ecom_Brands" />
         </EntityType>
         <EntityType Name="system_Config">
           <Key>
@@ -884,6 +904,10 @@
           <AssociationSet Name="ecom_Products_ProductGroups1" Association="OnlineStoreMVCModel.ecom_Products_ProductGroups1">
             <End Role="ecom_ProductGroups" EntitySet="ecom_ProductGroups" />
             <End Role="ecom_Products" EntitySet="ecom_Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecom_Brands_share_Images" Association="OnlineStoreMVCModel.FK_ecom_Brands_share_Images">
+            <End Role="share_Images" EntitySet="share_Images" />
+            <End Role="ecom_Brands" EntitySet="ecom_Brands" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="system_Menu">
@@ -1109,6 +1133,18 @@
           <End Type="OnlineStoreMVCModel.ecom_ProductGroups" Role="ecom_ProductGroups" Multiplicity="*" />
           <End Type="OnlineStoreMVCModel.ecom_Products" Role="ecom_Products" Multiplicity="*" />
         </Association>
+        <Association Name="FK_ecom_Brands_share_Images">
+          <End Type="OnlineStoreMVCModel.share_Images" Role="share_Images" Multiplicity="0..1" />
+          <End Type="OnlineStoreMVCModel.ecom_Brands" Role="ecom_Brands" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="share_Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ecom_Brands">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1135,6 +1171,7 @@
           <EntitySetMapping Name="ecom_Brands">
             <EntityTypeMapping TypeName="OnlineStoreMVCModel.ecom_Brands">
               <MappingFragment StoreEntitySet="ecom_Brands">
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

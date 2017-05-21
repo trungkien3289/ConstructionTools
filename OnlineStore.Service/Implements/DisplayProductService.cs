@@ -23,6 +23,8 @@ namespace OnlineStore.Service.Implements
         private static OnlineStoreMVCEntities context;
         private ProductRepository db;
         private CategoryRepository categoryRepository;
+        private ProductGroupRepository productGroupRepository;
+        private BrandRepository branchRepository;
         private const int classicStyleCategoryId = 4;
         private const int moderntyleCategoryId = 3;
 
@@ -35,6 +37,8 @@ namespace OnlineStore.Service.Implements
             context = new OnlineStoreMVCEntities();
             db = new ProductRepository(context);
             categoryRepository = new CategoryRepository(context);
+            productGroupRepository = new ProductGroupRepository(context);
+            branchRepository = new BrandRepository(context);
         }
 
         #endregion
@@ -66,7 +70,7 @@ namespace OnlineStore.Service.Implements
             {
                 searchQuery = searchQuery.And(p => p.Name.Contains(request.SearchString));
             }
-            if (request.CategoryId!=null)
+            if (request.CategoryId != null)
             {
                 searchQuery = searchQuery.And(p => p.ecom_Categories.Select(c => c.Id).Contains((int)request.CategoryId));
             }
@@ -193,25 +197,26 @@ namespace OnlineStore.Service.Implements
         /// Get all branchs belong to products in selected category
         /// </summary>
         /// <returns></returns>
-        private IEnumerable<BrandSummaryView> GetAllBranchInSelectedCategory(int? categoryId){
+        private IEnumerable<BrandSummaryView> GetAllBranchInSelectedCategory(int? categoryId)
+        {
             try
             {
                 IEnumerable<ecom_Products> products = db.Get(
-               filter: p => p.ecom_Categories.Select(c => c.Id).Contains((int)categoryId) &&  p.Status == (int)Define.Status.Active, includeProperties: "ecom_Brands").ToList();
+               filter: p => p.ecom_Categories.Select(c => c.Id).Contains((int)categoryId) && p.Status == (int)Define.Status.Active, includeProperties: "ecom_Brands").ToList();
                 return products.Select(p => p.ecom_Brands).Where(b => b != null).Distinct().ToList().ConvertToBrandSummaryViews();
             }
             catch (Exception ex)
             {
                 return null;
             }
-            
+
         }
 
         #endregion
 
         #region Public functions
 
-        public IEnumerable<ProductSummaryView> GetTopProductsByCategoryId(int categoryId,int top)
+        public IEnumerable<ProductSummaryView> GetTopProductsByCategoryId(int categoryId, int top)
         {
             var searchQuery = PredicateBuilder.True<ecom_Products>();
             searchQuery = searchQuery.And(p => p.ecom_Categories.Select(c => c.Id).Contains(categoryId));
@@ -283,6 +288,15 @@ namespace OnlineStore.Service.Implements
             }
             else
             {
+                BranchSummary branch = null;
+                if (product.ecom_Brands != null)
+                {
+                    branch = new BranchSummary()
+                    {
+                        Id = product.ecom_Brands.Id,
+                        Name = product.ecom_Brands.Name
+                    };
+                }
                 ProductDetailsView productViewModel = new ProductDetailsView()
                 {
                     Id = product.Id,
@@ -290,13 +304,19 @@ namespace OnlineStore.Service.Implements
                     Name = product.Name,
                     PriceFormatCurrency = String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", product.Price),
                     Price = product.Price,
-                    BrandName = product.ecom_Brands != null ? product.ecom_Brands.Name : "",
                     Description = product.Description,
                     Description2 = product.Description2,
                     Specification = product.Specification,
                     Tags = product.Tags,
                     IsNewProduct = product.IsNewProduct,
-                    IsBestSellProduct = product.IsBestSellProduct
+                    IsBestSellProduct = product.IsBestSellProduct,
+                    Branch = branch,
+                    Groups = product.ecom_ProductGroups.Select(g => new ProductGroupSummary()
+                    {
+                        Id = g.Id,
+                        Name = g.Name,
+                        Description = g.Description
+                    }).ToList()
                 };
 
                 ImageInfor coverImage;
@@ -325,7 +345,7 @@ namespace OnlineStore.Service.Implements
                 }).ToList();
 
                 productViewModel.CoverImageUrl = coverImage;
-                productViewModel.share_Images = productImages;
+                productViewModel.Images = productImages;
 
                 return productViewModel;
             }
@@ -445,6 +465,200 @@ namespace OnlineStore.Service.Implements
             return response;
         }
 
+        /// <summary>
+        /// Get list products in a specific group
+        /// </summary>
+        /// <param name="groupId"></param>
+        /// <returns></returns>
+        public GetProductInGroupReponse GetProductsInGroup(int groupId, int pageIndex, int sortBy, int numberOfResultsPerPage)
+        {
+            var group = productGroupRepository.GetGroupById(groupId);
+            if (group == null)
+            {
+                return null;
+            }
+            else
+            {
+                var foundProducts = db.GetProductsInGroup(groupId);
+                switch (sortBy)
+                {
+                    case (int)ProductsSortBy.PriceLowToHigh:
+                        foundProducts = foundProducts.OrderBy(p => p.Price);
+                        break;
+                    case (int)ProductsSortBy.PriceHighToLow:
+                        foundProducts = foundProducts.OrderByDescending(p => p.Price);
+                        break;
+                    case (int)ProductsSortBy.ProductNameAToZ:
+                        foundProducts = foundProducts.OrderBy(p => p.Name);
+                        break;
+                    case (int)ProductsSortBy.ProductNameZToA:
+                        foundProducts = foundProducts.OrderByDescending(p => p.Name);
+                        break;
+                }
+                GetProductInGroupReponse respone = new GetProductInGroupReponse()
+                {
+                    GroupId = groupId,
+                    GroupName = group.Name,
+                    NumberOfTitlesFound = foundProducts.Count(),
+                    TotalNumberOfPages = (int)Math.Ceiling((double)foundProducts.Count() / numberOfResultsPerPage),
+                    CurrentPage = pageIndex,
+                    SortBy = sortBy,
+                    Products = CropProductListToSatisfyGivenIndex(foundProducts, pageIndex, numberOfResultsPerPage).ConvertToProductSummaryViews()
+                };
+
+                return respone;
+            }
+        }
+
+        public GetProductsOfBranchResponse GetProductsOfBranch(int branchId, int numberOfResultsPerPage)
+        {
+            var branch = branchRepository.GetByID(branchId);
+            if (branch == null)
+            {
+                throw new ApplicationException("Branch cannot found");
+            }
+
+            var searchQuery = PredicateBuilder.True<ecom_Products>();
+
+            searchQuery = searchQuery.And(p => p.BrandId == branchId);
+            IEnumerable<ecom_Products> productsMatchingRefinement = db.Get(
+                filter: searchQuery, includeProperties: "ecom_Categories,share_Images");
+            productsMatchingRefinement = productsMatchingRefinement.Distinct().OrderBy(p => p.Name);
+
+            GetProductsOfBranchResponse response = new GetProductsOfBranchResponse()
+            {
+                Categories = productsMatchingRefinement.SelectMany(p => p.ecom_Categories).Distinct()
+                .Select(c => new CategoryFilterItem()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                }
+                ).ToList(),
+                NumberOfTitlesFound = productsMatchingRefinement.Count(),
+                TotalNumberOfPages = (int)Math.Ceiling((double)productsMatchingRefinement.Count() / numberOfResultsPerPage),
+                BranchId = branchId,
+                BranchName = branch.Name,
+                Products = CropProductListToSatisfyGivenIndex(productsMatchingRefinement, 1, numberOfResultsPerPage).ConvertToProductSummaryViews(),
+            };
+            return response;
+        }
+
+        /// <summary>
+        /// Get products of a specific branch
+        /// </summary>
+        /// <param name="branchId">branch id</param>
+        /// <param name="pageIndex">current page for paging</param>
+        /// <param name="sortBy">type of sorting products</param>
+        /// <param name="numberOfResultsPerPage">number items per page</param>
+        /// <returns></returns>
+        public GetFilteredProductsOfBranchResponse GetProductsOfBranch(int branchId, List<int> categories, int pageIndex, int sortBy, int numberOfResultsPerPage)
+        {
+
+            var branch = branchRepository.GetByID(branchId);
+            if (branch == null)
+            {
+                throw new ApplicationException("Branch cannot found");
+            }
+
+            var searchQuery = PredicateBuilder.True<ecom_Products>();
+            searchQuery = searchQuery.And(p => p.BrandId == branchId);
+            searchQuery = searchQuery.And(p => p.Status == (int)Define.Status.Active);
+            if (categories != null && categories.Count() > 0)
+            {
+                var filterCategoryQuery = PredicateBuilder.False<ecom_Products>();
+                for (int i = 0; i < categories.Count(); i++)
+                {
+                    int categoryId = categories[i];
+                    filterCategoryQuery = filterCategoryQuery.Or(p => p.ecom_Categories.Select(c => c.Id).Contains(categoryId));
+                }
+                searchQuery = searchQuery.And(filterCategoryQuery.Expand());
+            }
+            IEnumerable<ecom_Products> productsMatchingRefinement = db.Get(
+                filter: searchQuery, includeProperties: "ecom_Categories,share_Images");
+            productsMatchingRefinement = productsMatchingRefinement.Distinct();
+            switch (sortBy)
+            {
+                case (int)ProductsSortBy.PriceLowToHigh:
+                    productsMatchingRefinement = productsMatchingRefinement
+                    .OrderBy(p => p.Price);
+                    break;
+                case (int)ProductsSortBy.PriceHighToLow:
+                    productsMatchingRefinement = productsMatchingRefinement
+                    .OrderByDescending(p => p.Price);
+                    break;
+                case (int)ProductsSortBy.ProductNameAToZ:
+                    productsMatchingRefinement = productsMatchingRefinement
+                    .OrderBy(p => p.Name);
+                    break;
+                case (int)ProductsSortBy.ProductNameZToA:
+                    productsMatchingRefinement = productsMatchingRefinement
+                    .OrderByDescending(p => p.Name);
+                    break;
+            }
+
+            GetFilteredProductsOfBranchResponse response = new GetFilteredProductsOfBranchResponse()
+            {
+                Categories = categories,
+                NumberOfTitlesFound = productsMatchingRefinement.Count(),
+                TotalNumberOfPages = (int)Math.Ceiling((double)productsMatchingRefinement.Count() / numberOfResultsPerPage),
+                CurrentPage = pageIndex,
+                SortBy = sortBy,
+                BranchId = branchId,
+                Products = CropProductListToSatisfyGivenIndex(productsMatchingRefinement, pageIndex, numberOfResultsPerPage).ConvertToProductSummaryViews(),
+            };
+            return response;
+        }
+
+        public IEnumerable<ProductSummaryView> GetProductHasSameBranch(int productId, int branchId, int numberOfProduct)
+        {
+            var branch = branchRepository.GetByID(branchId);
+            if (branch == null)
+            {
+                throw new ApplicationException("Branch cannot found");
+            }
+
+            var searchQuery = PredicateBuilder.True<ecom_Products>();
+            searchQuery = searchQuery.And(p => p.BrandId == branchId);
+            searchQuery = searchQuery.And(p => p.Id != productId);
+            searchQuery = searchQuery.And(p => p.Status == (int)Define.Status.Active);
+            IEnumerable<ecom_Products> productsMatchingRefinement = db.Get(
+                filter: searchQuery, includeProperties: "ecom_Categories,share_Images");
+
+            return productsMatchingRefinement.Take(numberOfProduct).ConvertToProductSummaryViews();
+        }
+
+        public IEnumerable<ProductSummaryView> GetListProductHasSameGroup(int productId, int numberOfProduct)
+        {
+            ecom_Products product = db.GetProductById(productId);
+            if (product == null)
+            {
+                throw new ApplicationException("Cannot found the product");
+            }
+
+            List<int> groups = product.ecom_ProductGroups.Select(g => g.Id).ToList();
+
+            var searchQuery = PredicateBuilder.True<ecom_Products>();
+            searchQuery = searchQuery.And(p => p.Id != productId);
+            if (groups == null || groups.Count() == 0)
+            {
+                return null;
+            }else
+            {
+                var subQuery = PredicateBuilder.False<ecom_Products>();
+                foreach (var groupId in groups)
+                {
+                    subQuery = subQuery.Or(p => p.ecom_ProductGroups.Select(g => g.Id).Contains(groupId));
+                }
+                searchQuery = searchQuery.And(subQuery.Expand());
+            }
+            searchQuery = searchQuery.And(p => p.Status == (int)Define.Status.Active);
+            IEnumerable<ecom_Products> productsMatchingRefinement = db.Get(
+                filter: searchQuery, includeProperties: "ecom_Categories,share_Images");
+            productsMatchingRefinement = productsMatchingRefinement.Distinct();
+
+            return productsMatchingRefinement.Take(numberOfProduct).ConvertToProductSummaryViews();
+        }
+
         #endregion
 
         #region Release resources
@@ -467,9 +681,10 @@ namespace OnlineStore.Service.Implements
         {
             db.Dispose();
             categoryRepository.Dispose();
+            productGroupRepository.Dispose();
+            branchRepository.Dispose();
         }
 
         #endregion
     }
 }
-

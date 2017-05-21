@@ -27,4 +27,11 @@ namespace OnlineStore.Model.ViewModel
         [DisplayName("THÔNG TIN VỀ NHÓM SẢN PHẨM")]
         public string Description { get; set; }
     }
+
+    public class ProductGroupSummary
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+    }
 }

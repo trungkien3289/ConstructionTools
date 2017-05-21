@@ -1,0 +1,54 @@
+﻿@model OnlineStore.Service.Messaging.GetProductInGroupReponse
+
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css{
+<link href="~/Content/plugins/pagingcontrol/simplePagination.css" rel="stylesheet" />
+<link href="~/Content/display-product/display-product-view.css" rel="stylesheet" />
+<link href="~/Content/display-product/search-result.css" rel="stylesheet" />
+}
+@section scripts{
+<script src="~/Content/plugins/spin/spin.min.js"></script>
+<script src="~/Content/plugins/pagingcontrol/jquery.simplePagination.js"></script>
+<script src="~/Scripts/DisplayProduct/DisplayGroupProducts.js"></script>
+}
+
+<!--content-->
+<div class="men-wear">
+    <div class="container">
+        <div class="col-md-12 col-sm-12 col-xs-12 b-productItems">
+            <h5>Nhóm sản phẩm : @Model.GroupName</h5>
+            <div class="sort-grid">
+                <div class="sorting">
+                    @Html.DropDownList("SortProductOptionsSelectListItems")
+                    <div class="clearfix"></div>
+                </div>
+                <div class="sorting">
+                    <span class="display hidden-xs pull-right">Có @Model.NumberOfTitlesFound sản phẩm</span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="productlist-displayproduct">
+                @Html.Partial("ListProduct", Model.Products)
+            </div>
+            <div class="clearfix"></div>
+            <div class="content_sortPagiBar">
+                <div class="bottom-pagination-content clearfix">
+                    <div class="paging-control-filtercontent pull-right"></div>
+                </div>
+            </div><!-- sort bar -->
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+
+<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+<script>
+    $(function(){
+        GroupProductsManagement.init(@Model.NumberOfTitlesFound,@Model.CurrentPage,@Model.GroupId);
+    });
+</script>

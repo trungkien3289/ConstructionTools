@@ -3,8 +3,10 @@ using OnlineStore.Model.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using LinqKit;
 
 namespace OnlineStore.Model.Repository
 {
@@ -46,7 +48,29 @@ namespace OnlineStore.Model.Repository
         /// <returns></returns>
         public ecom_Products GetProductById(int id)
         {
-            return dbSet.Include("share_Images").Include("CoverImage").Where(c => c.Id == id && c.Status != (int)Define.Status.Delete).FirstOrDefault();
+            return dbSet.Include("share_Images").Include("CoverImage").Include("ecom_ProductGroups").Where(c => c.Id == id && c.Status != (int)Define.Status.Delete).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Get products belong to a specific group
+        /// </summary>
+        /// <param name="groupId"></param>
+        /// <returns></returns>
+        public IEnumerable<ecom_Products> GetProductsInGroup(int groupId)
+        {
+            return dbSet.Where(p => p.ecom_ProductGroups.Select(g => g.Id).Contains(groupId) && p.Status == (int)Define.Status.Active).ToList();
+        }
+
+        public int Count(Expression<Func<ecom_Products, bool>> filter = null)
+        {
+            IQueryable<ecom_Products> query = dbSet;
+
+            if (filter != null)
+            {
+                query = query.AsExpandable().Where(filter).Distinct();
+            }
+
+            return query.Count();
         }
 
         #endregion

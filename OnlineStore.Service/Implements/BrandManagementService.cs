@@ -18,6 +18,7 @@ namespace OnlineStore.Service.Implements
 
         private BrandRepository db = new BrandRepository(new OnlineStoreMVCEntities());
         private Repository<system_Profiles> systemProfiles = new Repository<system_Profiles>(new OnlineStoreMVCEntities());
+        private OnlineStoreMVCEntities context;
 
         #endregion
 
@@ -25,8 +26,9 @@ namespace OnlineStore.Service.Implements
 
         public BrandManagementService()
         {
-            db = new BrandRepository(new OnlineStoreMVCEntities());
-            systemProfiles = new Repository<system_Profiles>(new OnlineStoreMVCEntities());
+            context = new OnlineStoreMVCEntities();
+            db = new BrandRepository(context);
+            systemProfiles = new Repository<system_Profiles>(context);
         }
 
         #endregion
@@ -47,6 +49,21 @@ namespace OnlineStore.Service.Implements
             IEnumerable<ecom_Brands> returnBrandList = brands.OrderBy(b => b.Name).Skip(pageSize * (pageNumber - 1)).Take(pageSize);
             return returnBrandList;
         }
+
+        /// <summary>
+        /// Get all brands
+        /// </summary>
+        /// <returns></returns>
+        public IList<BrandSummaryView> GetBrands()
+        {
+            return db.GetAllAvailableBrands().Select(b => new BrandSummaryView()
+            {
+                Id = b.Id,
+                Name = b.Name,
+                CoverImagePath = b.share_Images != null ? b.share_Images.ImagePath : "/Content/Images/no-image.png"
+            }).ToList();
+        }
+
         /// <summary>
         /// Get information of a brand
         /// </summary>
@@ -143,5 +160,6 @@ namespace OnlineStore.Service.Implements
         }
 
         #endregion
+
     }
 }
