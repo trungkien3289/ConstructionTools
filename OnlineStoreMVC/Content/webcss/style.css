@@ -145,7 +145,7 @@ label{
     border-right: 1px solid #eee;
 }
 .section_room select {
-    padding: 13px 10px;
+    padding: 14px 10px;
     width: 100%;
     font-weight: normal;
     background: none;
@@ -3212,11 +3212,11 @@ td.invert-image a img {
         width: 31%;
     }
 
-    .header-middle {
+    /*.header-middle {
         float: left;
         width: 38%;
         min-width: 480px;
-    }
+    }*/
 
     .header-right ul {
         float: left;
@@ -3370,7 +3370,7 @@ td.invert-image a img {
 	.sign-gd, .sign-gd-two {
 		float: left;
 		width: 33.333%;
-		padding: 0 10px;
+		padding: 0 4px;
 	}
 	p.copy-right {
 		margin-top: 39px;
@@ -3657,10 +3657,10 @@ td.invert-image a img {
 		float: none;
 		width: 33%;
 	}
-	.header-middle {
+	/*.header-middle {
 		float: left;
 		width: 44%;
-	}
+	}*/
 	.header-bot {
 		padding: 17px 0;
 	}
@@ -3777,13 +3777,13 @@ td.invert-image a img {
         display:none;
     }
 	.header-middle form input[type="submit"] {
-		height: 37px;
-		background: url(../Images/TestImages/search.png) no-repeat -3px -4px #fda30e;
+		height: 34px;
+		background: url(../Images/TestImages/search.png) no-repeat -3px -6px #fda30e;
 	}
 	.sear-sub {
 		float: right;
 		width: 15%;
-        height: 50px;
+        height: 34px;
 	}
 	.section_room select {
 		padding: 8px 10px;
@@ -3797,10 +3797,10 @@ td.invert-image a img {
 		padding-left: 8px;
         margin-left:0;
 	}	
-	.header-middle {
+	/*.header-middle {
 		float: left;
 		width: 43%;
-	}
+	}*/
 	.header-right ul {
 		margin-top: 9px;
 	}
@@ -4207,10 +4207,10 @@ td.invert-image a img {
 		padding: 0;
 	    margin: 0 auto 16px;
 	}
-	.header-middle {
+	/*.header-middle {
 		float: left;
 		width: 50%;
-	}
+	}*/
 	.header-right {
 		float: left;
 		width: 47%;
@@ -4494,14 +4494,14 @@ td.invert-image a img {
 		float: left;
 		width: 43%;
 	}
-	.header-middle {
+	/*.header-middle {
 		float: left;
 		width: 57%;
-	}
+	}*/
 	.sear-sub {
 		float: right;
 		width: 17%;
-        height: 50px;
+        height: 34px;
 	}
 	.footer-bottom a span {
 		left: 9px;
@@ -5321,4 +5321,14 @@ td.invert-image a img {
 }
 .b-mainbrand-topmenu a:hover{
     color:#FDA30E;
+}
+
+.owl-carousel .owl-nav{
+    display:none;
+}
+
+@media (min-width: 992px) {
+    .sign-gd, .sign-gd-two {
+        padding: 0;
+    }
 }
