@@ -107,6 +107,17 @@ namespace OnlineStore.Service.Implements
             ecom_Brands brand = db.GetByID(id);
             return brand;
         }
+
+        /// <summary>
+        /// Get information of brand 
+        /// </summary>
+        /// <param name="id">id of brand</param>
+        /// <returns></returns>
+        //public ecom_Brands GetBrandById(int id, string includes)
+        //{
+        //    ecom_Brands brand = db.Get(p => p.Id == id && p.Status == (int)Define.Status.Active, null, "share_Images").Fi;
+        //}
+
         /// <summary>
         /// Update information of brand
         /// </summary>
@@ -120,7 +131,7 @@ namespace OnlineStore.Service.Implements
                 db.Save();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }

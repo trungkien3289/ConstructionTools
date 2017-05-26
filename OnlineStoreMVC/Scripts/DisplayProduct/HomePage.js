@@ -61,13 +61,13 @@
                 });
                 // Go to the next item
                 $(groupProductPanel).closest(".b-groupproduct").find('.title-groupproduct .btn-previous-groupproduct').click(function () {
-                    owl.trigger('next.owl.carousel');
+                    $(groupProductPanel).trigger('next.owl.carousel');
                 })
                 // Go to the previous item
                 $(groupProductPanel).closest(".b-groupproduct").find('.title-groupproduct .btn-next-groupproduct').click(function () {
                     // With optional speed parameter
                     // Parameters has to be in square bracket '[]'
-                    owl.trigger('prev.owl.carousel', [300]);
+                    $(groupProductPanel).trigger('prev.owl.carousel', [300]);
                 })
             });
         }

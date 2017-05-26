@@ -43,6 +43,14 @@ namespace OnlineStore.Service.Interfaces
         /// <param name="id">id of brand</param>
         /// <returns></returns>
         ecom_Brands GetBrandById(int id);
+
+        /// <summary>
+        /// Get information of brand 
+        /// </summary>
+        /// <param name="id">id of brand</param>
+        /// <returns></returns>
+        //ecom_Brands GetBrandById(int id, string includes);
+
         /// <summary>
         /// Update information of brand
         /// </summary>

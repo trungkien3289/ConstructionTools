@@ -181,19 +181,43 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         /// </summary>
         /// <param name="brand">information need to updated</param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Edit(EditBrandManagementPostRequest brand)
         {
             if (ModelState.IsValid)
             {
-                bool isSuccess = brandService.UpdateBrand(brand.ConvertToBrandModel());
-                if (isSuccess)
+                var file = Request.Files["coverImage"];
+                if (file != null && file.ContentLength > 0)
                 {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    ModelState.AddModelError("ServerError", "Update brand fail!");
+                    string largeFileName = null;
+                        bool isSuccess = UploadProductImages(file, out largeFileName);
+                        if (isSuccess)
+                        {
+                            ecom_Brands updatedBrand = brand.ConvertToBrandModel();
+                            share_Images largeImage = new share_Images
+                            {
+                                ImageName = largeFileName,
+                                ImagePath = Path.Combine(ImageUpload.LargeImagePath, largeFileName)
+                            };
+                            var imageId = service.AddImage(largeImage);
+                            // Add product
+                            updatedBrand.ImageId = imageId;
+                            bool isUpdateBrandSuccess = brandService.UpdateBrand(updatedBrand);
+                            if (isUpdateBrandSuccess)
+                            {
+                                return RedirectToAction("Index");
+                            }
+                            else
+                            {
+                                ModelState.AddModelError("ServerError", "Update brand fail!");
+                            }
+                        } 
+                        else
+                        {
+                            // use imageResult.ErrorMessage to show the error
+                            ViewBag.Error = "Upload product image fail";
+                        }
+                    
                 }
             }
             return View(brand);

@@ -65,9 +65,9 @@
             <form action="/Home/Contact" method="post">
                 @Html.AntiForgeryToken()
                 <div class="contact-form2">
-                    <input type="text" name="Name" onfocus="this.value = '';" placeholder="Tên" required="">
-                    <input type="email" name="Email" onfocus="this.value = '';" placeholder="Email" required="">
-                    <textarea type="text" name="Message" onfocus="this.value = '';" placeholder="Tin Nhắn" required=""></textarea>
+                    <input type="text" name="Name" onfocus="this.value = '';" placeholder="Tên" required="" class="col-sm-6 col-xs-6">
+                    <input type="email" name="Email" onfocus="this.value = '';" placeholder="Email" required="" class="col-sm-6 col-xs-6">
+                    <textarea type="text" name="Message" onfocus="this.value = '';" placeholder="Tin Nhắn" required="" class="col-sm-12 col-xs-12"></textarea>
                     <input type="submit" value="Gửi">
                 </div>
             </form>

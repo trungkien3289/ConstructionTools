@@ -50,7 +50,8 @@ namespace OnlineStore.Model.Mapper
                     Id = brand.Id,
                     Name = brand.Name,
                     Status = (int)brand.Status,
-                    Description = brand.Description
+                    Description = brand.Description,
+                    ImagePath = brand.share_Images!=null? brand.share_Images.ImagePath: DisplayProductConstants.NoImagePath
                 };
 
             return returnModel;
