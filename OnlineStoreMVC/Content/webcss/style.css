@@ -695,6 +695,11 @@ top: 9%;
 }
 /*-- Slider part Ends Here --*/
 /*-- //banner --*/
+
+/*-search result-*/
+.product-searchresult {
+min-height:0 !important;
+}
 /*-- footer --*/
 .footer{
     padding: 70px 0;
