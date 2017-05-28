@@ -8,7 +8,7 @@ html, body{
 	margin:0;
 	font-size: 100%;
 	/*font-family: 'Lato', sans-serif;*/
-    font-family:Helvetica,Arial,sans-serif
+    font-family:Helvetica,Arial,sans-serif;
 	background: #fff;
 }
 body a {
@@ -689,8 +689,17 @@ a.callbacks_nav.callbacks2_nav.next {
 right: 0% !important;
 top: 9%;
 }
+
+.divProductBanner .owl-stage-outer{
+    width: 100%;
+}
 /*-- Slider part Ends Here --*/
 /*-- //banner --*/
+
+/*-search result-*/
+.product-searchresult {
+min-height:0 !important;
+}
 /*-- footer --*/
 .footer{
     padding: 70px 0;
