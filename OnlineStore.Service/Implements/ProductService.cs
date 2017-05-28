@@ -149,6 +149,7 @@ namespace OnlineStore.Service.Implements
                     ProductCode = newProduct.ProductCode,
                     Name = newProduct.Name,
                     Price = newProduct.Price,
+                    OldPrice = newProduct.OldPrice,
                     Quantity = newProduct.Quantity,
                     Unit = newProduct.Unit,
                     BrandId = newProduct.BrandId,
@@ -214,6 +215,7 @@ namespace OnlineStore.Service.Implements
                 product.ProductCode = productViewModel.ProductCode;
                 product.Name = productViewModel.Name;
                 product.Price = productViewModel.Price;
+                product.OldPrice = productViewModel.OldPrice;
                 product.Quantity = productViewModel.Quantity;
                 product.Unit = productViewModel.Unit;
                 product.BrandId = productViewModel.BrandId;

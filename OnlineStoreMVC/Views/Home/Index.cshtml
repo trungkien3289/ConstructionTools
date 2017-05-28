@@ -66,10 +66,10 @@
     </div>*@
     <!-- //banner -->
     <!-- content -->
-   
+
     <div ng-controller="ecom_Main_Controller as ctrl" class="product-easy">
-        <div class="container">
-            @Html.Action("GetListBrands")
+        <div class="container brandbanner-panel">
+            @Html.Action("GroupBanners")
         </div>
         <div class="container groupproduct-panel">
             @Html.Action("GroupProductPatial", new { @categoryId = 21 })

@@ -81,7 +81,6 @@ var DisplayProductManagement = {
         this.initShortDescriptionPopup();
         this.bindEvents();
     },
-
     initShortDescriptionPopup:function(){
         // Init pop up show short description for product item
 
@@ -273,13 +272,14 @@ var DisplayProductManagement = {
         template += '                           <a href="/Product/ProductDetails?id=' + product.Id + '" class="link-product-add-cart">Chi Tiết</a>';
         template += '                       </div>  ';
         template += '                   </div>  ';
-        if (product.IsNew) {
-            template += '                       <span class="product-new-top">Mới</span>  ';
-        }
+        //if (product.IsNew) {
+        //    template += '                       <span class="product-new-top">Mới</span>  ';
+        //}
         template += '     ';
         template += '               </a>  ';
         template += '               <div class="item-info-product ">  ';
         template += '                   <h4 class="productname-item-info-product"><a href="/Product/ProductDetails?id=' + product.Id + '">' + product.Name + '</a></h4>  ';
+        template += '                   <div class="brandname-item-groupproduct">Thương hiệu: '+product.BrandName+'</div>';
         template += '                   <div class="info-product-price">  ';
         template += '                       <span class="item_price">' + product.PriceFormatCurrency + '</span>  ';
         template += '                   </div>  ';

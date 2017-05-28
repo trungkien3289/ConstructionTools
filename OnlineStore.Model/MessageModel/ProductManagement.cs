@@ -14,6 +14,8 @@ namespace OnlineStore.Model.MessageModel
         public string Name { get; set; }
         [DisplayName("Giá bán")]
         public decimal Price { get; set; }
+        [DisplayName("Giá bán cũ")]
+        public decimal OldPrice { get; set; }
         [DisplayName("Số lượng")]
         public Nullable<int> Quantity { get; set; }
         [DisplayName("Đơn vị")]

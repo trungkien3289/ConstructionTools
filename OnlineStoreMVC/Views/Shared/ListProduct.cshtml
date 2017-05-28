@@ -12,14 +12,10 @@
                         @Html.ActionLink("Chi Tiết", "ProductDetails", "Product", new { @id = item.Id }, new { @class = "link-product-add-cart" })
                     </div>
                 </div>
-                @if (item.IsNew)
-                {
-                    <span class="product-new-top">Mới</span>
-                }
-
             </a>
             <div class="item-info-product ">
                 <h4 class="productname-item-info-product">@Html.ActionLink(item.Name, "ProductDetails", "Product", new { @id = item.Id }, null)</h4>
+                <div class="brandname-item-groupproduct">Thương hiệu: @item.BrandName</div>
                 <div class="info-product-price">
                     <span class="item_price">@item.PriceFormatCurrency</span>
                 </div>

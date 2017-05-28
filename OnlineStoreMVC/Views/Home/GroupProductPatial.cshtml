@@ -28,14 +28,12 @@
                                     @Html.ActionLink("Chi Tiết", "ProductDetails", "Product", new { @id = item.Id }, new { @class = "link-product-add-cart" })
                                 </div>
                             </div>
-                            @if (item.IsNew)
-                            {
-                                <span class="product-new-top">Mới</span>
-                            }
                         </a>
                         <div class="item-info-product ">
-                            <h4 style="height:60px;overflow:hidden;">@Html.ActionLink(item.Name, "ProductDetails", "Product", new { @id = item.Id }, null)</h4>
+                            <h4 class="productname-item-groupproduct">@Html.ActionLink(item.Name, "ProductDetails", "Product", new { @id = item.Id }, null)</h4>
+                            <div class="brandname-item-groupproduct">Thương hiệu: @item.BrandName</div>
                             <div class="info-product-price">
+                                <span class="item_price"><del>@item.OldPriceFormatCurrency</del></span>
                                 <span class="item_price">@item.PriceFormatCurrency</span>
                             </div>
                             @*<a href="#" class="item_add single-item hvr-outline-out button2">Thêm Vào Giỏ</a>*@

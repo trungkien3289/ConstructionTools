@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OnlineStore.Model.Mapper;
 using OnlineStore.Infractructure.Utility;
+using LinqKit;
 
 namespace OnlineStore.Service.Implements
 {
@@ -62,6 +63,26 @@ namespace OnlineStore.Service.Implements
                 Name = b.Name,
                 CoverImagePath = b.share_Images != null ? b.share_Images.ImagePath : "/Content/Images/no-image.png"
             }).ToList();
+        }
+
+        /// <summary>
+        /// Get random list brands
+        /// </summary>
+        /// <param name="count">number of brand, which need to take</param>
+        /// <returns>list brands</returns>
+        public IList<BrandSummaryView> GetRandomBrands(int count = 10)
+        {
+            var searchQuery = PredicateBuilder.True<ecom_Brands>();
+            searchQuery = searchQuery.And(b => b.Status == (int)Define.Status.Active);
+            IEnumerable<ecom_Brands> brandsMatchingRefinement = db.Get(
+                filter: searchQuery,includeProperties:"share_Images").OrderBy(c => Guid.NewGuid()).Take(count).OrderBy(p => p.Name).ToList();
+
+            return brandsMatchingRefinement.Select(b => new BrandSummaryView()
+            {
+                Id = b.Id,
+                Name = b.Name,
+                CoverImagePath = b.share_Images != null ? b.share_Images.ImagePath : "/Content/Images/no-image.png"
+            }).ToList(); ;
         }
 
         /// <summary>

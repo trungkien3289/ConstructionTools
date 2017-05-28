@@ -1,0 +1,59 @@
+﻿@using OnlineStore.Model.ViewModel;
+@model IList<BrandSummaryView>
+@{
+    var numberBrands = Model.Count();
+}
+<script>
+    $(function () {
+        $(".b-brandbanner .owl-carousel").owlCarousel({
+            items: 1,
+            loop: true,
+            margin: 0,
+            autoplay: true,
+            autoplayTimeout: 2000,
+            autoplayHoverPause: true,
+            autoWidth:false,
+            nav: false,
+            dots:false
+        });
+    });
+</script>
+<style>
+    .coverimage-brandlist-horizontalbar {
+        width: 180px;
+        height: 180px;
+    }
+
+    .brandname-brandlist-horizontalbar {
+        text-align: center;
+        text-decoration: none;
+        color: #333333;
+    }
+
+    .b-brandlist-horizontalbar {
+        display: block;
+        width: 100%;
+    }
+    .b-brandbanner .owl-carousel{
+        width:50%;
+    }
+</style>
+<div class="b-brandbanner row">
+    @for (int i = 0; i < numberBrands/2; i++)
+    {
+        <div class="owl-carousel owl-theme col-md-6 col-sm-6 col-xs-6">
+            <div class="item">
+                <a href="/Product/DisplayProductsOfBranch/@Model[i*2].Id">
+                    <img class="coverimage-brandlist-horizontalbar" src="@Model[i * 2].CoverImagePath" />
+                    <p class="brandname-brandlist-horizontalbar">@Model[i * 2].Name</p>
+                </a>
+            </div>
+            <div class="item">
+                <a href="/Product/DisplayProductsOfBranch/@Model[i * 2 + 1].Id">
+                    <img class="coverimage-brandlist-horizontalbar" src="@Model[i * 2 + 1].CoverImagePath" />
+                    <p class="brandname-brandlist-horizontalbar">@Model[i * 2 + 1].Name</p>
+                </a>
+            </div>
+        </div>
+    }
+</div>

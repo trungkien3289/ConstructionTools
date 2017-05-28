@@ -200,6 +200,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\backupdatabase28052017.sql" />
     <Content Include="App_Data\constructiontools22052017.sql" />
     <Content Include="App_Data\update-bakery-database-16042017.sql" />
     <Content Include="checkout.html" />
@@ -1891,6 +1892,7 @@
     <Content Include="Views\Shared\_CategoryFilterPartialView.cshtml" />
     <Content Include="Views\Product\_ProductTagList.cshtml" />
     <Content Include="Views\Shared\_ListBrands.cshtml" />
+    <Content Include="Views\Shared\_BrandBanner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

@@ -1,7 +1,7 @@
 ﻿.title-groupproduct{
     display: block;
     height: 40px;
-    border-bottom: 2px solid orange;
+    border-bottom: 2px solid #116080;
     margin-bottom: 10px;
 }
 
@@ -9,7 +9,7 @@
     display: inline-block;
     height: 100%;
     font-size: 20px;
-    background-color: orange;
+    background-color: #116080;
     display:inline-block;
     float:left;
     color:#fff;
@@ -21,7 +21,7 @@
 }
 
 .subcategory-groupproduct:hover{
-    color:#FDA30E;
+    color:#5cd2ff;
 }
 
 .b-groupproduct{
@@ -32,18 +32,22 @@
     width: 0px;
     height: 0px;
     border-top: 38px solid transparent;
-    border-left: 60px solid orange;
+    border-left: 60px solid #116080;
     display:inline-block;
     float:left;
 }
 
 .btn-next-groupproduct{
+    padding: 6px 3px;
+    color:#333;
     margin-left:5px;
     /*border:1px solid #ccc;*/
     border-radius:0;
 }
 
 .btn-previous-groupproduct{
+    padding: 6px 3px;
+    color:#333;
     margin-left:5px;
     /*border:1px solid #ccc;*/
     border-radius:0;
@@ -210,6 +214,10 @@
     padding-left: 15px;
     padding-right: 15px;
     max-width: 1170px;
+}
+
+.brandbanner-panel{
+    margin-bottom:40px;
 }
 
 /* End brand panel */

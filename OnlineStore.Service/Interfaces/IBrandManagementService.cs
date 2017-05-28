@@ -63,5 +63,12 @@ namespace OnlineStore.Service.Interfaces
         /// <param name="id">id of brand</param>
         /// <returns></returns>
         bool DeleteBrand(int id);
+
+        /// <summary>
+        /// Get a list random brands
+        /// </summary>
+        /// <param name="count">number of brand</param>
+        /// <returns>list brand</returns>
+        IList<BrandSummaryView> GetRandomBrands(int count = 10);
     }
 }

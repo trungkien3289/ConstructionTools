@@ -1,4 +1,5 @@
-﻿using OnlineStore.Infractructure.Utility;
+﻿using OnlineStore.Infractructure.Helper;
+using OnlineStore.Infractructure.Utility;
 using OnlineStore.Model.Context;
 using OnlineStore.Model.ViewModel;
 using System;
@@ -19,6 +20,7 @@ namespace OnlineStore.Model.Mapper
                 ProductCode = product.ProductCode,
                 Name = product.Name,
                 Price = product.Price,
+                OldPrice = product.OldPrice,
                 Quantity = product.Quantity,
                 Unit = product.Unit,
                 BrandId = product.BrandId,
@@ -33,10 +35,6 @@ namespace OnlineStore.Model.Mapper
                 IsBestSellProduct = product.IsBestSellProduct,
                 SortOrder = product.SortOrder,
                 Status = product.Status,
-                //CreatedBy = product.CreatedBy.to,
-                //CreatedDate = product.CreatedDate,
-                //ModifiedBy = product.ModifiedBy,
-                //ModifiedDate = product.ModifiedDate
                 share_Images = product.share_Images.ConvertToImageProductViewModels()
             };
 
@@ -74,7 +72,8 @@ namespace OnlineStore.Model.Mapper
                 Id = product.Id,
                 Name = product.Name,
                 BrandName = product.ecom_Brands !=null? product.ecom_Brands.Name:"",
-                PriceFormatCurrency = String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", product.Price),
+                PriceFormatCurrency = FormatHelper.FormatMoney(product.Price,"VND"),
+                OldPriceFormatCurrency = product.OldPrice!=null?FormatHelper.FormatMoney((decimal)product.OldPrice, "VND"):null,
                 Price = product.Price,
                 CoverImageUrl = product.CoverImage != null ? product.CoverImage.ImagePath : DisplayProductConstants.NoImagePath,
                 IsNew = product.IsNewProduct,

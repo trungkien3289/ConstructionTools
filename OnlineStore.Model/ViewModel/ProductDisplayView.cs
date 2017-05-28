@@ -12,6 +12,7 @@ namespace OnlineStore.Model.ViewModel
         public string BrandName { get; set; }
         public string Name { get; set; }
         public string PriceFormatCurrency { get; set; }
+        public string OldPriceFormatCurrency { get; set; }
         public decimal Price { get; set; }
         public string CoverImageUrl { get; set; }
         public bool IsNew { get; set; }

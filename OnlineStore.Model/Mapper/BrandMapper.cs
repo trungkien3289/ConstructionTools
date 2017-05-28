@@ -78,9 +78,9 @@ namespace OnlineStore.Model.Mapper
 
             return brandSummaryView;
         }
-        public static IEnumerable<BrandSummaryView> ConvertToBrandSummaryViews(this IEnumerable<ecom_Brands> brands)
+        public static IList<BrandSummaryView> ConvertToBrandSummaryViews(this IEnumerable<ecom_Brands> brands)
         {
-            ICollection<BrandSummaryView> brandSummaryViews = new List<BrandSummaryView>();
+            IList<BrandSummaryView> brandSummaryViews = new List<BrandSummaryView>();
             foreach (var brand in brands)
             {
                 brandSummaryViews.Add(brand.ConvertToBrandSummaryView());

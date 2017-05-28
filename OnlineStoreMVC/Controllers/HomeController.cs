@@ -173,6 +173,12 @@ namespace OnlineStoreMVC.Controllers
                 return PartialView("_ListBrands", brands);
             }
         }
+        [ChildActionOnly]
+        public ActionResult GroupBanners()
+        {
+            IList<BrandSummaryView> brands = _brandService.GetRandomBrands(8);
+            return PartialView("_BrandBanner", brands);
+        }
 
         #endregion
 
