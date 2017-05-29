@@ -12,7 +12,7 @@
     .title-groupproduct{
     display: block;
     height: 40px;
-    border-bottom: 2px solid orange;
+    border-bottom: 2px solid #116080;
     margin-bottom: 10px;
 }
 
@@ -20,7 +20,7 @@
     display: inline-block;
     height: 100%;
     font-size: 20px;
-    background-color: orange;
+    background-color: #116080;
     display:inline-block;
     float:left;
     color:#fff;
@@ -43,19 +43,23 @@
     width: 0px;
     height: 0px;
     border-top: 38px solid transparent;
-    border-left: 60px solid orange;
+    border-left: 60px solid #116080;
     display:inline-block;
     float:left;
 }
 
 .btn-next-groupproduct{
-    margin-left:5px;
-    border-radius:0;
+    padding: 6px 3px;
+    color: #333;
+    margin-left: 5px;
+    border-radius: 0;
 }
 
 .btn-previous-groupproduct{
-    margin-left:5px;
-    border-radius:0;
+    padding: 6px 3px;
+    color: #333;
+    margin-left: 5px;
+    border-radius: 0;
 }
 
 </style>
@@ -81,14 +85,12 @@
                                     @Html.ActionLink("Chi Tiết", "ProductDetails", "Product", new { @id = item.Id }, new { @class = "link-product-add-cart" })
                                 </div>
                             </div>
-                            @if (item.IsNew)
-                            {
-                                <span class="product-new-top">Mới</span>
-                            }
                         </a>
                         <div class="item-info-product ">
-                            <h4 style="height:60px;overflow:hidden;">@Html.ActionLink(item.Name, "ProductDetails", "Product", new { @id = item.Id }, null)</h4>
+                            <h4 class="productname-item-groupproduct">@Html.ActionLink(item.Name, "ProductDetails", "Product", new { @id = item.Id }, null)</h4>
+                            <div class="brandname-item-groupproduct">Thương hiệu: @item.BrandName</div>
                             <div class="info-product-price">
+                                <span class="item_price"><del>@item.OldPriceFormatCurrency</del></span>
                                 <span class="item_price">@item.PriceFormatCurrency</span>
                             </div>
                             @*<a href="#" class="item_add single-item hvr-outline-out button2">Thêm Vào Giỏ</a>*@

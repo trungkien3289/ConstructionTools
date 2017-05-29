@@ -75,6 +75,8 @@ namespace OnlineStore.Model.Mapper
                 PriceFormatCurrency = FormatHelper.FormatMoney(product.Price,"VND"),
                 OldPriceFormatCurrency = product.OldPrice!=null?FormatHelper.FormatMoney((decimal)product.OldPrice, "VND"):null,
                 Price = product.Price,
+                OldPrice = product.OldPrice,
+                SaleOff = product.OldPrice!=null && product.OldPrice!=0? FormatHelper.CalculatePercetage(product.Price,(decimal)product.OldPrice):0,
                 CoverImageUrl = product.CoverImage != null ? product.CoverImage.ImagePath : DisplayProductConstants.NoImagePath,
                 IsNew = product.IsNewProduct,
                 ShortDescription = product.Description

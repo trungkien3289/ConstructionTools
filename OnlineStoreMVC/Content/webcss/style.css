@@ -1412,6 +1412,19 @@ h2.resp-accordion {
         font-size:14px;
     }
 
+ .saleoff-item-groupproduct{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 52px;
+    height: 24px;
+    color: #FFF;
+    font-size: 1.2em;
+    background: url(../Images/price_tag.png) no-repeat;
+    text-align: right;
+    padding-right: 5px;
+ }
+
 .product-new-top {
     background: #ef0101 none repeat scroll 0 0;
     color: #fff;
@@ -1937,7 +1950,7 @@ display:block;
 }
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
 	color: #fff;
-	background-color: #5cd2ff;
+	background-color: #116080;
 	border: none;
 	border-radius: 0;
 }

@@ -36,6 +36,10 @@
                                 <span class="item_price"><del>@item.OldPriceFormatCurrency</del></span>
                                 <span class="item_price">@item.PriceFormatCurrency</span>
                             </div>
+                            @if (item.SaleOff != 0)
+                            {
+                                <div class="saleoff-item-groupproduct">@item.SaleOff%</div>
+                            }
                             @*<a href="#" class="item_add single-item hvr-outline-out button2">Thêm Vào Giỏ</a>*@
                         </div>
                     </div>

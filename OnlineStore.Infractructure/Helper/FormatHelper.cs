@@ -31,5 +31,17 @@ namespace OnlineStore.Infractructure.Helper
 
             return result;
         }
+
+        public static int CalculatePercetage(decimal number, decimal divider)
+        {
+            if (divider == 0)
+            {
+                throw new ApplicationException("Cannot divide for 0");
+            }
+            else
+            {
+                return  100 - (int)((number / divider)*100);
+            }
+        }
     }
 }

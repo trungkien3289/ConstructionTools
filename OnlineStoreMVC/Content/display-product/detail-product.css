@@ -24,13 +24,18 @@
 }
 
 .narbar-description ul{
-    background-color:#000;
     margin-bottom:0;
 }
 
 .narbar-description ul>li>a{
-    background-color:#000;
+    color:#333!important;
+    background: #e4e4e4; 
+    text-transform: uppercase;   
+}
+
+.narbar-description .nav-tabs > li > a:hover{
     color:#fff!important;
+    
 }
 
 .narbar-description .nav-tabs > li {
@@ -40,7 +45,7 @@
 .narbar-description .tabtitle-narbar-description{
     text-transform: uppercase;
     font-size: 24px;
-    color: #FDA30E;
+    color: #116080;
     margin: 2em 0;
 }
 
@@ -48,4 +53,67 @@
     border: 1px solid #ccc;
     padding: 10px;
     background-color: #fff;
+}
+
+.productname-productdetails{
+    color: #3e3e3e;
+    font-size:22px;
+    font-weight: 500;
+}
+
+.pricepanel-productdetails{
+    background: url(../Images/priceBg.jpg) no-repeat;
+    background-size: 100% 100%;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    color: #a6a6a6;
+}
+
+.productprice-productdetails{
+        color: #ea0000;
+}
+.productprice-productdetails b {
+    font-size: 30px;
+    font-weight:400;
+}
+.oldprice-productdetails del {
+    padding-left: 40px;
+    line-height: 1.2;
+}
+.discount-productdetails{
+    position: absolute;
+    margin-top: -40px;
+    right: 60px;
+}
+.note-productdetails{
+    font-size: 14px;
+}
+
+.productinforcontainer{
+    margin-bottom: 8px;
+    margin-top: 8px;
+    display:block;
+    clear:both;
+    font-size: 14px;
+}
+.left-label{
+    float: left;
+    width: 140px;
+    font-weight:600;
+}
+
+.discount-productdetails{
+    display: block;
+    width: 75px;
+    height: 38px;
+    line-height: 40px;
+    text-align: center;
+    background: url(../Images/price_tag_detail.png) no-repeat #efefef;
+    background-size: auto 100%;
+    color: #FFF;
+    font-size: 20px;
+}
+
+.cl-green {
+    color: #0f8200;
 }

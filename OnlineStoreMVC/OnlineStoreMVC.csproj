@@ -952,6 +952,9 @@
     <Content Include="Content\Images\Common\list-style.png" />
     <Content Include="Content\Images\icon_gototop.png" />
     <Content Include="Content\Images\no-image.png" />
+    <Content Include="Content\Images\priceBg.jpg" />
+    <Content Include="Content\Images\price_tag.png" />
+    <Content Include="Content\Images\price_tag_detail.png" />
     <Content Include="Content\Images\ProductImages\LargeImages\ProductImage_0_13318493_1755331161404130_1419943251_n.jpg" />
     <Content Include="Content\Images\ProductImages\LargeImages\ProductImage_0_13334459_566987986795881_1324135279_o %282%29.jpg" />
     <Content Include="Content\Images\ProductImages\LargeImages\ProductImage_0_13334849_566987930129220_861185595_o.jpg" />

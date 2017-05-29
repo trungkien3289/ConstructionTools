@@ -215,8 +215,8 @@ var GroupProductsManagement = {
         template += '                           <a href="/Product/ProductDetails?id=' + product.Id + '" class="link-product-add-cart">Chi Tiết</a>';
         template += '                       </div>  ';
         template += '                   </div>  ';
-        if (product.IsNew) {
-            template += '                       <span class="product-new-top">Mới</span>  ';
+        if (product.SaleOff != 0) {
+            template += '                       <div class="saleoff-item-groupproduct">' + product.SaleOff + '%</div>  ';
         }
         template += '     ';
         template += '               </a>  ';
