@@ -89,14 +89,19 @@
 <!-- //banner-top -->
 <div class="container b-mainbrand-topmenu">
     <div class="row">
-        @{
-            var categoriesList = ViewBag.TopCategoriesList as IEnumerable<OnlineStore.Model.ViewModel.SummaryCategoryViewModel>;
-            foreach (var category in categoriesList)
-            {
-                <div class="col-sm-2">
-                    <a href="/Product/GetProductByCategory/@category.Id"><i class="fa fa-angle-right" aria-hidden="true"></i>@category.Name</a>
-                </div>
+        <div class="divCategory_HomePage_Container">
+
+            @{
+                var categoriesList = ViewBag.TopCategoriesList as IEnumerable<OnlineStore.Model.ViewModel.SummaryCategoryViewModel>;
+                foreach (var category in categoriesList)
+                {
+
+                    <div class="col-sm-2 divCategory_HomePage">
+                        <a href="/Product/GetProductByCategory/@category.Id"><i class="fa fa-angle-right" aria-hidden="true"></i>@category.Name</a>
+                    </div>
+
+                }
             }
-        }
+        </div>
     </div>
 </div>

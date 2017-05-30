@@ -7,7 +7,7 @@
         <div class="arrow-right"></div>
         <a class="btn btn-next-groupproduct pull-right"><i class="glyphicon glyphicon-chevron-right"></i></a>
         <a class="btn btn-previous-groupproduct pull-right"><i class="glyphicon glyphicon-chevron-left"></i></a>
-        <div class="childrencategory-groupproduct pull-left">
+        <div class="childrencategory-groupproduct pull-left" style="width: 75% !important;">
             @foreach (var item in Model.childrenCategories)
             {
                 @Html.ActionLink(item.Name, "GetProductByCategory", "Product", new { @id = item.Id }, new { @class = "btn subcategory-groupproduct" })

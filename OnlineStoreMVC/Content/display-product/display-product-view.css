@@ -163,7 +163,7 @@ ul.product_list.grid > li .product-container .product-image-container.image-cont
 }
 
 .productlist-displayproduct{
-    min-height:900px;
+    /*min-height:900px;*/
 }
 
 /* end filter panel*/

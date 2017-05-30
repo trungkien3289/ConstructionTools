@@ -20,12 +20,13 @@
     color:#000;
 }
 
-.subcategory-groupproduct:hover{
-    color:#5cd2ff;
-}
+    .subcategory-groupproduct:hover {
+        color: #5cd2ff;
+        text-decoration: underline;
+    }
 
-.b-groupproduct{
-    margin-bottom:25px;
+.b-groupproduct {
+    margin-bottom: 25px;
 }
 
 .arrow-right {
