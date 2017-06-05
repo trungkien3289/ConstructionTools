@@ -34,11 +34,9 @@
 <body id="index" class="index hide-left-column hide-right-column lang_en one-column">
     <div id="page">
         @Html.Action("_HeaderPartial", "Home", new { @searchType = Request.QueryString["searchType"] })
-
         <div class="columns-container top-space-body">
             @RenderBody()
         </div>
-
         @RenderPage("_FooterPartial.cshtml")
     </div>
 </body>

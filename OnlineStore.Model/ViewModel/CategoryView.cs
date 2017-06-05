@@ -9,6 +9,10 @@ namespace OnlineStore.Model.ViewModel
 {
     public class SummaryCategoryViewModel
     {
+        public SummaryCategoryViewModel()
+        {
+            SubCategories = new List<SummaryCategoryViewModel>();
+        }
         public int Id { get; set; }
         [DisplayName("TÊN DANH MỤC")]
         public string Name { get; set; }
@@ -16,6 +20,7 @@ namespace OnlineStore.Model.ViewModel
         public Nullable<int> SortOrder { get; set; }
         [DisplayName("TRẠNG THÁI")]
         public string Status { get; set; }
+        public IList<SummaryCategoryViewModel> SubCategories { get; set; }
     }
 
     public class SummaryCategoryTreeViewItemModel

@@ -60,7 +60,7 @@ namespace OnlineStore.Model.Repository
 
         public IEnumerable<ecom_Categories> GetChildrenByParentCategoryId(int? parentId)
         {
-            return dbSet.Where(c => c.ParentId == parentId && c.Status == (int)Define.Status.Active).ToList();
+            return dbSet.Include("ecom_Products").Where(c => c.ParentId == parentId && c.Status == (int)Define.Status.Active).ToList();
         }
 
         /// <summary>

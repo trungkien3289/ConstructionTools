@@ -11,6 +11,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'UTMAvo';
+    src: url('../fonts/UTM Avo.ttf') format("truetype");
+    /*font-weight: normal;
+    font-style: normal;*/
+}
+
 .fa {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;

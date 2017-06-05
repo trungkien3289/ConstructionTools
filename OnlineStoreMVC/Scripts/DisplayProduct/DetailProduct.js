@@ -20,11 +20,11 @@
                 //responsiveClass: true,
                 responsive: {
                     0: {
-                        items: 1,
+                        items: 2,
                         nav: true
                     },
                     600: {
-                        items: 3,
+                        items: 4,
                         nav: false
                     },
                     800: {
@@ -101,13 +101,6 @@
         }
     },
     initZoomImageControl: function () {
-        //$('#CoverImage').elevateZoom({
-        //    zoomType: "inner",
-        //    cursor: "crosshair",
-        //    zoomWindowFadeIn: 500,
-        //    zoomWindowFadeOut: 750
-        //});
-
         $("#picture-frame").zoomToo({
             magnify: 1
         });

@@ -397,8 +397,18 @@ namespace OnlineStore.Service.Implements
 
         public IList<SummaryCategoryViewModel> GetCategoryChildrenById(int? parentId)
         {
+            IList<SummaryCategoryViewModel> returnList = new List<SummaryCategoryViewModel>();
             IEnumerable<ecom_Categories> subCategories = categoryRepository.GetChildrenByParentCategoryId(parentId);
-            return subCategories.ConvertToIndexCategoryViews();
+            foreach (ecom_Categories item in subCategories)
+            {
+                SummaryCategoryViewModel viewModelItem = item.ConvertToIndexCategoryView();
+                if (item.ecom_Products.Count() > 0)
+                {
+                    viewModelItem.SubCategories = GetCategoryChildrenById(item.Id);
+                }
+                returnList.Add(viewModelItem);
+            }
+            return returnList;
         }
 
         /// <summary>

@@ -5,9 +5,10 @@
     <div class="title-groupproduct" style="display:block;height:40px;">
         <span class="category-title-groupproduct" style="display:inline-block;">@Model.CategoryName</span>
         <div class="arrow-right"></div>
-        <a class="btn btn-next-groupproduct pull-right"><i class="glyphicon glyphicon-chevron-right"></i></a>
-        <a class="btn btn-previous-groupproduct pull-right"><i class="glyphicon glyphicon-chevron-left"></i></a>
-        <div class="childrencategory-groupproduct pull-left" style="width: 75% !important;">
+        @*<a class="btn btn-next-groupproduct pull-right"><i class="glyphicon glyphicon-chevron-right"></i></a>
+        <a class="btn btn-previous-groupproduct pull-right"><i class="glyphicon glyphicon-chevron-left"></i></a>*@
+        @Html.ActionLink("Tất cả", "GetProductByCategory", "Product", new { @id = Model.CategoryId }, new { @class = "pull-right show-all-product" })
+        <div class="childrencategory-groupproduct pull-left" style="height:40px;overflow:hidden;">
             @foreach (var item in Model.childrenCategories)
             {
                 @Html.ActionLink(item.Name, "GetProductByCategory", "Product", new { @id = item.Id }, new { @class = "btn subcategory-groupproduct" })
@@ -48,6 +49,6 @@
         </div>
     </div>
 
-    <div style="display:block;height:30px;">@Html.ActionLink("thêm...", "GetProductByCategory", "Product", new { @id = Model.CategoryId }, new { @class = "pull-right" })</div>
+    
 </div>
 

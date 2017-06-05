@@ -823,11 +823,7 @@
     <Content Include="Content\css\category.css" />
     <Content Include="Content\css\cms.css" />
     <Content Include="Content\css\contact-form.css" />
-    <Content Include="Content\css\css%281%29.css" />
-    <Content Include="Content\css\css%282%29.css" />
     <Content Include="Content\css\css.css" />
-    <Content Include="Content\css\front%281%29.css" />
-    <Content Include="Content\css\front%282%29.css" />
     <Content Include="Content\css\front.css" />
     <Content Include="Content\css\global.css" />
     <Content Include="Content\css\highdpi.css" />
@@ -843,9 +839,6 @@
     <Content Include="Content\css\productcomments.css" />
     <Content Include="Content\css\product_list.css" />
     <Content Include="Content\css\responsive-tables.css" />
-    <Content Include="Content\css\site.css" />
-    <Content Include="Content\css\site1.css" />
-    <Content Include="Content\css\site2.css" />
     <Content Include="Content\css\smartbloglatestnews.css" />
     <Content Include="Content\css\smartblogstyle.css" />
     <Content Include="Content\css\smartblogtags.css" />
@@ -952,6 +945,7 @@
     <Content Include="Content\Images\Common\list-style.png" />
     <Content Include="Content\Images\icon_gototop.png" />
     <Content Include="Content\Images\no-image.png" />
+    <Content Include="Content\Images\pointer_icon.png" />
     <Content Include="Content\Images\priceBg.jpg" />
     <Content Include="Content\Images\price_tag.png" />
     <Content Include="Content\Images\price_tag_detail.png" />
@@ -1807,6 +1801,14 @@
     <Content Include="Content\ckeditor\package.json" />
     <Content Include="Content\ckeditor\README.md" />
     <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
+    <Content Include="Content\fonts\UTM Avo.ttf" />
+    <Content Include="Content\fonts\UTM AvoBold.ttf" />
+    <Content Include="Content\fonts\UTM AvoBold_Italic.ttf" />
+    <Content Include="Content\fonts\UTM AvoItalic.ttf" />
+    <Content Include="Content\font-awesome\4.3.0\fonts\UTM Avo.ttf" />
+    <Content Include="Content\font-awesome\4.3.0\fonts\UTM AvoBold.ttf" />
+    <Content Include="Content\font-awesome\4.3.0\fonts\UTM AvoBold_Italic.ttf" />
+    <Content Include="Content\font-awesome\4.3.0\fonts\UTM AvoItalic.ttf" />
     <None Include="Properties\PublishProfiles\xaviadecor.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DisplayProduct\DetailProduct.js" />

@@ -22,9 +22,9 @@
 
         $(function () {
             $(window).resize(function () {
-                var groupProductTitleWidth = $(".title-groupproduct").width();
-                var subCategoriesWidth = groupProductTitleWidth - $(".category-title-groupproduct").width() - 60 - 80 - 30;
-                $(".childrencategory-groupproduct").width(subCategoriesWidth);
+                var groupProductTitleWidth = $(".title-groupproduct").outerWidth();
+                var subCategoriesWidth = groupProductTitleWidth - $(".category-title-groupproduct").outerWidth() - 60 - 40 - 30;
+                $(".childrencategory-groupproduct").outerWidth(subCategoriesWidth);
             });
 
             $(window).trigger('resize');
