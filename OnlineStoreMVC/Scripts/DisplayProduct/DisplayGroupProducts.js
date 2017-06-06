@@ -62,6 +62,7 @@ var GroupProductsManagement = {
         $('[data-toggle="popover"]').popover({
             trigger: "hover",
             container: "body",
+            html:true,
             placement: "auto right",
             template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
         });
