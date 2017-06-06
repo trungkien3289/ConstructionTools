@@ -73,8 +73,8 @@
         color: #ea0000;
 }
 .productprice-productdetails b {
-    font-size: 30px;
-    font-weight:400;
+    font-size: 26px;
+    font-weight:bold;
 }
 .oldprice-productdetails del {
     padding-left: 40px;

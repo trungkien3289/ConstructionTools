@@ -1079,6 +1079,7 @@
     <Content Include="Content\Images\ProductImages\SmallImages\ProductImage_1_xaviadecornoithatdanang2.jpg" />
     <Content Include="Content\Images\ProductImages\SmallImages\ProductImage_2_xaviadecornoithatdanang1.jpg" />
     <Content Include="Content\Images\ProductImages\SmallImages\ProductImage_2_xaviadecornoithatdanang2.jpg" />
+    <Content Include="Content\Images\space_menu.gif" />
     <Content Include="Content\Images\TestImages\1.png" />
     <Content Include="Content\Images\TestImages\2.png" />
     <Content Include="Content\Images\TestImages\arrow.png" />

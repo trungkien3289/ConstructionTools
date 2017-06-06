@@ -496,11 +496,6 @@ label {
     box-shadow: none;
 }
 
-/*.dropdown:hover>.dropdown-content-panel {
-    display: block;
-}*/
-
-
 .menuitem-category {
     height: 36px;
     padding: 6px 20px !important;
@@ -511,7 +506,12 @@ label {
     text-transform: uppercase;
     font-size: 15.4px;
     color: #d52b1e !important;
-    font-weight:700;
+    font-weight:bold!important;
+}
+
+.dropdown-menu > li > a.menuitem-category:hover,
+ .dropdown-menu > li > a.menuitem-category:focus {
+    background-color: #c92014;
 }
 
 /* Individual styles */
@@ -579,8 +579,8 @@ label {
     /*background: #5cd2ff;*/
 }
 
-a.menu__link {
-    color: #111 !important;
+.navbar_menu_HomePage  ul.menu__list>li.menu__item>a.menu__link {
+    color: #111;
     font-weight: normal;
     font: 400 14px/1.6 UTMAvo,sans-serif;
     padding: 0 18px;
@@ -588,6 +588,11 @@ a.menu__link {
     white-space: nowrap;
     font-size:15.4px;
 }
+
+.navbar_menu_HomePage  ul.menu__list>li.menu__item>a.menu__link:hover{
+    color: #d52b1e;
+} 
+
 /*-- //left nav --*/
 .top_nav_right {
     float: right;
@@ -1855,6 +1860,7 @@ h2.resp-accordion {
     color: #116080;
     text-decoration: none;
     font-weight: 300;
+    font-weight:bold;
 }
 
 .info-product-price {
@@ -2014,24 +2020,6 @@ a.single-item {
             color: #5cd2ff;
         }
 /*-- //login --*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*-- navigation --*/
 ul.multi-column-dropdown li {
     list-style-type: none;
@@ -2045,7 +2033,7 @@ ul.multi-column-dropdown li {
     }
 
         ul.multi-column-dropdown li a:hover {
-            color: #5cd2ff;
+            color: #d52b1e;
         }
 
 .col-sm-3.multi-gd-img {
@@ -2245,15 +2233,7 @@ h3.tittle {
     min-height: 256px;
     padding-top: 45px;
 }
-/*.contact-grid2{
-	background: url(../Images/TestImages/new2.jpg) no-repeat center;		
-}
-.contact-grid1{
-	background: url(../Images/TestImages/new3.jpg) no-repeat center;
-}
-.contact-grid3{
-	background: url(../Images/TestImages/new4.jpg) no-repeat center;
-}*/
+
 .contact-grid h4 {
     color: #5cd2ff;
     font-size: 35px;
@@ -3902,6 +3882,12 @@ td.invert-image a img {
     }
 }
 
+@media only screen and (min-width: 981px) {
+    .navbar_HomePage ul.navbar-nav > li:not(:first-child) {
+        background: url(../Images/space_menu.gif) 0 center no-repeat;
+    }
+}
+
 @media (max-width: 991px) and (min-width: 800px) {
     .b-brandbanner .owl-carousel {
         width: 100%;
@@ -4665,6 +4651,9 @@ td.invert-image a img {
 }
 
 @media (max-width: 667px) {
+    .popover{
+        display:none!important;
+    }
     .header-left {
         float: none;
         width: 30%;
@@ -6724,3 +6713,5 @@ td.invert-image a img {
         padding: 0;
     }
 }
+
+

@@ -3,21 +3,31 @@
     height: 40px;
     border-bottom: 2px solid #116080;
     margin-bottom: 10px;
+    font-size:14px;
 }
 
 .category-title-groupproduct{
     display: inline-block;
     height: 100%;
-    font-size: 20px;
+    font-size: 14px;
     background-color: #116080;
     display:inline-block;
     float:left;
     color:#fff;
-    padding:6px;
+    padding: 10px 6px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.childrencategory-groupproduct{
+    font-size:14px;
+    height:40px;
+    overflow:hidden;
 }
 
 .subcategory-groupproduct{
     color:#000;
+    font-size:.9em;
 }
 
     .subcategory-groupproduct:hover {
@@ -61,7 +71,7 @@
 
 .show-all-product{
     margin-top:6px;
-    font-size:14px;
+    font-size:.9em;
 }
 
 
