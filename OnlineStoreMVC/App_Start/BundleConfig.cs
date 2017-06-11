@@ -63,7 +63,8 @@ namespace OnlineStoreMVC
                       ));
 
             bundles.Add(new StyleBundle("~/Content/webCss").Include(
-                     //"~/Content/webcss/pignose.layerslider.css",
+                     "~/Content/webcss/common.css",
+                     "~/Content/webcss/layout.css",
                      "~/Content/webcss/style.css"
                      ));
 

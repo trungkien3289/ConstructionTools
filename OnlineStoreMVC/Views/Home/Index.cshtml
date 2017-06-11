@@ -19,17 +19,14 @@
 <script src="~/Content/plugins/owl-sliderbar/js/owl.carousel.min.js"></script>
 <script src="~/Scripts/DisplayProduct/HomePage.js"></script>
     <script>
-
         $(function () {
             $(window).resize(function () {
                 var groupProductTitleWidth = $(".title-groupproduct").outerWidth();
                 var subCategoriesWidth = groupProductTitleWidth - $(".category-title-groupproduct").outerWidth() - 60 - 40 - 30;
                 $(".childrencategory-groupproduct").outerWidth(subCategoriesWidth);
             });
-
             $(window).trigger('resize');
         });
-
     </script>
 }
 
@@ -74,6 +71,7 @@
         <div class="container groupproduct-panel">
             @Html.Action("GroupProductPatial", new { @categoryId = 21 })
             @Html.Action("GroupProductPatial", new { @categoryId = 22 })
+            @Html.Action("GroupProductPatial", new { @categoryId = 1026 })
         </div>
     </div>
     <!-- //product-nav -->

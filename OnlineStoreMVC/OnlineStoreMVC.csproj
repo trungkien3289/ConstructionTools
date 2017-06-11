@@ -1583,8 +1583,12 @@
     <Content Include="Content\plugins\zoom-image\jquery.elevatezoom.js" />
     <Content Include="Content\response\1.4.2\respond.min.js" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\webcss\checkout.css" />
+    <Content Include="Content\webcss\common.css" />
+    <Content Include="Content\webcss\contact.css" />
     <Content Include="Content\webcss\flexslider.css" />
     <Content Include="Content\webcss\jquery-ui.css" />
+    <Content Include="Content\webcss\layout.css" />
     <Content Include="Content\webcss\pignose.layerslider.css" />
     <Content Include="Content\webcss\style.css" />
     <Content Include="electronics.html" />
