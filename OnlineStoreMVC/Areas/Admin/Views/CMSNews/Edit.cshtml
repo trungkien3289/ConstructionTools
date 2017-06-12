@@ -6,10 +6,14 @@
 }
 
 <script src="~/Content/ckeditor/ckeditor.js"></script>
+<script src="~/Content/ckfinder/ckfinder.js"></script>
 <script>
     $(document).ready(function () {
         // CKEditor
-        CKEDITOR.replace('ContentNews');
+        var editor = CKEDITOR.instances['ContentNews'];
+        if (editor) { editor.destroy(true); }
+        CKEDITOR.replace('ContentNews', { enterMode: CKEDITOR.ENTER_BR });
+        CKFinder.setupCKEditor(null, "/Content/ckfinder/", null, null);
     })
 </script>
 

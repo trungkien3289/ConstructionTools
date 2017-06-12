@@ -1,13 +1,9 @@
 ﻿using OnlineStore.Model.Context;
-using OnlineStore.Model.Repository;
 using OnlineStore.Model.ViewModel;
 using OnlineStore.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OnlineStore.Model.Mapper;
 
 namespace OnlineStore.Service.Implements
 {
@@ -55,20 +51,20 @@ namespace OnlineStore.Service.Implements
                 {
                     news.AddRange(db.cms_News.Where(x => x.CategoryId == category.Id && x.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active)
                         .Select(x => new CMSNewsView
-                    {
-                        Id = x.Id,
-                        CategoryId = x.CategoryId,
-                        CategoryTitle = x.cms_Categories.Title,
-                        CoverImageId = x.CoverImageId,
-                        CoverImagePath = x.share_Images.ImagePath,
-                        Title = x.Title,
-                        SubTitle = x.SubTitle,
-                        ContentNews = x.ContentNews,
-                        Authors = x.Authors,
-                        Tags = x.Tags,
-                        TotalView = x.TotalView,
-                        Status = x.Status
-                    }));
+                        {
+                            Id = x.Id,
+                            CategoryId = x.CategoryId,
+                            CategoryTitle = x.cms_Categories.Title,
+                            CoverImageId = x.CoverImageId,
+                            CoverImagePath = x.share_Images.ImagePath,
+                            Title = x.Title,
+                            SubTitle = x.SubTitle,
+                            ContentNews = x.ContentNews,
+                            Authors = x.Authors,
+                            Tags = x.Tags,
+                            TotalView = x.TotalView,
+                            Status = x.Status
+                        }).ToList());
 
                     GetCMSNewsRecursive(category.Id);
                 }
@@ -96,12 +92,12 @@ namespace OnlineStore.Service.Implements
                         Tags = x.Tags,
                         TotalView = x.TotalView,
                         Status = x.Status
-                    }).ToList();
+                    });
 
-                news.AddRange(GetCMSNewsRecursive(categoryId));
+                //news.AddRange(GetCMSNewsRecursive(categoryId));
                 totalItems = news.Count();
 
-                return news.OrderByDescending(x => x.SortOrder).ThenByDescending(x => x.CreatedDate).Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
+                return news.ToList().OrderByDescending(x => x.SortOrder).ThenByDescending(x => x.CreatedDate).Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
             }
         }
 
