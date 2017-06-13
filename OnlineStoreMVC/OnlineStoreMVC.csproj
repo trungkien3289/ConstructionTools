@@ -1861,6 +1861,7 @@
     <Content Include="Views\Product\_ProductTagList.cshtml" />
     <Content Include="Views\Shared\_ListBrands.cshtml" />
     <Content Include="Views\Shared\_BrandBanner.cshtml" />
+    <Content Include="Views\Home\QuickQuote.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

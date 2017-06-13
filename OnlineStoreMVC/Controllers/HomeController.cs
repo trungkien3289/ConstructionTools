@@ -120,6 +120,18 @@ namespace OnlineStoreMVC.Controllers
             return View(model);
         }
 
+        public ActionResult QuickQuote()
+        {
+            ViewBag.Message = "Báo giá nhanh";
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult QuickQuote(string content)
+        {
+            return View();
+        }
+
         public ActionResult Sent()
         {
             return View();
