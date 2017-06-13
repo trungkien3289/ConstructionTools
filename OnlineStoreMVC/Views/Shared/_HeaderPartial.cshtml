@@ -14,7 +14,6 @@
                 <div class="sear-sub">
                     <input type="submit" value="Tìm Kiếm">
                 </div>
-                @*<div class="clearfix"></div>*@
             </form>
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12 header-right footer-bottom">
@@ -88,40 +87,38 @@
 </div>
 <!-- //banner-top -->
 @*<div class="container b-mainbrand-topmenu">
-    <div class="row">
-        <div class="divCategory_HomePage_Container">
+        <div class="row">
+            <div class="divCategory_HomePage_Container">
 
-            @{
-                var categoriesList = ViewBag.TopCategoriesList as IEnumerable<OnlineStore.Model.ViewModel.SummaryCategoryViewModel>;
-                foreach (var category in categoriesList)
-                {
+                @{
+                    var categoriesList = ViewBag.TopCategoriesList as IEnumerable<OnlineStore.Model.ViewModel.SummaryCategoryViewModel>;
+                    foreach (var category in categoriesList)
+                    {
 
-                    <div class="col-sm-2 divCategory_HomePage">
-                        <a href="/Product/GetProductByCategory/@category.Id"><i class="fa fa-angle-right" aria-hidden="true"></i>@category.Name</a>
-                    </div>
+                        <div class="col-sm-2 divCategory_HomePage">
+                            <a href="/Product/GetProductByCategory/@category.Id"><i class="fa fa-angle-right" aria-hidden="true"></i>@category.Name</a>
+                        </div>
 
+                    }
                 }
-            }
+            </div>
         </div>
-    </div>
-</div>*@
+    </div>*@
 
 <script>
-
-        $(function () {
-            $(window).resize(function () {
-                var dropdownButtonWidth = $(".dropdown-menu.dropdown-content").outerWidth();
-                var navbarMenuWidth = $(".navbar_HomePage").outerWidth();
-                var mainDropDownHeight = $(".dropdown-menu.dropdown-content").outerHeight();
-                var dropdownContentPanels = $(".dropdown-content-panel");
-                $.each(dropdownContentPanels, function (i, item) {
-                    $(item).outerWidth(navbarMenuWidth - dropdownButtonWidth)
-                    .css("left", dropdownButtonWidth-3)
-                    .outerHeight(mainDropDownHeight);
-                })
-            });
-
-            $(window).trigger('resize');
+    $(function () {
+        $(window).resize(function () {
+            var dropdownButtonWidth = $(".dropdown-menu.dropdown-content").outerWidth();
+            var navbarMenuWidth = $(".navbar_HomePage").outerWidth();
+            var mainDropDownHeight = $(".dropdown-menu.dropdown-content").outerHeight();
+            var dropdownContentPanels = $(".dropdown-content-panel");
+            $.each(dropdownContentPanels, function (i, item) {
+                $(item).outerWidth(navbarMenuWidth - dropdownButtonWidth)
+                .css("left", dropdownButtonWidth - 3)
+                .outerHeight(mainDropDownHeight);
+            })
         });
 
-    </script>
+        $(window).trigger('resize');
+    });
+</script>

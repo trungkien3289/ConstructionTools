@@ -89,11 +89,17 @@ h2.resp-accordion {
     background-color: #fff;
 }
 /*-- effect --*/
+
+.products-groupproduct .product-men.item{
+    padding:1px;
+}
+
 .men-pro-item {
     position: relative;
     background-color: #fff;
     word-wrap: break-word;
     border: 1px solid #fff;
+    padding:3px;
 }
 
 .con-w3l .men-pro-item {

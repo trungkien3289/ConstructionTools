@@ -203,9 +203,6 @@
     <Content Include="App_Data\backupdatabase28052017.sql" />
     <Content Include="App_Data\constructiontools22052017.sql" />
     <Content Include="App_Data\update-bakery-database-16042017.sql" />
-    <Content Include="checkout.html" />
-    <Content Include="codes.html" />
-    <Content Include="contact.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap\css\bootstrap.css" />
@@ -1591,13 +1588,10 @@
     <Content Include="Content\webcss\layout.css" />
     <Content Include="Content\webcss\pignose.layerslider.css" />
     <Content Include="Content\webcss\style.css" />
-    <Content Include="electronics.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="index.html" />
-    <Content Include="mens.html" />
     <Content Include="Scripts\Admin\brand-management.js" />
     <Content Include="Scripts\Admin\category-management.js" />
     <Content Include="Scripts\Admin\order-management.js" />
@@ -1662,8 +1656,6 @@
     <Content Include="Scripts\webjs\pignose.layerslider.js" />
     <Content Include="Scripts\webjs\responsiveslides.min.js" />
     <Content Include="Scripts\webjs\simpleCart.min.js" />
-    <Content Include="single.html" />
-    <Content Include="womens.html" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />

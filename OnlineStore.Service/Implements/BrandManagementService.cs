@@ -17,8 +17,8 @@ namespace OnlineStore.Service.Implements
     {
         #region Properties
 
-        private BrandRepository db = new BrandRepository(new OnlineStoreMVCEntities());
-        private Repository<system_Profiles> systemProfiles = new Repository<system_Profiles>(new OnlineStoreMVCEntities());
+        private BrandRepository db;
+        private Repository<system_Profiles> systemProfiles;
         private OnlineStoreMVCEntities context;
 
         #endregion
@@ -75,7 +75,7 @@ namespace OnlineStore.Service.Implements
             var searchQuery = PredicateBuilder.True<ecom_Brands>();
             searchQuery = searchQuery.And(b => b.Status == (int)Define.Status.Active);
             IEnumerable<ecom_Brands> brandsMatchingRefinement = db.Get(
-                filter: searchQuery,includeProperties:"share_Images").OrderBy(c => Guid.NewGuid()).Take(count).OrderBy(p => p.Name).ToList();
+                filter: searchQuery, includeProperties: "share_Images").OrderBy(c => Guid.NewGuid()).Take(count).OrderBy(p => p.Name).ToList();
 
             return brandsMatchingRefinement.Select(b => new BrandSummaryView()
             {
