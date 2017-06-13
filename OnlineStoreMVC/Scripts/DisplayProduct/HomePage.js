@@ -2,7 +2,6 @@
     .controller("ecom_Main_Controller", [function () {
         var self = this;
         var init = function () {
-            debugger
             initMainSlider();
             initProductGroupSlider();
             initPopover();

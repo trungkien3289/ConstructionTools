@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using OnlineStore.Model.Context;
-using OnlineStore.Service.Interfaces;
+﻿using OnlineStore.Model.ViewModel;
 using OnlineStore.Service.Implements;
+using OnlineStore.Service.Interfaces;
 using PagedList;
-using OnlineStore.Model.ViewModel;
+using System.Collections.Generic;
+using System.Net;
+using System.Web.Mvc;
 
 namespace OnlineStoreMVC.Controllers
 {
@@ -21,7 +15,7 @@ namespace OnlineStoreMVC.Controllers
 
         private void PopulateCMSChildCategoriesByParentId(int parentId)
         {
-            ViewBag.ChildCategories = _cmsCategoryService.GetChildCategoriesByParentId(parentId);
+            ViewBag.ChildCategories = _cmsCategoryService.GetChildCategoriesByParentId(1);
         }
 
         private void PopulateRecentNews()
