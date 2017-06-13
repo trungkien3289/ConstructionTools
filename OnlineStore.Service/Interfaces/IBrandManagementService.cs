@@ -31,12 +31,14 @@ namespace OnlineStore.Service.Interfaces
         /// <param name="id">id of brand</param>
         /// <returns>return a view model to display on client side</returns>
         DetailsBrandManagementView GetDetailBrand(int id);
+
         /// <summary>
         /// Add new brand
         /// </summary>
         /// <param name="brand">information of new brand</param>
         /// <returns></returns>
         bool AddBrand(ecom_Brands brand);
+
         /// <summary>
         /// Get information of brand 
         /// </summary>
@@ -45,18 +47,12 @@ namespace OnlineStore.Service.Interfaces
         ecom_Brands GetBrandById(int id);
 
         /// <summary>
-        /// Get information of brand 
-        /// </summary>
-        /// <param name="id">id of brand</param>
-        /// <returns></returns>
-        //ecom_Brands GetBrandById(int id, string includes);
-
-        /// <summary>
         /// Update information of brand
         /// </summary>
         /// <param name="brand"></param>
         /// <returns></returns>
         bool UpdateBrand(ecom_Brands request);
+
         /// <summary>
         /// Delete brand
         /// </summary>

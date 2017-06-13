@@ -70,6 +70,10 @@ namespace OnlineStoreMVC.Controllers
             ViewBag.TopCategoryList = (new MenuService()).GetMenuByType((int)OnlineStore.Infractructure.Utility.Define.MenuEnum.User).Take(6).ToList();
         }
 
+        /// <summary>
+        /// Populate search types
+        /// </summary>
+        /// <param name="option">selected item</param>
         protected void PopulateSearchType(SearchType option = SearchType.AllProduct)
         {
             IEnumerable<SearchType> values = Enum.GetValues(typeof(SearchType)).Cast<SearchType>();
@@ -84,6 +88,11 @@ namespace OnlineStoreMVC.Controllers
             ViewBag.searchType = items;
         }
 
+        /// <summary>
+        /// Get children categories of a specific category
+        /// </summary>
+        /// <param name="parentId">parent category identifier</param>
+        /// <returns></returns>
         protected IList<SummaryCategoryViewModel> GetChildrenCategories(int? parentId)
         {
             return service.GetCategoryChildrenById(parentId);
