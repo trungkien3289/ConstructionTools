@@ -144,6 +144,19 @@ namespace OnlineStoreMVC.Controllers
         {
             return View();
         }
+        public ActionResult QuickQuote()
+        {
+            ViewBag.Message = "Báo giá nhanh";
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult QuickQuote(string content)
+        {
+            return View();
+        }
+
+        
 
         /// <summary>
         /// Get list item to show on main banner of home page

@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "Báo giá nhanh";
+}
+@section css{
+    <link href="~/Content/display-product/cms.css" rel="stylesheet" />
+}
+
+@section scripts{
+
+}
+
+<div class="container">
+    <div class="cf"></div>
+    <div class="quick_quotes_area" id="homebanners">
+        <div id="slide_banner" style="min-height: 500px; background-color: #000; opacity: 0.5;">
+        </div>
+
+        <form name="baogia-form" id="baogia-form" method="post">
+            <!--Form Slide-->
+            <div class="form_slide form_web padd15">
+                <h3 align="center">Lý do nên chọn Kết Nối Tiêu Dùng</h3>
+                <hr>
+                <div class="form_content cf">
+                    <div class="ten columns greenBg r_col_form">
+                        <h3 align="center"><span>Mất Thời Gian Tìm Kiếm ?</span> Yêu cầu báo giá ngay</h3>
+                        <div class="eight columns col1">
+                            <div class="row_account write_list_pros">
+                                <textarea name="request" id="request" placeholder="Liệt kê các sản phẩm cần mua X số lượng
+    Ví dụ: Thang nhom nk 38 X 3" class="inputbox" cols="30" rows="10" style="height: 110px"></textarea>
+                                <div class="text_form"> hoặc</div>
+                                <div class="file_upload">
+                                    <div class="jFiler jFiler-theme-default"><input type="file" name="file_baogia" id="file_baogia" style="position: absolute; left: -9999px; top: -9999px; z-index: -9999;"><div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i><span>Gởi File Danh Sách</span></div></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eight columns col2" align="center">
+                            <div class="row_account">
+                                <input name="name" type="text" id="name" class="inputbox" placeholder="Tên (*)">
+                            </div>
+                            <div class="row_account">
+                                <input name="email" type="text" id="email" class="inputbox" placeholder="Email (*)">
+                            </div>
+                            <div class="row_account">
+                                <input name="phone" type="text" id="phone" class="inputbox" placeholder="Điện thoại (*)">
+                            </div>
+                            <div class="row_account">
+                                <input name="company" type="text" id="company" class="inputbox" placeholder="Công ty">
+                            </div>
+                            <div class="row_account">
+                                <textarea name="content" id="content" placeholder="Yêu cầu khác" class="inputbox" cols="30" rows="10" style="height:80px"></textarea>
+                            </div>
+                            <div class="row_account"> <button type="button" id="btn-send-request" class="btn_form_slide ladda-button" data-style="zoom-in">Báo giá ngay</button></div>
+                        </div>
+                    </div>
+                    <div class="six columns text_col_form">
+                        <h3>Cam Kết Của Chúng Tôi</h3>
+                        <ul>
+                            <li><span>Giá Tốt Nhất</span></li>
+                            <li><span>Luôn Đúng Hẹn</span></li>
+                            <li><span>Thanh Toán Linh Hoạt</span></li>
+                            <li><span>Giao Hàng Trong Ngày</span></li>
+                        </ul>
+                    </div>
+                    <input type="hidden" name="file_baogia_upload" id="file_baogia_upload" value="">
+                    <input type="hidden" name="action" id="action" value="send">
+                </div>
+            </div>
+            <!--end Form Slide-->
+        </form>
+    </div>
+    <!--Main-->
+    <h1 align="center">
+        <span style="color: #d52b1e; font-size: 30px">Ketnoitieudung.vn</span> <span style="color: #0b5c54; font-size: 30px">Tự Hào Là Nhà Phân Phối Hàng Đầu</span><br>
+        <span style="color: #d52b1e; font-size: 20px">Của Các Thương Hiệu Uy Tín</span>
+    </h1>
+
+    <!--Slide Brands-->
+    
+    <!--end Slide Brands-->
+    <!--Detail news-->
+    <div class="box">
+        <div class="box_ct padd_tb15 detail_page">
+            <h1 class="heading_page">MUA MÁY MÓC, DỤNG CỤ CÔNG NGHIỆP TẠI KETNOITIEUDUNG.VN</h1>
+            <div class="info_g pn_homepage_content">
+                <div style="text-align: justify;">
+                    Công ty TNHH Một Thành Viên Thương Mại Hà Như ra đời vào tháng 01/08/2012, với cách thức kinh doanh <span style="color:#0000cd;"><strong>Mua hàng online</strong> </span>- Giao hàng tận nơi. Là đơn vị đi đầu trong lĩnh vực cung cấp thiết bị công nghiệp hiện đại và được nhiều đối tác tin tưởng. Chúng tối xây dựng hàng trăm nghìn sản phẩm từ các thương hiệu uy tín của những ngành hàng Thang nhôm, Dụng cụ cầm tay, Dụng cụ đo chính xác, Pa lăng xích, Thiết bị nâng đỡ - Bảo quản, Điện gia dụng, Dụng cụ dùng xăng, Máy hàn &amp; phụ kiện, Thiết bị dùng khí nén, Vật liệu mài mòn, Thiết bị đo laser, Thiết bị đo dòng điện. Không chỉ vậy, mua sắm trực tuyến tại ketnoitieudung.vn giúp quý khách tiết kiệm được thời gian, công sức mà vẫn bảo đảm được các quyền lợi về bảo hành, đổi/trả trong vòng 15 ngày kể từ thời điểm quý khách nhận được hàng.<br>
+                    <br>
+                    Với sứ mệnh phân phối máy móc và công cụ cầm tay hàng đầu tại Việt Nam, chỉ cần mở <a href="http://www.ketnoitieudung.vn/"><span style="color:#0000cd;"><strong>website ketnoitieudung.vn</strong></span></a> và mua hàng qua mạng, quý khách sẽ được giao sản phẩm tới tận nơi miễn phí khi đặt đơn hàng từ <strong><span style="color:#ff0000;">1.500.000đ</span></strong> trong phạm vi Tp.HCM và từ <strong><span style="color:#ff0000;">6.500.000đ</span></strong> đối với các tỉnh thành khác. Ngoài ra, chúng tôi còn có thêm mục kết nối Tư Vấn giúp quý khách có thêm những lời khuyên hữu ích trong quá trình mua sắm. Hãy cùng hàng triệu người tiêu dùng Việt Nam trải nghiệm tiện ích mua sắm trực tuyến dễ dàng, tiện ích.
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Detail news-->
+</div>
