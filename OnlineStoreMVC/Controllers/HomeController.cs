@@ -120,6 +120,11 @@ namespace OnlineStoreMVC.Controllers
             return View(model);
         }
 
+        public ActionResult Sent()
+        {
+            return View();
+        }
+
         public ActionResult QuickQuote()
         {
             ViewBag.Message = "Báo giá nhanh";
@@ -127,12 +132,29 @@ namespace OnlineStoreMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult QuickQuote(string content)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> QuickQuote(QuickQuoteViewModel viewModel)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var body = "<p>Product:{0}</p><p>Tên:{1}</p><p>Email:{2}</p><p>Điện thoại:{3}</p><p>Company:{4}</p><p>Note:</p><p>{5}</p>";
+
+                var message = new MailMessage();
+                message.To.Add(new MailAddress("trungkien3289@gmail.com")); //replace with valid value
+                message.Subject = "Yêu cầu báo giá nhanh";
+                message.Body = string.Format(body, viewModel.Request, viewModel.Name, viewModel.Email, viewModel.Phone, viewModel.Company, viewModel.Note);
+                message.IsBodyHtml = true;
+                using (var smtp = new SmtpClient())
+                {
+                    await smtp.SendMailAsync(message);
+                    return RedirectToAction("QuickQuoteCompleted");
+                }
+            }
+
+            return View(viewModel);
         }
 
-        public ActionResult Sent()
+        public ActionResult QuickQuoteCompleted()
         {
             return View();
         }
@@ -181,7 +203,9 @@ namespace OnlineStoreMVC.Controllers
             if (brands == null || brands.Count == 0)
             {
                 return null;
-            }else{
+            }
+            else
+            {
                 return PartialView("_ListBrands", brands);
             }
         }

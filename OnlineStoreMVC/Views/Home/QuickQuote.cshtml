@@ -1,4 +1,5 @@
-﻿@{
+﻿@model OnlineStore.Model.ViewModel.QuickQuoteViewModel
+@{
     ViewBag.Title = "Báo giá nhanh";
 }
 @section css{
@@ -15,8 +16,11 @@
         <div id="slide_banner" style="min-height: 500px; background-color: #000; opacity: 0.5;">
         </div>
 
-        <form name="baogia-form" id="baogia-form" method="post">
-            <!--Form Slide-->
+        @using (Html.BeginForm("QuickQuote", "Home", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+    <!--Form Slide-->
             <div class="form_slide form_web padd15">
                 <h3 align="center">Lý do nên chọn Kết Nối Tiêu Dùng</h3>
                 <hr>
@@ -25,31 +29,38 @@
                         <h3 align="center"><span>Mất Thời Gian Tìm Kiếm ?</span> Yêu cầu báo giá ngay</h3>
                         <div class="eight columns col1">
                             <div class="row_account write_list_pros">
-                                <textarea name="request" id="request" placeholder="Liệt kê các sản phẩm cần mua X số lượng
-    Ví dụ: Thang nhom nk 38 X 3" class="inputbox" cols="30" rows="10" style="height: 110px"></textarea>
+                                @Html.TextAreaFor(model => model.Request, new { @class = "inputbox", @placeholder = "Liệt kê các sản phẩm cần mua X số lượng. Ví dụ: Thang nhom nk 38 X 3", cols = "30", rows = "10", style = "height: 110px" })
                                 <div class="text_form"> hoặc</div>
                                 <div class="file_upload">
-                                    <div class="jFiler jFiler-theme-default"><input type="file" name="file_baogia" id="file_baogia" style="position: absolute; left: -9999px; top: -9999px; z-index: -9999;"><div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i><span>Gởi File Danh Sách</span></div></div></div></div>
+                                    <div class="jFiler jFiler-theme-default">
+                                        <input type="file" name="file_baogia" id="file_baogia" style="position: absolute; left: -9999px; top: -9999px; z-index: -9999;">
+                                        <div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i><span>Gởi File Danh Sách</span></div></div></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="eight columns col2" align="center">
                             <div class="row_account">
-                                <input name="name" type="text" id="name" class="inputbox" placeholder="Tên (*)">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "inputbox", @placeholder = "Tên (*)" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                             </div>
                             <div class="row_account">
-                                <input name="email" type="text" id="email" class="inputbox" placeholder="Email (*)">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "inputbox", @placeholder = "Email (*)" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                             </div>
                             <div class="row_account">
-                                <input name="phone" type="text" id="phone" class="inputbox" placeholder="Điện thoại (*)">
+                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "inputbox", @placeholder = "Điện thoại (*)" } })
+                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
                             </div>
                             <div class="row_account">
-                                <input name="company" type="text" id="company" class="inputbox" placeholder="Công ty">
+                                <input name="Company" type="text" id="company" class="inputbox" placeholder="Công ty">
                             </div>
                             <div class="row_account">
-                                <textarea name="content" id="content" placeholder="Yêu cầu khác" class="inputbox" cols="30" rows="10" style="height:80px"></textarea>
+                                <textarea name="Note" id="content" placeholder="Yêu cầu khác" class="inputbox" cols="30" rows="10" style="height:80px"></textarea>
                             </div>
-                            <div class="row_account"> <button type="button" id="btn-send-request" class="btn_form_slide ladda-button" data-style="zoom-in">Báo giá ngay</button></div>
+                            <div class="row_account">
+                                <button type="submit" id="btn-send-request" class="btn_form_slide ladda-button" data-style="zoom-in">Báo giá ngay</button>
+                            </div>
                         </div>
                     </div>
                     <div class="six columns text_col_form">
@@ -61,12 +72,10 @@
                             <li><span>Giao Hàng Trong Ngày</span></li>
                         </ul>
                     </div>
-                    <input type="hidden" name="file_baogia_upload" id="file_baogia_upload" value="">
-                    <input type="hidden" name="action" id="action" value="send">
                 </div>
             </div>
             <!--end Form Slide-->
-        </form>
+        }
     </div>
     <!--Main-->
     <h1 align="center">
@@ -75,7 +84,6 @@
     </h1>
 
     <!--Slide Brands-->
-    
     <!--end Slide Brands-->
     <!--Detail news-->
     <div class="box">
