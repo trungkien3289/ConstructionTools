@@ -74,8 +74,8 @@ namespace OnlineStore.Service.Implements
         {
             var searchQuery = PredicateBuilder.True<ecom_Brands>();
             searchQuery = searchQuery.And(b => b.Status == (int)Define.Status.Active);
-            IEnumerable<ecom_Brands> brandsMatchingRefinement = db.Get(
-                filter: searchQuery, includeProperties: "share_Images").OrderBy(c => Guid.NewGuid()).Take(count).OrderBy(p => p.Name).ToList();
+            IEnumerable<ecom_Brands> brandsMatchingRefinement = db.Get(true,
+                filter: searchQuery, includeProperties: "share_Images", top: count).OrderBy(p => p.Name).ToList();
 
             return brandsMatchingRefinement.Select(b => new BrandSummaryView()
             {

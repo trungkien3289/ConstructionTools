@@ -12,6 +12,11 @@ namespace OnlineStore.Infractructure.Helper
     {
         public const string currencySymbol = "VND";
 
+        /// <summary>
+        /// Format money
+        /// </summary>
+        /// <param name="money"></param>
+        /// <returns></returns>
         public static string FormatMoney(Decimal money){
             NumberFormatInfo nfi;
             Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("vi-VN");
@@ -21,6 +26,13 @@ namespace OnlineStore.Infractructure.Helper
 
             return result;
         }
+
+        /// <summary>
+        /// Format money with a specific symbol
+        /// </summary>
+        /// <param name="money">money</param>
+        /// <param name="symbol">symbol</param>
+        /// <returns></returns>
         public static string FormatMoney(Decimal money, string symbol)
         {
             NumberFormatInfo nfi;
@@ -32,6 +44,12 @@ namespace OnlineStore.Infractructure.Helper
             return result;
         }
 
+        /// <summary>
+        /// Calculate percentage of 2 number
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="divider"></param>
+        /// <returns></returns>
         public static int CalculatePercetage(decimal number, decimal divider)
         {
             if (divider == 0)

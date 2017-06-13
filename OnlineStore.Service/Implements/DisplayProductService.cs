@@ -395,6 +395,11 @@ namespace OnlineStore.Service.Implements
             return categoryRepository.GetAllActiveCategories().ConvertToIndexCategoryViews();
         }
 
+        /// <summary>
+        /// Get list children categories of a specific category 
+        /// </summary>
+        /// <param name="parentId">parent identifier</param>
+        /// <returns></returns>
         public IList<SummaryCategoryViewModel> GetCategoryChildrenById(int? parentId)
         {
             IList<SummaryCategoryViewModel> returnList = new List<SummaryCategoryViewModel>();
@@ -408,6 +413,7 @@ namespace OnlineStore.Service.Implements
                 }
                 returnList.Add(viewModelItem);
             }
+
             return returnList;
         }
 
@@ -621,6 +627,13 @@ namespace OnlineStore.Service.Implements
             return response;
         }
 
+        /// <summary>
+        /// Get list products belong to same brand with selected product
+        /// </summary>
+        /// <param name="productId">the selected product identifier</param>
+        /// <param name="branchId">the brand identifier</param>
+        /// <param name="numberOfProduct">the number of results</param>
+        /// <returns>list product view models</returns>
         public IEnumerable<ProductSummaryView> GetProductHasSameBranch(int productId, int branchId, int numberOfProduct)
         {
             var branch = branchRepository.GetByID(branchId);
@@ -639,6 +652,12 @@ namespace OnlineStore.Service.Implements
             return productsMatchingRefinement.Take(numberOfProduct).ConvertToProductSummaryViews();
         }
 
+        /// <summary>
+        /// Get list products belong to the same group with selected product
+        /// </summary>
+        /// <param name="productId">the selected product identifier</param>
+        /// <param name="numberOfProduct">the number of results</param>
+        /// <returns>list result product view models</returns>
         public IEnumerable<ProductSummaryView> GetListProductHasSameGroup(int productId, int numberOfProduct)
         {
             ecom_Products product = db.GetProductById(productId);

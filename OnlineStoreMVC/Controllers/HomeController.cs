@@ -74,17 +74,23 @@ namespace OnlineStoreMVC.Controllers
 
         #region Actions
 
+        /// <summary>
+        /// Home page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             PopulateNewProductList();
             PopulateBestSellProductList();
             PopulateCategoryList();
 
-            //ViewBag.Banner2 = _bannerService.GetBanners2ForHomePage();
-            //ViewBag.BannerPopup = _bannerService.GetActivePopupForHomePage();
             return View();
         }
 
+        /// <summary>
+        /// About page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -93,12 +99,21 @@ namespace OnlineStoreMVC.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Contact page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Contact()
         {
             ViewBag.Message = "Liên Hệ";
             return View();
         }
 
+        /// <summary>
+        /// Sent email for admin in Contact page
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Contact(EmailFormModel model)
@@ -114,37 +129,59 @@ namespace OnlineStoreMVC.Controllers
                 using (var smtp = new SmtpClient())
                 {
                     await smtp.SendMailAsync(message);
-                    return RedirectToAction("Sent");
+                    return RedirectToAction("SentMailSuccessfully");
                 }
             }
+
             return View(model);
         }
 
-        public ActionResult Sent()
+        /// <summary>
+        /// Inforn user send email successfully page
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SentMailSuccessfully()
         {
             return View();
         }
 
-        public ActionResult _HeaderPartial(int? searchType)
-        {
-            PopulateSearchType(searchType != null ? (SearchType)searchType : SearchType.AllProduct);
-            PopulateCategoryList();
-            ViewBag.TopCategoriesList = GetTopCategoriesList();
-            ViewBag.BakeryCategoryList = GetChildrenCategories(21);
-            ViewBag.KitchenToolsCategoryList = GetChildrenCategories(22);
-            return PartialView();
-        }
-
+        /// <summary>
+        /// Get list item to show on main banner of home page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult BannerPartial()
         {
             return PartialView(_bannerService.GetBanners1ForHomePage());
         }
 
+        /// <summary>
+        /// Get list news for home page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult BlogPartial()
         {
             return PartialView(_cmsNewsService.GetCMSNewsForHomePage());
         }
 
+        /// <summary>
+        /// Render top panel contain search group elements
+        /// </summary>
+        /// <param name="searchType"></param>
+        /// <returns></returns>
+        public ActionResult RenderHeaderPartial(int? searchType)
+        {
+            PopulateSearchType(searchType != null ? (SearchType)searchType : SearchType.AllProduct);
+            PopulateCategoryList();
+
+            return PartialView("_HeaderPartial");
+        }
+
+        /// <summary>
+        /// Get list random products of a specific category to show on home page
+        /// (normally that are showed on a horizonal bar)
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
         [ChildActionOnly]
         public ActionResult GroupProductPatial(int categoryId)
         {
@@ -155,6 +192,7 @@ namespace OnlineStoreMVC.Controllers
                 model.CategoryId = categoryId;
                 model.CategoryName = _categoryService.GetCategoryById(categoryId).Name;
                 model.childrenCategories = _categoryService.getChidrenCategories(categoryId);
+
                 return PartialView("GroupProductPatial", model);
             }
             catch (Exception)
@@ -162,22 +200,42 @@ namespace OnlineStoreMVC.Controllers
                 return null;
             }
         }
+
+        /// <summary>
+        /// Get list brands and show on a horizontal bar
+        /// </summary>
+        /// <returns></returns>
         [ChildActionOnly]
         public ActionResult GetListBrands()
         {
             IList<BrandSummaryView> brands = _brandService.GetBrands();
+
             if (brands == null || brands.Count == 0)
             {
                 return null;
-            }else{
+            }
+            else
+            {
                 return PartialView("_ListBrands", brands);
             }
         }
+
+        /// <summary>
+        /// Get random a number of brands, which are used for showing on a horizontal bar in home page
+        /// </summary>
+        /// <returns></returns>
         [ChildActionOnly]
         public ActionResult GroupBanners()
         {
-            IList<BrandSummaryView> brands = _brandService.GetRandomBrands(8);
-            return PartialView("_BrandBanner", brands);
+            try
+            {
+                IList<BrandSummaryView> brands = _brandService.GetRandomBrands(8);
+                return PartialView("_BrandBanner", brands);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         #endregion

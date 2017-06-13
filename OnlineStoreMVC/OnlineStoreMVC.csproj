@@ -1854,13 +1854,14 @@
     <Content Include="Views\Order\OrderSuccessful.cshtml" />
     <Content Include="Views\Home\GroupProductPatial.cshtml" />
     <Content Include="Views\Shared\_BranchFilterPartialView.cshtml" />
-    <Content Include="Views\Home\Sent.cshtml" />
+    <Content Include="Views\Home\SentMailSuccessfully.cshtml" />
     <Content Include="Views\Product\DisplayGroupProducts.cshtml" />
     <Content Include="Views\Product\DisplayProductsOfBranch.cshtml" />
     <Content Include="Views\Shared\_CategoryFilterPartialView.cshtml" />
     <Content Include="Views\Product\_ProductTagList.cshtml" />
     <Content Include="Views\Shared\_ListBrands.cshtml" />
     <Content Include="Views\Shared\_BrandBanner.cshtml" />
+    <Content Include="Views\Shared\_BannerTop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

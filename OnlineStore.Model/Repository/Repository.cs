@@ -25,7 +25,7 @@ namespace OnlineStore.Model.Repository
         public virtual IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "")
+            string includeProperties = "",int? skip = null, int? take = null)
         {
             IQueryable<TEntity> query = dbSet;
 
@@ -42,12 +42,50 @@ namespace OnlineStore.Model.Repository
 
             if (orderBy != null)
             {
-                return orderBy(query).ToList();
+                query =  orderBy(query);
             }
-            else
+
+            if (skip != null)
             {
-                return query.ToList();
+                query = query.Skip((int)skip);
             }
+            if (take != null)
+            {
+                query = query.Take((int)take);
+            }
+
+            return query.ToList();
+        }
+
+        public virtual IEnumerable<TEntity> Get(
+            bool getRandom, Expression<Func<TEntity, bool>> filter = null,
+            string includeProperties = "",
+            int? top = null)
+        {
+            IQueryable<TEntity> query = dbSet;
+
+            if (filter != null)
+            {
+                query = query.AsExpandable().Where(filter);
+            }
+
+            foreach (var includeProperty in includeProperties.Split
+                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
+            if (getRandom)
+            {
+                query = query.OrderBy(c => Guid.NewGuid());
+            }
+
+            if (top != null)
+            {
+                query = query.Take((int)top);
+            }
+
+            return query.ToList();
         }
 
         public virtual TEntity GetByID(object id)
