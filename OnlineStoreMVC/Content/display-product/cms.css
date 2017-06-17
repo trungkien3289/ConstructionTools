@@ -452,7 +452,7 @@ ol, ul {
     font-style: normal;
 }
 
-.fa {
+/*.fa {
     font-family: FontAwesome;
     font-style: normal;
     font-weight: 400;
@@ -508,7 +508,7 @@ ol, ul {
     padding: .2em .25em .15em;
     border: .08em solid #eee;
     border-radius: .1em;
-}
+}*/
 
 .pull-right {
     float: right;
@@ -6111,7 +6111,7 @@ div.row_account textarea.inputbox {
     font-style: normal;
 }
 
-.fa {
+/*.fa {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
@@ -6189,7 +6189,7 @@ div.row_account textarea.inputbox {
 
 .fa.fa-pull-right {
     margin-left: .3em;
-}
+}*/
 
 .pull-right {
     float: right;

@@ -65,6 +65,7 @@
     <Compile Include="Implements\DisplayProductService.cs" />
     <Compile Include="Implements\ProductService.cs" />
     <Compile Include="Interfaces\IBannerService.cs" />
+    <Compile Include="Interfaces\IHierarchicalStructure.cs" />
     <Compile Include="Interfaces\IOrderManagementService.cs" />
     <Compile Include="Interfaces\IProductGroupService.cs" />
     <Compile Include="Interfaces\ISystemConfigService.cs" />

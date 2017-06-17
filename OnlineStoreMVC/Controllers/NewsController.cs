@@ -41,6 +41,10 @@ namespace OnlineStoreMVC.Controllers
 
             var category = _cmsCategoryService.GetCategoryById(id.Value);
             ViewBag.CategoryTitle = category.Title;
+            ViewBag.Link = string.Format("/{0}/{1}/{2}", "News", "Index", category.Id);
+
+            // populate news path
+            ViewBag.Path = _cmsCategoryService.GetPath(id.Value);
 
             int totalItems = 0;
             var news = _cmsNewsService.GetCMSNewsByCategoryId(id.Value, page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, out totalItems);
@@ -61,6 +65,9 @@ namespace OnlineStoreMVC.Controllers
             {
                 return HttpNotFound();
             }
+
+            // populate path
+            ViewBag.Path = _cmsCategoryService.GetPath(news.CategoryId);
 
             //Increase count view
             _cmsNewsService.UpdateCMSNewsCountView(id);

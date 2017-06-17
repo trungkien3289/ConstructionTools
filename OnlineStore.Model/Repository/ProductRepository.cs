@@ -48,7 +48,7 @@ namespace OnlineStore.Model.Repository
         /// <returns></returns>
         public ecom_Products GetProductById(int id)
         {
-            return dbSet.Include("share_Images").Include("CoverImage").Include("ecom_ProductGroups").Where(c => c.Id == id && c.Status != (int)Define.Status.Delete).FirstOrDefault();
+            return dbSet.Include("share_Images").Include("CoverImage").Include("ecom_ProductGroups").Include("ecom_Categories").Where(c => c.Id == id && c.Status != (int)Define.Status.Delete).FirstOrDefault();
         }
 
         /// <summary>

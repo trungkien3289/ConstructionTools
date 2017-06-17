@@ -157,6 +157,8 @@ namespace OnlineStoreMVC.Controllers
             PopulateStatusDropDownList();
             PopulateNewProductList();
             PopulateCategoryTreeViewDataSource();
+            // populate path
+            @ViewBag.Path = service.GetCategoryPath(id.Value);
 
             return View("DisplayProducts", response);
         }
@@ -171,6 +173,12 @@ namespace OnlineStoreMVC.Controllers
         {
             GetProductsByCategoryRequest productSearchRequest = GenarateProductSeachRequest(request);
             GetProductsByCategoryResponse response = service.GetProductsByCategory(productSearchRequest);
+
+            // populate category path
+            response.Path = service.GetCategoryPath(request.CategoryId.Value).Select(c => new BreadcrumItem() { 
+                Id = c.Id,
+                Name = c.Name
+            }).ToList();
 
             return Json(response);
         }
@@ -191,6 +199,8 @@ namespace OnlineStoreMVC.Controllers
             PopulateNewProductList();
             PopulateCategoryList();
             PopulateTopCategoryList();
+            // populate page path
+            ViewBag.Path = service.GetCategoryPath(product.MainCategoryId);
 
             return View("ProductDetails", product);
         }

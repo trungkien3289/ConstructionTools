@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OnlineStore.Service.Interfaces
 {
-    public interface ICMSCategoryService
+    public interface ICMSCategoryService : IHierarchicalStructure<cms_Categories,int>
     {
         IList<CMSCategoryView> GetCMSCategories(int pageNumber, int pageSize, out int totalItems);
         bool AddCMSCategory(CMSCategoryView categoryView);

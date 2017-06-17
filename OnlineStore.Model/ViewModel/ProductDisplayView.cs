@@ -44,6 +44,7 @@ namespace OnlineStore.Model.ViewModel
         public string Tags { get; set; }
         public bool IsNewProduct { get; set; }
         public bool IsBestSellProduct { get; set; }
+        public int MainCategoryId { get; set; }
 
         public List<ImageInfor> Images { get; set; }
         public List<ProductGroupSummary> Groups { get; set; }

@@ -1,5 +1,6 @@
 ﻿using OnlineStore.Infractructure.Utility;
 using OnlineStore.Model.Context;
+using OnlineStore.Model.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OnlineStore.Model.Repository
 {
-    public class CategoryRepository : Repository<ecom_Categories>
+    public class CategoryRepository : Repository<ecom_Categories>, IHierarchicalStructure<ecom_Categories,int>
     {
         #region Contructures
 
@@ -82,5 +83,54 @@ namespace OnlineStore.Model.Repository
         }
 
         #endregion
+
+        public ecom_Categories GetParentItem(int itemId)
+        {
+            var item = GetCategoryById(itemId);
+            if (item == null)
+            {
+                throw new ApplicationException("Category not found.");
+            }
+
+            if (item.ParentId == null)
+            {
+                return null;
+            }
+            else
+            {
+                return GetCategoryById(item.ParentId.Value);
+            }
+        }
+
+        public IList<ecom_Categories> GetPath(int itemId)
+        {
+            List<ecom_Categories> path = new List<ecom_Categories>();
+            path.Add(GetCategoryById(itemId));
+            ecom_Categories parentItem;
+            int? currentItemId = itemId;
+            do
+            {
+                if (currentItemId == null)
+                {
+                    parentItem = null;
+                }
+                else
+                {
+                    parentItem = GetParentItem(currentItemId.Value);
+                }
+                if (parentItem != null)
+                {
+                    path.Add(parentItem);
+                    currentItemId = parentItem.ParentId;
+                }
+            } while (parentItem != null);
+
+            return path;
+        }
+
+        public IList<ecom_Categories> GetChildren(int itemId)
+        {
+            return dbSet.Where(c => c.ParentId == itemId).ToList();
+        }
     }
 }

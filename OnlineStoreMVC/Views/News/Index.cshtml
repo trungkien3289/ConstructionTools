@@ -12,7 +12,14 @@
 
 <div class="container">
     <div id="main">
-        <div class="breadcrumb"><a href="http://www.ketnoitieudung.vn">Trang chủ</a> » <a href="http://www.ketnoitieudung.vn/ket-noi-tu-van.html">Kết nối tư vấn</a> » <a href="http://www.ketnoitieudung.vn/ket-noi-tu-van/thang-nhom_pc31.html">Thang nhôm</a>  » <a href="http://www.ketnoitieudung.vn/ket-noi-tu-van/thang-nhom/danh-gia-tu-van_pc31_c1.html">Đánh giá tư vấn</a></div>
+        <div class="breadcrumb"><a href="/Home/Index">Trang chủ</a> » <a href="/tu-van-ket-noi">Kết nối tư vấn</a> 
+        
+            @for (int i = ViewBag.Path.Count-1; i >= 0; i--)
+            {
+                <span> » </span> <a href="/News/Index/@ViewBag.Path[i].Id">@ViewBag.Path[i].Title</a>
+            }
+
+        </div>
 
         <div class="three columns" id="sidebar">
             <div class="inner_col">

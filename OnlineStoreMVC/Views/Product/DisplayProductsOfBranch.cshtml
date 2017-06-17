@@ -19,6 +19,10 @@
 
 <div class="men-wear">
     <div class="container">
+        <div class="breadcrumb">
+            <a href="/Home/Index">Trang chủ</a>
+            <span> » </span><a href="@Url.Action("DisplayProductsOfBranch", "Product", new { id = Model.BranchId })">@Model.BranchName</a>
+        </div>
         <div class="col-md-3 products-left b-filterItems">
             <div class="community-poll categoryfilter-displayproduct">
                 <h4>Danh Mục</h4>

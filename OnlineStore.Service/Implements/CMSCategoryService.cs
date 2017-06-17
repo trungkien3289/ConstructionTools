@@ -167,5 +167,95 @@ namespace OnlineStore.Service.Implements
                 return false;
             }
         }
+
+        /// <summary>
+        /// Find item by identifier
+        /// </summary>
+        /// <param name="itemId">item identifier</param>
+        /// <returns>item object</returns>
+        private cms_Categories FindCategoryById(int itemId)
+        {
+            using (var db = new OnlineStoreMVCEntities())
+            {
+                var item = db.cms_Categories.Find(itemId);
+                if (item == null)
+                {
+                    throw new ApplicationException("Item not found.");
+                }else{
+                    return item;
+                }
+            }
+        }
+
+        public cms_Categories GetParentItem(int itemId)
+        {
+            using (var db = new OnlineStoreMVCEntities())
+            {
+                var item = FindCategoryById(itemId);
+                if (item == null)
+                {
+                    throw new ApplicationException("Cannot find category");
+                }
+                else
+                {
+                    if (item.ParentId == null)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return FindCategoryById(item.ParentId.Value);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get path of item in hierarchical structure
+        /// </summary>
+        /// <param name="itemId">identifier</param>
+        /// <returns>List items in path</returns>
+        public IList<cms_Categories> GetPath(int itemId)
+        {
+            List<cms_Categories> path = new List<cms_Categories>();
+            path.Add(FindCategoryById(itemId));
+            cms_Categories parentItem;
+            int? currentItemId = itemId;
+            do
+            {
+                if (currentItemId == null)
+                {
+                    parentItem = null;
+                }
+                else
+                {
+                    parentItem = GetParentItem(currentItemId.Value);
+                }
+                if (parentItem != null)
+                {
+                    path.Add(parentItem);
+                    currentItemId = parentItem.ParentId;
+                }
+            } while (parentItem != null);
+
+            return path;
+        }
+
+        /// <summary>
+        /// Get list children items
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <returns></returns>
+        public IList<cms_Categories> GetChildren(int itemId)
+        {
+            List<cms_Categories> children;
+            using (var db = new OnlineStoreMVCEntities())
+            {
+                children = db.cms_Categories.Where(c => c.ParentId == itemId).ToList();
+            }
+
+
+            return children;
+        }
     }
 }

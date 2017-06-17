@@ -125,6 +125,7 @@
     <Compile Include="Context\system_Profiles.cs">
       <DependentUpon>OnlineStoreMVCEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Interface\IHierarchicalStructure.cs" />
     <Compile Include="Mapper\BrandMapper.cs" />
     <Compile Include="Mapper\CategoryMapper.cs" />
     <Compile Include="Mapper\ProductGroupMapper.cs" />

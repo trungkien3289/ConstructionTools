@@ -27,6 +27,12 @@ namespace OnlineStore.Service.Messaging
 
     }
 
+    public class BreadcrumItem
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
     public class GetProductsByCategoryResponse
     {
         public string SelectedCategoryName { get; set; }
@@ -42,6 +48,7 @@ namespace OnlineStore.Service.Messaging
         public int TotalProducts { get; set; }
         public IEnumerable<ProductSummaryView> Products { get; set; }
         public IEnumerable<BrandSummaryView> Brands { get; set; }
+        public IList<BreadcrumItem> Path { get; set; }
     }
 
     public class SearchProductRequest

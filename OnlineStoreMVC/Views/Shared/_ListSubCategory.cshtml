@@ -21,7 +21,7 @@
 {
     <li class="dropdown main-category-item">
         <a class="menuitem-category dropbtn" href="/Product/GetProductByCategory/@Model[i].Id">
-            <i class="fa fa-angle-right" aria-hidden="true"></i>@Model[i].Name
+            @Model[i].Name
         </a>
         <ul class="dropdown-menu dropdown-content-panel">
             @{
@@ -38,7 +38,7 @@
                     <ul class="multi-column-dropdown">
                         @for (int k = j * 4; k < (j + 1) * 4 && k < numberOfSubCatefories; k++)
                         {
-                            <li><a class="menuitem-category" href="/Product/GetProductByCategory/@Model[i].SubCategories[k].Id"><i class="fa fa-angle-right" aria-hidden="true"></i>@Model[i].SubCategories[k].Name</a></li>
+                            <li><a class="menuitem-category" href="/Product/GetProductByCategory/@Model[i].SubCategories[k].Id">@Model[i].SubCategories[k].Name</a></li>
                         }
                     </ul>
                 </div>

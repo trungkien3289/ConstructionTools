@@ -340,6 +340,21 @@ var DisplayProductManagement = {
         DisplayProductManagement.initPagingControl(model.NumberOfTitlesFound, DisplayProductManagement.model.NumberOfResultsPerPage);
         DisplayProductManagement.updateListBranch(model);
         DisplayProductManagement.initShortDescriptionPopup();
+        DisplayProductManagement.updateBreakcrum(model.Path);
+    },
+    updateBreakcrum: function (path) {
+        // Update breadcrum
+
+        $(".breadcrumb").empty();
+        $(".breadcrumb").append('<a href="/Home/Index">Trang chủ</a>');
+        for (var i = path.length - 1; i >= 0; i--) {
+            $(".breadcrumb").append(this.generateBreadcrumItem(path[i].Name, "/Product/GetProductByCategory/"+path[i].Id));
+        }
+    },
+    generateBreadcrumItem: function (title, link) {
+        // generate breadcrum item
+
+        return '<span> » </span><a href="' + link + '">' + title + '</a>';
     },
     showSpin: function (target) {
         /// <summary>

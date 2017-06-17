@@ -313,6 +313,7 @@ namespace OnlineStore.Service.Implements
                     IsNewProduct = product.IsNewProduct,
                     IsBestSellProduct = product.IsBestSellProduct,
                     Branch = branch,
+                    MainCategoryId = product.ecom_Categories.FirstOrDefault().Id,
                     Groups = product.ecom_ProductGroups.Select(g => new ProductGroupSummary()
                     {
                         Id = g.Id,
@@ -528,6 +529,12 @@ namespace OnlineStore.Service.Implements
             }
         }
 
+        /// <summary>
+        /// Get products belong to a specific brand with paging
+        /// </summary>
+        /// <param name="branchId">brand identifier</param>
+        /// <param name="numberOfResultsPerPage">number of result per page</param>
+        /// <returns>list products</returns>
         public GetProductsOfBranchResponse GetProductsOfBranch(int branchId, int numberOfResultsPerPage)
         {
             var branch = branchRepository.GetByID(branchId);
@@ -688,6 +695,11 @@ namespace OnlineStore.Service.Implements
             productsMatchingRefinement = productsMatchingRefinement.Distinct();
 
             return productsMatchingRefinement.Take(numberOfProduct).ConvertToProductSummaryViews();
+        }
+
+        public IList<ecom_Categories> GetCategoryPath(int categoryId)
+        {
+            return categoryRepository.GetPath(categoryId);
         }
 
         #endregion

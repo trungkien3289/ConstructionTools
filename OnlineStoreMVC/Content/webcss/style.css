@@ -99,7 +99,7 @@ h2.resp-accordion {
     background-color: #fff;
     word-wrap: break-word;
     border: 1px solid #fff;
-    padding:3px;
+    padding:7px;
 }
 
 .con-w3l .men-pro-item {
@@ -665,8 +665,23 @@ ol {
 }
 
 .breadcrumb {
-    /*background-color: #2D2D2D;*/
+    font-style: italic;
+    margin-bottom: 10px;
 }
+
+    .breadcrumb a {
+        padding: 0 5px;
+        font-size:14px;
+        color: #111;
+    }
+
+     .breadcrumb a:hover{
+        color: #e00000;
+     }
+
+        .breadcrumb a:first-child {
+            padding-left: 0;
+        }
 
     .breadcrumb li a {
         font-size: 16px;
@@ -679,6 +694,11 @@ ol {
 
     .breadcrumb li a span {
         margin-right: 6px;
+    }
+
+    
+    .men-wear{
+        padding-bottom:90px;
     }
 /*-- //typrography --*/
 
@@ -990,6 +1010,7 @@ ol {
         margin-top: 40px;
     }
 
+
     .men-wear-right p {
         font-size: 14px;
     }
@@ -1105,7 +1126,7 @@ ol {
 
 @media (max-width: 991px) and (min-width: 800px) {
     .b-brandbanner .owl-carousel {
-        width: 100%;
+        width: 50%;
     }
 
     .b-mainbrand-topmenu {
@@ -1178,6 +1199,7 @@ ol {
 
     .navbar-nav > li {
         margin: 0 5px 0 0;
+        width:100%;
     }
 
     .container-fluid {
@@ -1587,13 +1609,13 @@ ol {
     }
 
     .b-brandbanner .owl-carousel {
-        width: 100%;
+        width: 50%;
     }
 }
 
 @media (max-width: 768px) and (min-width: 668px) {
     .b-brandbanner .owl-carousel {
-        width: 100%;
+        width: 50%;
     }
 
     .b-mainbrand-topmenu {
@@ -1701,7 +1723,7 @@ ol {
 
 @media (max-width: 767px) and (min-width: 668px) {
     .b-brandbanner .owl-carousel {
-        width: 100%;
+        width: 50%;
     }
 
     .b-mainbrand-topmenu {
@@ -1866,6 +1888,9 @@ ol {
 }
 
 @media (max-width: 667px) {
+    .navbar-nav > li {
+        width: 100%;
+    }
     .popover{
         display:none!important;
     }
@@ -1876,7 +1901,7 @@ ol {
     }
 
     .b-brandbanner .owl-carousel {
-        width: 100%;
+        width: 50%;
     }
 
     .b-mainbrand-topmenu {
@@ -2160,6 +2185,9 @@ ol {
 }
 
 @media (max-width: 640px) {
+    .navbar-nav > li {
+        width: 100%;
+    }
     .header-left {
         float: none;
         width: 30%;
@@ -2167,7 +2195,7 @@ ol {
     }
 
     .b-brandbanner .owl-carousel {
-        width: 100%;
+        width: 50%;
     }
 
     .b-mainbrand-topmenu {
@@ -2309,8 +2337,12 @@ ol {
 }
 
 @media (max-width: 600px) {
-    .b-brandbanner .owl-carousel {
+    .navbar-nav > li {
         width: 100%;
+    }
+
+    .b-brandbanner .owl-carousel {
+        width: 50%;
     }
 
     .b-mainbrand-topmenu {
@@ -2595,8 +2627,12 @@ ol {
 }
 
 @media (max-width: 568px) {
-    .b-brandbanner .owl-carousel {
+    .navbar-nav > li {
         width: 100%;
+    }
+
+    .b-brandbanner .owl-carousel {
+        width: 50%;
     }
 
     .b-mainbrand-topmenu {
@@ -2630,6 +2666,10 @@ ol {
 }
 
 @media (max-width: 480px) {
+    .navbar-nav > li {
+        width: 100%;
+    }
+
     .arrow-right {
         border-left: 38px solid #116080!important;
     }
@@ -2639,7 +2679,7 @@ ol {
     }
 
     .b-brandbanner .owl-carousel {
-        width: 100%;
+        width: 50%;
     }
 
     .b-mainbrand-topmenu {
@@ -2991,6 +3031,10 @@ ol {
 }
 
 @media (max-width: 414px) {
+    .navbar-nav > li {
+        width: 100%;
+    }
+
     .arrow-right {
         border-left: 38px solid #116080!important;
     }
@@ -2999,9 +3043,9 @@ ol {
         display:none;
     }
 
-    .b-brandbanner .owl-carousel {
+    /*.b-brandbanner .owl-carousel {
         width: 100%;
-    }
+    }*/
 
     .b-mainbrand-topmenu {
         display: none;
@@ -3244,6 +3288,10 @@ ol {
 }
 
 @media (max-width: 384px) {
+    .navbar-nav > li {
+        width: 100%;
+    }
+
     .arrow-right {
         border-left: 38px solid #116080!important;
     }
@@ -3258,9 +3306,9 @@ ol {
         padding: 0;
     }
 
-    .b-brandbanner .owl-carousel {
+    /*.b-brandbanner .owl-carousel {
         width: 100%;
-    }
+    }*/
 
     .b-mainbrand-topmenu {
         display: none;
@@ -3418,6 +3466,10 @@ ol {
 }
 
 @media (max-width: 375px) {
+    .navbar-nav > li {
+        width: 100%;
+    }
+
     .arrow-right {
         border-left: 38px solid #116080!important;
     }
@@ -3432,9 +3484,9 @@ ol {
         padding: 0;
     }
 
-    .b-brandbanner .owl-carousel {
+    /*.b-brandbanner .owl-carousel {
         width: 100%;
-    }
+    }*/
 
     .b-mainbrand-topmenu {
         display: none;

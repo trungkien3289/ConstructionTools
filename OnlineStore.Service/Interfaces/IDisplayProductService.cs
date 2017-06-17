@@ -1,4 +1,5 @@
 ﻿using OnlineStore.Infractructure.Utility;
+using OnlineStore.Model.Context;
 using OnlineStore.Model.ViewModel;
 using OnlineStore.Service.Messaging;
 using System;
@@ -77,5 +78,12 @@ namespace OnlineStore.Service.Interfaces
         /// <param name="numberOfProduct">the number of results</param>
         /// <returns>list result product view models</returns>
         IEnumerable<ProductSummaryView> GetListProductHasSameGroup(int productId, int numberOfProduct);
+
+        /// <summary>
+        /// Get path of selected category
+        /// </summary>
+        /// <param name="categoryId">category identifier</param>
+        /// <returns>list category in path</returns>
+        IList<ecom_Categories> GetCategoryPath(int categoryId);
     }
 }

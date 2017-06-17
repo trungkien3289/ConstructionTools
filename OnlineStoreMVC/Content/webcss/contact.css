@@ -11,14 +11,14 @@
 }
 
     .page-head h3 {
-        color: #5cd2ff;
+        color: #116080;
         text-align: center;
         text-transform: uppercase;
         font-size: 48px;
     }
 
 h3.tittle {
-    color: #5cd2ff;
+    color: #116080;
     font-size: 30px;
     text-align: center;
     text-transform: uppercase;
@@ -44,7 +44,7 @@ h3.tittle {
 }
 
     .contact-form2 input[type="text"]:hover, .contact-form2 input[type="email"]:hover, .contact-form2 textarea:hover {
-        border: 1px solid #5cd2ff;
+        border: 1px solid #116080;
     }
 
 .contact-form2 textarea {
@@ -57,7 +57,7 @@ h3.tittle {
     outline: none;
     padding: 10px 0;
     border: none;
-    background: #5cd2ff;
+    background: #116080;
     font-size: 1em;
     color: #fff;
     width: 16%;
@@ -99,7 +99,7 @@ h3.tittle {
 }
 
 .contact-grid h4 {
-    color: #5cd2ff;
+    color: #116080;
     font-size: 35px;
     margin: 20px 0;
 }
@@ -119,9 +119,9 @@ h3.tittle {
         display: block;
     }
 
-.contact, .typrography {
+/*.contact, .typrography {
     padding: 90px 0;
-}
+}*/
 
 #map {
     height: 400px;

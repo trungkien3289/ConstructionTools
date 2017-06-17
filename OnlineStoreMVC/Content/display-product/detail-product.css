@@ -120,7 +120,7 @@
 
 /*-- single-page --*/
 .single {
-    padding: 90px 0;
+    padding-bottom: 90px;
 }
 
 .single-right-left h3 {

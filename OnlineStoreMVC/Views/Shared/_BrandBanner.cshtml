@@ -41,7 +41,7 @@
 <div class="b-brandbanner row">
     @for (int i = 0; i < numberBrands/2; i++)
     {
-        <div class="owl-carousel owl-theme col-md-6 col-sm-12 col-xs-12">
+        <div class="owl-carousel owl-theme col-md-6 col-sm-6 col-xs-6">
             <div class="item" style="padding-bottom: 2px;">
                 <a href="/Product/DisplayProductsOfBranch/@Model[i*2].Id">
                     <img class="coverimage-brandlist-horizontalbar" title="@Model[i * 2].Name" src="@Model[i * 2].CoverImagePath" />
