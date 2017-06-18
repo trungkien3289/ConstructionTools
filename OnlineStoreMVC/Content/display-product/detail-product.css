@@ -33,10 +33,10 @@
     text-transform: uppercase;   
 }
 
-.narbar-description .nav-tabs > li > a:hover{
+/*.narbar-description .nav-tabs > li > a:hover{
     color:#fff!important;
     
-}
+}*/
 
 .narbar-description .nav-tabs > li {
     margin-bottom:0;
@@ -83,7 +83,7 @@
 .discount-productdetails{
     position: absolute;
     margin-top: -40px;
-    right: 60px;
+    right: 20px;
 }
 .note-productdetails{
     font-size: 14px;
@@ -108,7 +108,7 @@
     height: 38px;
     line-height: 40px;
     text-align: center;
-    background: url(../Images/price_tag_detail.png) no-repeat #efefef;
+    background: url(../Images/price_tag_detail.png) no-repeat transparent;
     background-size: auto 100%;
     color: #FFF;
     font-size: 20px;

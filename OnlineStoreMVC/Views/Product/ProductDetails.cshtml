@@ -38,7 +38,7 @@
             }
         </div>
         <div class="row" style="padding:15px;">
-            <div class="col-md-6 single-right-left animated wow slideInUp animated" style="max-width:400px;" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInUp;">
+            <div class="col-md-6 col-sm-6 col-xs-12 single-right-left animated wow slideInUp animated" style="max-width:400px;" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInUp;">
                 <div class="single-w3agile">
                     <div id="picture-frame">
                         <img src="@Model.CoverImageUrl.largeImagePath" data-src="@Model.CoverImageUrl.largeImagePath" alt="" class="img-responsive" />
@@ -57,7 +57,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-6 single-right-left simpleCart_shelfItem animated wow slideInRight animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInRight;">
+            <div class="col-md-6 col-sm-6 col-xs-12 single-right-left simpleCart_shelfItem animated wow slideInRight animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInRight;">
                 <p><span class="productname-productdetails">@Model.Name</span></p>
                 <div class="pricepanel-productdetails">
                     <div class="productprice-productdetails">
@@ -71,7 +71,7 @@
                     <div class="note-productdetails">(Giá trên đã bao gồm thuế VAT)</div>
                 </div>
                 <div class="productinforcontainer">
-                    <span class="left-label">Thương hiệu</span>@Html.ActionLink(Model.Branch.Name, "DisplayProductsOfBranch", "Product", new { @id = Model.Branch.Id }, new { @class="cl-green"})
+                    <span class="left-label">Thương hiệu</span>@Html.ActionLink(Model.Branch.Name, "DisplayProductsOfBranch", "Product", new { @id = Model.Branch.Id }, new { @class = "cl-green" })
                 </div>
                 <div class="productinforcontainer">
                     <span class="left-label">Mã sản phẩm</span><span class="cl-green">@Model.ProductCode</span>

@@ -11,18 +11,16 @@
 }
 
 <div class="container">
-    <div class="cf"></div>
+    <div class="breadcrumb">
+        <a href="/Home/Index">Trang chủ</a>
+        <span> » </span><a href="@Url.Action("QuickQuote", "Home")">Báo giá nhanh</a>
+    </div>
     <div class="quick_quotes_area" id="homebanners">
-        <div id="slide_banner" style="min-height: 500px; background-color: #000; opacity: 0.5;">
-        </div>
-
-        @using (Html.BeginForm("QuickQuote", "Home", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("QuickQuote", "Home",null, FormMethod.Post, new { enctype = "multipart/form-data", @style="height:500px" }))
         {
             @Html.AntiForgeryToken()
-
-    <!--Form Slide-->
             <div class="form_slide form_web padd15">
-                <h3 align="center">Lý do nên chọn Kết Nối Tiêu Dùng</h3>
+                <h3 align="center">Lý do nên chọn công ty TNHH Nhân Phước</h3>
                 <hr>
                 <div class="form_content cf">
                     <div class="ten columns greenBg r_col_form">
@@ -30,13 +28,6 @@
                         <div class="eight columns col1">
                             <div class="row_account write_list_pros">
                                 @Html.TextAreaFor(model => model.Request, new { @class = "inputbox", @placeholder = "Liệt kê các sản phẩm cần mua X số lượng. Ví dụ: Thang nhom nk 38 X 3", cols = "30", rows = "10", style = "height: 110px" })
-                                <div class="text_form"> hoặc</div>
-                                <div class="file_upload">
-                                    <div class="jFiler jFiler-theme-default">
-                                        <input type="file" name="file_baogia" id="file_baogia" style="position: absolute; left: -9999px; top: -9999px; z-index: -9999;">
-                                        <div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i><span>Gởi File Danh Sách</span></div></div></div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="eight columns col2" align="center">
@@ -74,29 +65,6 @@
                     </div>
                 </div>
             </div>
-            <!--end Form Slide-->
         }
     </div>
-    <!--Main-->
-    <h1 align="center">
-        <span style="color: #d52b1e; font-size: 30px">Ketnoitieudung.vn</span> <span style="color: #0b5c54; font-size: 30px">Tự Hào Là Nhà Phân Phối Hàng Đầu</span><br>
-        <span style="color: #d52b1e; font-size: 20px">Của Các Thương Hiệu Uy Tín</span>
-    </h1>
-
-    <!--Slide Brands-->
-    <!--end Slide Brands-->
-    <!--Detail news-->
-    <div class="box">
-        <div class="box_ct padd_tb15 detail_page">
-            <h1 class="heading_page">MUA MÁY MÓC, DỤNG CỤ CÔNG NGHIỆP TẠI KETNOITIEUDUNG.VN</h1>
-            <div class="info_g pn_homepage_content">
-                <div style="text-align: justify;">
-                    Công ty TNHH Một Thành Viên Thương Mại Hà Như ra đời vào tháng 01/08/2012, với cách thức kinh doanh <span style="color:#0000cd;"><strong>Mua hàng online</strong> </span>- Giao hàng tận nơi. Là đơn vị đi đầu trong lĩnh vực cung cấp thiết bị công nghiệp hiện đại và được nhiều đối tác tin tưởng. Chúng tối xây dựng hàng trăm nghìn sản phẩm từ các thương hiệu uy tín của những ngành hàng Thang nhôm, Dụng cụ cầm tay, Dụng cụ đo chính xác, Pa lăng xích, Thiết bị nâng đỡ - Bảo quản, Điện gia dụng, Dụng cụ dùng xăng, Máy hàn &amp; phụ kiện, Thiết bị dùng khí nén, Vật liệu mài mòn, Thiết bị đo laser, Thiết bị đo dòng điện. Không chỉ vậy, mua sắm trực tuyến tại ketnoitieudung.vn giúp quý khách tiết kiệm được thời gian, công sức mà vẫn bảo đảm được các quyền lợi về bảo hành, đổi/trả trong vòng 15 ngày kể từ thời điểm quý khách nhận được hàng.<br>
-                    <br>
-                    Với sứ mệnh phân phối máy móc và công cụ cầm tay hàng đầu tại Việt Nam, chỉ cần mở <a href="http://www.ketnoitieudung.vn/"><span style="color:#0000cd;"><strong>website ketnoitieudung.vn</strong></span></a> và mua hàng qua mạng, quý khách sẽ được giao sản phẩm tới tận nơi miễn phí khi đặt đơn hàng từ <strong><span style="color:#ff0000;">1.500.000đ</span></strong> trong phạm vi Tp.HCM và từ <strong><span style="color:#ff0000;">6.500.000đ</span></strong> đối với các tỉnh thành khác. Ngoài ra, chúng tôi còn có thêm mục kết nối Tư Vấn giúp quý khách có thêm những lời khuyên hữu ích trong quá trình mua sắm. Hãy cùng hàng triệu người tiêu dùng Việt Nam trải nghiệm tiện ích mua sắm trực tuyến dễ dàng, tiện ích.
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--End Detail news-->
 </div>

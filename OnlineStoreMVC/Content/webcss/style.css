@@ -90,8 +90,8 @@ h2.resp-accordion {
 }
 /*-- effect --*/
 
-.products-groupproduct .product-men.item{
-    padding:1px;
+.products-groupproduct .product-men.item {
+    padding: 1px;
 }
 
 .men-pro-item {
@@ -99,7 +99,7 @@ h2.resp-accordion {
     background-color: #fff;
     word-wrap: break-word;
     border: 1px solid #fff;
-    padding:7px;
+    padding: 7px;
 }
 
 .con-w3l .men-pro-item {
@@ -274,9 +274,11 @@ h2.resp-accordion {
 .subcategory-groupproduct {
     padding-right: 0;
 }
+
 .men-thumb-item img {
     transition: all 0.5s ease-out 0s;
 }
+
 .men-thumb-item:hover .inner-men-cart-pro ul {
     margin: 20px 0 0;
 }
@@ -304,7 +306,7 @@ h2.resp-accordion {
     color: #116080;
     text-decoration: none;
     font-weight: 300;
-    font-weight:bold;
+    font-weight: bold;
 }
 
 .info-product-price {
@@ -461,10 +463,10 @@ ul.multi-column-dropdown li {
                 border-radius: 0;
             }
 
-        .nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
+        /*.nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
             color: #fff;
             background-color: #5cd2ff;
-        }
+        }*/
 
         .nav-tabs > li > a i {
             font-size: 32px;
@@ -671,13 +673,13 @@ ol {
 
     .breadcrumb a {
         padding: 0 5px;
-        font-size:14px;
+        font-size: 14px;
         color: #111;
     }
 
-     .breadcrumb a:hover{
-        color: #e00000;
-     }
+        .breadcrumb a:hover {
+            color: #e00000;
+        }
 
         .breadcrumb a:first-child {
             padding-left: 0;
@@ -696,10 +698,10 @@ ol {
         margin-right: 6px;
     }
 
-    
-    .men-wear{
-        padding-bottom:90px;
-    }
+
+.men-wear {
+    padding-bottom: 90px;
+}
 /*-- //typrography --*/
 
 /*-- responsive media queries --*/
@@ -1150,12 +1152,6 @@ ol {
         margin: 5px auto;
     }
 
-        /*.header-middle {
-        float: left;
-        width: 38%;
-        min-width: 480px;
-    }*/
-
         .header-right ul {
             float: left;
         }
@@ -1176,11 +1172,7 @@ ol {
         float: left;
         width: 100%;
     }
-    /*.sear-sub {
-		float: right;
-		width: 17%;
-        height: 36px;
-	}*/
+
     .box_1 h3 {
         font-size: 13px;
     }
@@ -1199,7 +1191,6 @@ ol {
 
     .navbar-nav > li {
         margin: 0 5px 0 0;
-        width:100%;
     }
 
     .container-fluid {
@@ -1526,6 +1517,7 @@ ol {
         width: 30%;
         margin: 10px auto;
     }
+
     .pignose-layerslider .slide-visual .script-wrap {
         right: 300px;
     }
@@ -1622,114 +1614,6 @@ ol {
         display: none;
     }
 
-    .pignose-layerslider .slide-visual {
-        height: 400px;
-    }
-
-    ul.slide-group img {
-        width: 100% !important;
-        height: 400px !important;
-    }
-
-    .pignose-layerslider .slide-visual .script-wrap {
-        top: 50px;
-    }
-
-    .content-img-right {
-        padding: 36px 23px 0px;
-        min-height: 163px;
-    }
-
-    .newsright input[type="text"] {
-        padding: 8px 10px;
-    }
-
-    .newsright input[type="submit"] {
-        padding: 9px 20px 9px;
-        font-size: 16px;
-    }
-
-    .single-right-left:nth-child(1) {
-        float: left;
-        width: 67%;
-    }
-
-    .occasion-cart a {
-        padding: 5px 11px;
-        font-size: 14px;
-    }
-
-    .bootstrap-tab ul li a {
-        font-size: 14px;
-    }
-
-    .nav-tabs > li > a {
-        padding: 7px 13px;
-    }
-
-    .bootstrap-tab-text h5, .add-review h4 {
-        margin: 2em 0 1em;
-    }
-
-    .bootstrap-tab-text p span {
-        margin: 1em 0 0;
-    }
-
-    .add-review input[type="text"], .add-review input[type="email"], .add-review textarea {
-        padding: 8px 10px;
-        width: 49.35%;
-        font-size: 14px;
-    }
-
-    .add-review textarea {
-        min-height: 118px;
-    }
-
-    .add-review input[type="submit"] {
-        width: 18%;
-    }
-
-    .electro-text a {
-        font-size: 13px !important;
-    }
-
-    .ele-bottom-grid {
-        margin-top: 70px;
-    }
-
-    .electronics, .men-wear, .contact, .typrography, .checkout, .single {
-        padding: 70px 0;
-    }
-
-    .dropdown-menu.columns-3 {
-        min-width: 555px;
-    }
-
-    .checkout h3 {
-        margin: 0 0 2em;
-    }
-
-    .childrencategory-groupproduct {
-        width: 345px;
-    }
-    /*.dropdown:hover>.dropdown-content {
-        display: block;
-    }
-
-    .dropdown:hover>.dropdown-content-panel {
-        display: block;
-    }*/
-}
-
-@media (max-width: 767px) and (min-width: 668px) {
-    .b-brandbanner .owl-carousel {
-        width: 50%;
-    }
-
-    .b-mainbrand-topmenu {
-        display: none;
-    }
-
     .navbar-toggle {
         margin-left: 15px;
         float: left;
@@ -1741,9 +1625,10 @@ ol {
 
     .header-left {
         float: none;
-        width: 30%;
-        margin:10px auto;
+        width: 30% !important;
+        margin: 10px auto;
     }
+
     .header-bot {
         padding: 10px 0;
         background-color: #116080;
@@ -1769,7 +1654,6 @@ ol {
 
     .navbar-nav > li {
         margin: 0 0px 0 0;
-        width: 100%;
         text-align: left;
     }
 
@@ -1797,13 +1681,13 @@ ol {
         width: 77%;
     }
 
-    .navbar_menu_HomePage a {
+        /*.navbar_menu_HomePage a {
         color: #fff !important;
-    }
+    }*/
 
-    .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-        border: none;
-    }
+        .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+            border: none;
+        }
 
     .multi-gd-img.multi-gd-text {
         width: 51% !important;
@@ -1874,9 +1758,9 @@ ol {
         left: 20px;
     }
 
-    ul.nav.navbar-nav.menu__list {
+    /*ul.nav.navbar-nav.menu__list {
         padding-bottom: 20px;
-    }
+    }*/
 
     .close1, .close2, .close3, .close4 {
         right: 36px;
@@ -1891,12 +1775,14 @@ ol {
     .navbar-nav > li {
         width: 100%;
     }
-    .popover{
-        display:none!important;
+
+    .popover {
+        display: none !important;
     }
+
     .header-left {
         float: none;
-        width: 30%;
+        width: 30% !important;
         margin: 10px auto;
     }
 
@@ -1911,6 +1797,7 @@ ol {
     .header-middle form input[type="submit"] {
         height: 36px;
     }
+
     .section_room select {
         padding: 8px 10px;
     }
@@ -2054,6 +1941,7 @@ ol {
     .product-easy {
         padding: 70px 0;
     }
+
     .coupons-gd span {
         padding: 18px 18px;
         font-size: 20px;
@@ -2188,6 +2076,7 @@ ol {
     .navbar-nav > li {
         width: 100%;
     }
+
     .header-left {
         float: none;
         width: 30%;
@@ -2201,6 +2090,7 @@ ol {
     .b-mainbrand-topmenu {
         display: none;
     }
+
     .header ul li {
         width: 32%;
     }
@@ -2671,11 +2561,11 @@ ol {
     }
 
     .arrow-right {
-        border-left: 38px solid #116080!important;
+        border-left: 38px solid #116080 !important;
     }
 
-    .narbar-description .nav-tabs{
-        display:none;
+    .narbar-description .nav-tabs {
+        display: none;
     }
 
     .b-brandbanner .owl-carousel {
@@ -3036,11 +2926,11 @@ ol {
     }
 
     .arrow-right {
-        border-left: 38px solid #116080!important;
+        border-left: 38px solid #116080 !important;
     }
 
-    .narbar-description .nav-tabs{
-        display:none;
+    .narbar-description .nav-tabs {
+        display: none;
     }
 
     /*.b-brandbanner .owl-carousel {
@@ -3293,11 +3183,11 @@ ol {
     }
 
     .arrow-right {
-        border-left: 38px solid #116080!important;
+        border-left: 38px solid #116080 !important;
     }
 
-    .narbar-description .nav-tabs{
-        display:none;
+    .narbar-description .nav-tabs {
+        display: none;
     }
 
     .header-right {
@@ -3471,11 +3361,11 @@ ol {
     }
 
     .arrow-right {
-        border-left: 38px solid #116080!important;
+        border-left: 38px solid #116080 !important;
     }
 
-    .narbar-description .nav-tabs{
-        display:none;
+    .narbar-description .nav-tabs {
+        display: none;
     }
 
     .header-right {
@@ -3553,7 +3443,7 @@ ol {
 
     .header-left {
         width: 30%;
-        margin:10px auto;
+        margin: 10px auto;
     }
 
     .timetable_sub th {
@@ -3567,11 +3457,11 @@ ol {
 
 @media (max-width: 320px) {
     .arrow-right {
-        border-left: 38px solid #116080!important;
+        border-left: 38px solid #116080 !important;
     }
 
-    .narbar-description .nav-tabs{
-        display:none;
+    .narbar-description .nav-tabs {
+        display: none;
     }
 
     .header-right {

@@ -2310,8 +2310,10 @@ header {
 
 #homebanners {
     position: relative;
-    width: 76.99%;
+    width: 100%;
     float: left;
+    margin-bottom:90px;
+    background-color: #797777;
 }
 
 .ads a:not(:last-child) img, .form_slide {

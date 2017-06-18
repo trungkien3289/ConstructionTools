@@ -31,6 +31,12 @@ namespace OnlineStoreMVC
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/websitecss").Include(
+                    "~/Content/webcss/common.css",
+                    "~/Content/webcss/layout.css",
+                    "~/Content/webcss/style.css"
+                    ));
+
             bundles.Add(new ScriptBundle("~/bundles/adminScript").Include(
                        "~/Scripts/Utility/common.js",
                         //"~/Content/chosen-library/chosen.jquery.min.js",
@@ -62,11 +68,7 @@ namespace OnlineStoreMVC
                        "~/Scripts/Admin/brand-management.js"
                       ));
 
-            bundles.Add(new StyleBundle("~/Content/webCss").Include(
-                     "~/Content/webcss/common.css",
-                     "~/Content/webcss/layout.css",
-                     "~/Content/webcss/style.css"
-                     ));
+           
 
             bundles.Add(new ScriptBundle("~/bundles/argularjs").Include(
                   "~/Content/plugins/angular/angular.js",

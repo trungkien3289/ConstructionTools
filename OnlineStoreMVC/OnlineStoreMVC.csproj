@@ -583,10 +583,6 @@
     <Content Include="Content\ckfinder\plugins\dummy\lang\en.js" />
     <Content Include="Content\ckfinder\plugins\dummy\lang\pl.js" />
     <Content Include="Content\ckfinder\plugins\dummy\plugin.js" />
-    <Content Include="Content\ckfinder\plugins\fileeditor\bin\Debug\CKFinder_FileEditor.dll" />
-    <Content Include="Content\ckfinder\plugins\fileeditor\bin\Debug\CKFinder_FileEditor.pdb" />
-    <Content Include="Content\ckfinder\plugins\fileeditor\bin\Release\CKFinder_FileEditor.dll" />
-    <Content Include="Content\ckfinder\plugins\fileeditor\bin\Release\CKFinder_FileEditor.pdb" />
     <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\addon\mode\overlay.js" />
     <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\lib\codemirror.css" />
     <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\lib\codemirror.js" />
@@ -623,16 +619,8 @@
     <Content Include="Content\ckfinder\plugins\gallery\colorbox\jquery.colorbox-min.js" />
     <Content Include="Content\ckfinder\plugins\gallery\colorbox\jquery.min.js" />
     <Content Include="Content\ckfinder\plugins\gallery\colorbox\license.txt" />
-    <Content Include="Content\ckfinder\plugins\imageresize\bin\Debug\CKFinder_ImageResize.dll" />
-    <Content Include="Content\ckfinder\plugins\imageresize\bin\Debug\CKFinder_ImageResize.pdb" />
-    <Content Include="Content\ckfinder\plugins\imageresize\bin\Release\CKFinder_ImageResize.dll" />
-    <Content Include="Content\ckfinder\plugins\imageresize\bin\Release\CKFinder_ImageResize.pdb" />
     <Content Include="Content\ckfinder\plugins\imageresize\images\mini.gif" />
     <Content Include="Content\ckfinder\plugins\imageresize\plugin.js" />
-    <Content Include="Content\ckfinder\plugins\watermark\bin\Debug\CKFinder_Watermark.dll" />
-    <Content Include="Content\ckfinder\plugins\watermark\bin\Debug\CKFinder_Watermark.pdb" />
-    <Content Include="Content\ckfinder\plugins\watermark\bin\Release\CKFinder_Watermark.dll" />
-    <Content Include="Content\ckfinder\plugins\watermark\bin\Release\CKFinder_Watermark.pdb" />
     <Content Include="Content\ckfinder\plugins\watermark\logo.gif" />
     <Content Include="Content\ckfinder\skins\kama\app.css" />
     <Content Include="Content\ckfinder\skins\kama\host.css" />
@@ -1383,15 +1371,16 @@
     <Content Include="Content\ckeditor\package.json" />
     <Content Include="Content\ckeditor\README.md" />
     <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
-    <Content Include="Content\fonts\UTM Avo.ttf" />
-    <Content Include="Content\fonts\UTM AvoBold.ttf" />
-    <Content Include="Content\fonts\UTM AvoBold_Italic.ttf" />
-    <Content Include="Content\fonts\UTM AvoItalic.ttf" />
+    <Content Include="Content\fonts\utmavo.ttf" />
+    <Content Include="Content\fonts\utmavobold.ttf" />
+    <Content Include="Content\fonts\utmavobold-italic.ttf" />
+    <Content Include="Content\fonts\utmavoitalic.ttf" />
     <Content Include="Content\font-awesome\4.3.0\fonts\UTM Avo.ttf" />
     <Content Include="Content\font-awesome\4.3.0\fonts\UTM AvoBold.ttf" />
     <Content Include="Content\font-awesome\4.3.0\fonts\UTM AvoBold_Italic.ttf" />
     <Content Include="Content\font-awesome\4.3.0\fonts\UTM AvoItalic.ttf" />
     <None Include="Properties\PublishProfiles\Construction.pubxml" />
+    <None Include="Properties\PublishProfiles\ConstructionToolsStore.pubxml" />
     <None Include="Properties\PublishProfiles\xaviadecor.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DisplayProduct\DetailProduct.js" />
@@ -1491,6 +1480,12 @@
     <Folder Include="Content\ckeditor\lang\" />
     <Folder Include="Content\ckeditor\plugins\" />
     <Folder Include="Content\ckeditor\skins\" />
+    <Folder Include="Content\ckfinder\plugins\fileeditor\bin\Debug\" />
+    <Folder Include="Content\ckfinder\plugins\fileeditor\bin\Release\" />
+    <Folder Include="Content\ckfinder\plugins\imageresize\bin\Debug\" />
+    <Folder Include="Content\ckfinder\plugins\imageresize\bin\Release\" />
+    <Folder Include="Content\ckfinder\plugins\watermark\bin\Debug\" />
+    <Folder Include="Content\ckfinder\plugins\watermark\bin\Release\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -13,9 +13,7 @@
 
 @font-face {
     font-family: 'UTMAvo';
-    src: url('../fonts/UTM Avo.ttf') format("truetype");
-    /*font-weight: normal;
-    font-style: normal;*/
+    src: url('../fonts/utmavo.ttf') format("truetype");
 }
 
 .fa {
