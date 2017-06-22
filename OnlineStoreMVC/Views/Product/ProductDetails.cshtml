@@ -79,7 +79,7 @@
                 <div class="productinforcontainer">
                     <span class="left-label">Tags</span>@Html.Partial("_ProductTagList", Model.Groups)
                 </div>
-                <div class="productinforcontainer">@Model.Description</div>
+                <div class="productinforcontainer">@Html.Raw(Model.Description)</div>
                 <div class="clearfix"> </div>
             </div>
         </div>
