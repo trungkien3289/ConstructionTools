@@ -2,7 +2,7 @@
 <div class="footer">
     <div class="container">
         <div class="col-md-3 footer-left">
-            <h2><a href="/Home/Index"><img src="~/Content/Images/TestImages/logo3.jpg" alt=" " /></a></h2>
+            <h2><a href="/Home/Index"><img style="width:100px;" src="~/Content/Images/Banners/nhanphuoclogo.jpg" alt=""/></a></h2>
             <p>
                 Uy tín, tin cậy, cam kết đem lại những sản phẩm tốt nhất cho khách hàng
             </p>
@@ -12,8 +12,10 @@
                 <div class="col-md-4 sign-gd">
                     <h4>Website</h4>
                     <ul>
-                        <li><a href="/Home/Index">Trang Chủ</a></li>
-                        <li><a href="/Home/Contact">Liên Hệ</a></li>
+                        <li><a href="@Url.Action("Index","Home",null)">Trang Chủ</a></li>
+                        <li><a href="@Url.Action("Contact", "Home", null)">Liên Hệ</a></li>
+                        <li><a href="@Url.Action("Index", "News", null)">Tư vấn kết nối</a></li>
+                        <li><a href="@Url.Action("QuickQuote", "Home", null)">Báo giá nhanh</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 sign-gd">
@@ -26,9 +28,9 @@
                 <div class="col-md-4 sign-gd-two">
                     <h4>Thông Tin Liên Hệ</h4>
                     <ul>
-                        <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Địa Chỉ : Hải Châu, <span> Đà Nẵng</span></li>
-                        <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email : <a href="mailto:info@example.com">info@example.com</a></li>
-                        <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Điện Thoại : +1234 567 567</li>
+                        <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Địa Chỉ : 207 Trường Chinh, P. An Khê, Q. Thanh Khê, <span>Tp Đà Nẵng</span></li>
+                        <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email : <a href="mailto:nhanphuocdn@gmail.com">nhanphuocdn@gmail.com</a></li>
+                        <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Điện Thoại : 0906553212</li>
                     </ul>
                 </div>
             </div>

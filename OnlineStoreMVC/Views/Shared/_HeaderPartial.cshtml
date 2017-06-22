@@ -3,10 +3,10 @@
 <!-- start header-bot -->
 <div class="header-bot">
     <div class="container">
-        <div class="col-md-2 col-sm-12 col-xs-12 header-left">
-            <h1><a href="/Home/Index"><img src="~/Content/Images/TestImages/logo3.jpg"></a></h1>
+        <div class="col-md-2 col-sm-2 col-xs-2 header-left">
+            <a href="/Home/Index"><img src="~/Content/Images/Banners/nhanphuoclogo.jpg"></a>
         </div>
-        <div class="col-md-6 col-sm-12 col-xs-12 header-middle">
+        <div class="col-md-6 col-sm-10 col-xs-10 header-middle">
             <form action="/Product/SearchProduct" method="get" class="form-searchbox">
                 <div class="search">
                     <input type="search" value="@Request.QueryString["searchString"]" placeholder="Tìm Kiếm" name="searchString">
@@ -17,15 +17,15 @@
             </form>
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12 header-right footer-bottom">
-            <a href="@Url.Action("QuickQuote", "Home")" class="btn-pricereport">Báo giá nhanh</a>
+            @*<a href="@Url.Action("QuickQuote", "Home")" class="btn-pricereport">Báo giá nhanh</a>*@
             <ul>
                 <li>
-                    <a href="mailto:info@example.com">info@example.com</a>
                     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <a href="mailto:nhanphuocdn@gmail.com">nhanphuocdn@gmail.com</a>
                 </li>
                 <li>
-                    <a href="mailto:info@example.com">Đà Nẵng, Việt Nam</a>
                     <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                    <a href="mailto:nhanphuocdn@gmail.com">207 Trường Chinh, Q.Thanh Khê, Tp Đà Nẵng</a>
                 </li>
             </ul>
         </div>
@@ -64,6 +64,7 @@
                             <li class="active menu__item menu__item--current"><a class="menu__link" href="/Home/Index">Trang chủ <span class="sr-only">(current)</span></a></li>
                             <li class="menu__item">@Html.ActionLink("Tư vấn kết nối", "Index", "News", null, new { @class = "menu__link" })</li>
                             <li class="menu__item">@Html.ActionLink("Liên hệ", "Contact", "Home", null, new { @class = "menu__link" })</li>
+                            <li class="menu__item">@Html.ActionLink("Báo giá nhanh", "QuickQuote", "Home", null, new { @class = "menu__link" })</li>
                         </ul>
                     </div>
                 </div>

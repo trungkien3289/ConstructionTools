@@ -44,7 +44,7 @@
 }
 
 .header-left {
-    text-align: left;
+    text-align: center;
 }
 
 .divCategory_HomePage:not(:last-child) {
@@ -55,7 +55,7 @@
 
 /*-- header-bot --*/
 .header-left img {
-    width: 73%;
+    width: 50px;
 }
 
 .header-middle {
@@ -75,7 +75,7 @@
 }
 
     .header-right ul li span {
-        float: right;
+        float: left;
         margin-right: 10px;
         color: #fff;
     }
@@ -84,7 +84,7 @@
         font-size: 14px;
         height: 14px;
         display: block;
-        float: right;
+        float: left;
         color: #fff;
     }
 
@@ -204,11 +204,11 @@
 .header-middle {
     border: 1px solid #eee;
     padding: 0;
+    width:80%;
 }
 
 .header-right ul {
     display: inline-block;
-    width: 160px;
     float: left;
     margin-left:5px;
 }

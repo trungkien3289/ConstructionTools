@@ -707,7 +707,7 @@ ol {
 /*-- responsive media queries --*/
 @media (max-width: 1440px) and (min-device-width: 1367px) {
     .b-brandbanner .owl-carousel {
-        width: 50%;
+        width: 25%;
     }
 
     .content-img-right h3 span {
@@ -736,7 +736,7 @@ ol {
 
 @media (max-width: 1366px) and (min-width: 1280px) {
     .b-brandbanner .owl-carousel {
-        width: 50%;
+        width: 25%;
     }
 
     .content-img-right h3 span {
@@ -763,7 +763,7 @@ ol {
 
 @media (max-width: 1280px) and (min-width: 1125px) {
     .b-brandbanner .owl-carousel {
-        width: 50%;
+        width: 25%;
     }
 
     .content-img-right h3 span {
@@ -803,7 +803,7 @@ ol {
 
 @media (max-width: 1124px) and (min-width: 1081px) {
     .b-brandbanner .owl-carousel {
-        width: 50%;
+        width: 25%;
     }
 
     .b-mainbrand-topmenu {
@@ -815,7 +815,7 @@ ol {
     }
 
     .header-middle {
-        margin-top: 5px;
+        margin-top: 15px;
     }
 
     .new_arrivals {
@@ -833,10 +833,6 @@ ol {
 
     .navbar-nav > li > a {
         padding: 27px 13px;
-    }
-
-    .header-middle form input[type="submit"] {
-        /*background: url(../Images/TestImages/search.png) no-repeat 1px -5px #0093cc;*/
     }
 
     .section_room select {
@@ -874,7 +870,7 @@ ol {
 
 @media (max-width: 1080px) and (min-width: 992px) {
     .b-brandbanner .owl-carousel {
-        width: 50%;
+        width: 25%;
     }
 
     .b-mainbrand-topmenu {
@@ -1128,7 +1124,7 @@ ol {
 
 @media (max-width: 991px) and (min-width: 800px) {
     .b-brandbanner .owl-carousel {
-        width: 50%;
+        width: 25%;
     }
 
     .b-mainbrand-topmenu {
@@ -1141,8 +1137,8 @@ ol {
     }
 
     .header-left {
-        float: none;
-        width: 30%;
+        float: left;
+        width: 20%;
         margin: 10px auto;
     }
 
@@ -1513,8 +1509,8 @@ ol {
 
 @media (max-width: 800px) and (min-width: 769px) {
     .header-left {
-        float: none;
-        width: 30%;
+        float: left;
+        width: 20%;
         margin: 10px auto;
     }
 
@@ -1601,7 +1597,7 @@ ol {
     }
 
     .b-brandbanner .owl-carousel {
-        width: 50%;
+        width: 25%;
     }
 }
 
@@ -1624,8 +1620,8 @@ ol {
     }
 
     .header-left {
-        float: none;
-        width: 30% !important;
+        float: left;
+        width: 20% !important;
         margin: 10px auto;
     }
 
@@ -1781,8 +1777,8 @@ ol {
     }
 
     .header-left {
-        float: none;
-        width: 30% !important;
+        float: left;
+        width: 20% !important;
         margin: 10px auto;
     }
 
@@ -2078,8 +2074,8 @@ ol {
     }
 
     .header-left {
-        float: none;
-        width: 30%;
+        float: left;
+        width: 20%;
         margin: 10px auto;
     }
 
@@ -2335,20 +2331,11 @@ ol {
         }
 
     .header-left {
-        float: none;
-        width: 30%;
+        float: left;
+        width: 20%;
         padding: 0;
         margin: 10px auto;
     }
-    /*.header-middle {
-		float: left;
-		width: 50%;
-	}*/
-    /*.header-right {
-		float: left;
-		width: 47%;
-		padding-left: 0;
-	}*/
     .pignose-layerslider .slide-visual .script-wrap {
         left: 340px;
     }
@@ -2714,22 +2701,10 @@ ol {
     }
 
     .header-left {
-        width: 30%;
+        width: 20%;
         margin: 10px auto;
     }
-    /*.header-right {
-		float: left;
-		width: 43%;
-	}*/
-    /*.header-middle {
-		float: left;
-		width: 57%;
-	}*/
-    /*.sear-sub {
-		float: right;
-		width: 17%;
-        height: 36px;
-	}*/
+
     .footer-bottom a span {
         left: 9px;
     }
@@ -2943,12 +2918,12 @@ ol {
 
     .header-middle {
         float: left;
-        width: 100%;
+        width: 80%;
         margin: 0;
     }
 
     .header-left {
-        width: 30%;
+        width: 20%;
         margin: 10px auto;
     }
     .section_room select {
@@ -3417,7 +3392,7 @@ ol {
     }
 
     .header-left {
-        width: 30%;
+        width: 20%;
         margin: 10px auto;
     }
 
@@ -3462,7 +3437,7 @@ ol {
     }
 
     .header-left {
-        width: 30%;
+        width: 20%;
         margin: 10px auto;
     }
 
@@ -3487,11 +3462,6 @@ ol {
         .pignose-layerslider .slide-visual .script-wrap .slide-controller a {
             margin: 0 6px;
         }
-    /*.sear-sub {
-		float: right;
-		width: 12%;
-        height: 36px;
-	}*/
     .header-middle form input[type="submit"] {
         background: url(../Images/TestImages/search.png) no-repeat -7px -5px #0093cc;
     }
@@ -3774,7 +3744,7 @@ ol {
     }
 
     .header-left {
-        width: 30%;
+        width: 20%;
         margin: 10px auto;
     }
 
