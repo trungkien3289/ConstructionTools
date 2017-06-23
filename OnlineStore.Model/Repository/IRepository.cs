@@ -12,7 +12,7 @@ namespace OnlineStore.Model.Repository
         IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "", int? skip = null, int? take = null);
+            string includeProperties = "", int? skip = null, int? take = null,bool isDistinct = false);
         IEnumerable<TEntity> Get(
             bool getRandom, Expression<Func<TEntity, bool>> filter = null,
             string includeProperties = "",

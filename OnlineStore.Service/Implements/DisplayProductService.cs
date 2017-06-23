@@ -46,6 +46,27 @@ namespace OnlineStore.Service.Implements
         #region Private functions
 
         /// <summary>
+        /// Get list children categories
+        /// </summary>
+        /// <param name="parentId"></param>
+        /// <returns></returns>
+        private void getChildrenCategories(int categoryId, ref List<int> listCategories)
+        {
+            if (listCategories == null)
+            {
+                listCategories = new List<int>();
+            }
+
+            var children = categoryRepository.GetChildrenByParentCategoryId(categoryId).Select(c => c.Id).ToList();
+                
+            for (int i = 0; i < children.Count; i++)
+			{
+                getChildrenCategories(children[i],ref listCategories);
+			}
+            listCategories.AddRange(children);
+        }
+
+        /// <summary>
         /// Get list product with selected category, seach string, order, filter after price range, filter after brands, paging
         /// </summary>
         /// <param name="request">conditions for filter</param>
@@ -70,15 +91,30 @@ namespace OnlineStore.Service.Implements
             {
                 searchQuery = searchQuery.And(p => p.Name.Contains(request.SearchString));
             }
+
             if (request.CategoryId != null)
             {
-                searchQuery = searchQuery.And(p => p.ecom_Categories.Select(c => c.Id).Contains((int)request.CategoryId));
+                List<int> listCategories = new List<int>();
+                listCategories.Add(request.CategoryId.Value);
+                getChildrenCategories(request.CategoryId.Value, ref listCategories);
+                var subQuery = PredicateBuilder.False<ecom_Products>();
+                for (int i = 0; i < listCategories.Count; i++)
+                {
+                    var categoryId = listCategories[i];
+                    subQuery = subQuery.Or(p => p.ecom_Categories.Select(c => c.Id).Contains(categoryId));
+                }
+                searchQuery = searchQuery.And(subQuery.Expand());
             }
 
             searchQuery = searchQuery.And(p => p.Status == (int)Define.Status.Active);
 
             IEnumerable<ecom_Products> productsMatchingRefinement = db.Get(
-                filter: searchQuery, includeProperties: "ecom_Brands,ecom_Categories,share_Images");
+                filter: searchQuery,
+                orderBy: null,
+                includeProperties: "ecom_Brands,ecom_Categories,share_Images",
+                skip: null,
+                take:null,
+                isDistinct: true);
             switch (request.SortBy)
             {
                 case ProductsSortBy.PriceLowToHigh:
@@ -219,10 +255,27 @@ namespace OnlineStore.Service.Implements
         public IEnumerable<ProductSummaryView> GetTopProductsByCategoryId(int categoryId, int top)
         {
             var searchQuery = PredicateBuilder.True<ecom_Products>();
-            searchQuery = searchQuery.And(p => p.ecom_Categories.Select(c => c.Id).Contains(categoryId));
+            List<int> listCategories = new List<int>();
+
+            listCategories.Add(categoryId);
+            getChildrenCategories(categoryId, ref listCategories);
+            var subQuery = PredicateBuilder.False<ecom_Products>();
+            for (int i = 0; i < listCategories.Count; i++)
+            {
+                var id = listCategories[i];
+                subQuery = subQuery.Or(p => p.ecom_Categories.Select(c => c.Id).Contains(id));
+            }
+            searchQuery = searchQuery.And(subQuery.Expand());
+            //searchQuery = searchQuery.And(p => p.ecom_Categories.Select(c => c.Id).Contains(categoryId));
             searchQuery = searchQuery.And(p => p.Status == (int)Define.Status.Active);
             IEnumerable<ecom_Products> productsMatchingRefinement = db.Get(
-                filter: searchQuery, includeProperties: "ecom_Brands,ecom_Categories,share_Images").Take(top).OrderBy(p => p.Name).ToList();
+                filter: searchQuery,
+                orderBy:null,
+                includeProperties: "ecom_Brands,ecom_Categories,share_Images",
+                skip: null,
+                take: top,
+                isDistinct: true
+                ).OrderBy(p => p.Name).ToList();
 
             return productsMatchingRefinement.ConvertToProductSummaryViews();
         }
@@ -236,10 +289,26 @@ namespace OnlineStore.Service.Implements
         public IEnumerable<ProductSummaryView> GetRandomProductsByCategoryId(int categoryId, int count)
         {
             var searchQuery = PredicateBuilder.True<ecom_Products>();
-            searchQuery = searchQuery.And(p => p.ecom_Categories.Select(c => c.Id).Contains(categoryId));
+            List<int> listCategories = new List<int>();
+
+            listCategories.Add(categoryId);
+            getChildrenCategories(categoryId, ref listCategories);
+            var subQuery = PredicateBuilder.False<ecom_Products>();
+            for (int i = 0; i < listCategories.Count; i++)
+            {
+                var id = listCategories[i];
+                subQuery = subQuery.Or(p => p.ecom_Categories.Select(c => c.Id).Contains(id));
+            }
+            searchQuery = searchQuery.And(subQuery.Expand());
+            //searchQuery = searchQuery.And(p => p.ecom_Categories.Select(c => c.Id).Contains(categoryId));
             searchQuery = searchQuery.And(p => p.Status == (int)Define.Status.Active);
             IEnumerable<ecom_Products> productsMatchingRefinement = db.Get(
-                filter: searchQuery, includeProperties: "ecom_Brands,ecom_Categories,share_Images").OrderBy(c => Guid.NewGuid()).Take(count).OrderBy(p => p.Name).ToList();
+                filter: searchQuery,
+                orderBy: null,
+                includeProperties: "ecom_Brands,ecom_Categories,share_Images",
+                skip: null,
+                isDistinct: true
+                ).OrderBy(c => Guid.NewGuid()).Take(count).OrderBy(p => p.Name).ToList();
 
             return productsMatchingRefinement.ConvertToProductSummaryViews();
         }
@@ -599,8 +668,12 @@ namespace OnlineStore.Service.Implements
                 searchQuery = searchQuery.And(filterCategoryQuery.Expand());
             }
             IEnumerable<ecom_Products> productsMatchingRefinement = db.Get(
-                filter: searchQuery, includeProperties: "ecom_Categories,share_Images");
-            productsMatchingRefinement = productsMatchingRefinement.Distinct();
+                filter: searchQuery,
+                orderBy:null,
+                includeProperties: "ecom_Categories,share_Images",
+                skip: null,
+                isDistinct: true
+                );
             switch (sortBy)
             {
                 case (int)ProductsSortBy.PriceLowToHigh:

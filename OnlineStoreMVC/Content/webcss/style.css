@@ -1,5 +1,6 @@
-.glyphicon-envelope:before,.glyphicon-address:before {
+.glyphicon-envelope:before,.glyphicon-map-marker:before {
     margin-right:5px;
+    font-family:'Glyphicons Halflings';
 }
 
 /*-Contact page-*/

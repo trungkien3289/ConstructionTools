@@ -25,7 +25,7 @@ namespace OnlineStore.Model.Repository
         public virtual IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "",int? skip = null, int? take = null)
+            string includeProperties = "",int? skip = null, int? take = null, bool isDistinct = false)
         {
             IQueryable<TEntity> query = dbSet;
 
@@ -52,6 +52,11 @@ namespace OnlineStore.Model.Repository
             if (take != null)
             {
                 query = query.Take((int)take);
+            }
+
+            if (isDistinct)
+            {
+                query = query.Distinct(); 
             }
 
             return query.ToList();
