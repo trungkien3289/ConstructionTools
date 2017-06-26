@@ -1,3 +1,16 @@
+/*#region Main Layout - Header and Menu */
+.header_menu_container {
+    height: 136px;
+}
+
+.header_menu_wrapper {
+    position: fixed;
+    z-index: 222;
+    width: 100%;
+    
+}
+
+/*#endregion */
 /*-Contact page-*/
 .contact-grids, .map, .contact-form {
     background-color: #fff;
@@ -799,6 +812,12 @@ ol {
     .dropdown:hover > .dropdown-content-panel {
         display: block;
     }
+}
+@media only screen and (max-width: 1199px) 
+{
+    /*.header_menu_container {
+        height: 150px;
+    }*/
 }
 
 @media (max-width: 1124px) and (min-width: 1081px) {

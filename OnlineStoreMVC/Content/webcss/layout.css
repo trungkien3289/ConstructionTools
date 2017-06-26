@@ -1,4 +1,12 @@
-﻿/*-- header --*/
+﻿/*-page-*/
+.mainPage {
+    /*min-height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    margin: 0 auto;*/
+}
+/*-- header --*/
 .header {
     border-bottom: 1px solid #eee;
 }
@@ -205,6 +213,7 @@
     border: 1px solid #eee;
     padding: 0;
     width:80%;
+    max-width: 850px;
 }
 
 .header-right ul {
@@ -220,6 +229,7 @@
 /*Columns container*/
 .columns-container {
     background-color: #F4F6F2;
+    /*margin-bottom: 389px;*/
 }
 
 /*Menu product*/
@@ -865,6 +875,11 @@ a.callbacks_nav.callbacks2_nav.next {
     padding: 70px 0;
     border-top: 1px solid #f1f1f1;
     background-color: #116080;
+    /*position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 0 auto;*/
 }
 
 .footer-left p {
