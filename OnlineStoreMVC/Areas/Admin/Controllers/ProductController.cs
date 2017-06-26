@@ -156,8 +156,9 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         public ActionResult Create()
         {
             PopulateStatusDropDownList();
-            //ViewBag.ProductGroupId = PopulateListProductGroup();
             ViewBag.BrandId = PopulateListBrand();
+            ViewBag.Categories = PopulateListCategory();
+
             return View();
         }
 
@@ -200,10 +201,10 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
                         }
                     }
                 }
-
             }
             PopulateStatusDropDownList();
             ViewBag.BrandId = PopulateListBrand(productRequest.BrandId);
+
             return View(productRequest);
         }
 

@@ -233,11 +233,6 @@ namespace OnlineStoreMVC.Controllers
                         @ViewBag.SearchTitle = "Tất cả các sản phẩm";
                         break;
                     }
-                //case SearchType.SearchString:
-                //    {
-                //        @ViewBag.SearchTitle = request.SearchString;
-                //        break;
-                //    }
                 case SearchType.NewProducts:
                     {
                         @ViewBag.SearchTitle = "Sản phẩm mới";

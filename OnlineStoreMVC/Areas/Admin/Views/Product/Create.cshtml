@@ -15,6 +15,8 @@
         CKEDITOR.replace('Description2', { enterMode: CKEDITOR.ENTER_BR });
         CKEDITOR.replace('Specification', { enterMode: CKEDITOR.ENTER_BR });
         CKFinder.setupCKEditor(null, "/Content/ckfinder/", null, null);
+        // install chosen control
+        $(".chzn-select").chosen();
     });
 </script>
 <!-- Content Header (Page header) -->
@@ -72,28 +74,17 @@
                                     @Html.ValidationMessageFor(model => model.OldPrice, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
-                            @*<div class="form-group">
-                                @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
-                                </div>
-                            </div>*@
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Unit, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Unit, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Unit, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
                             <div class="form-group">
                                 @Html.LabelFor(model => model.BrandId, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.DropDownList("BrandId", @ViewBag.BrandId as SelectList,"Chọn thương hiệu", htmlAttributes: new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("CategoryId", ViewBag.Categories as MultiSelectList, new { multiple = "multiple", @class = "chzn-select form-control", data_placeholder = "Chọn danh mục" })
                                 </div>
                             </div>
                             <div class="form-group">
@@ -126,14 +117,6 @@
                                     @Html.ValidationMessageFor(model => model.Specification, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
-                            @*<div class="form-group">
-                                @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Tags, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })
-                                </div>
-                            </div>*@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.IsNewProduct, htmlAttributes: new { @class = "control-label col-md-2" })

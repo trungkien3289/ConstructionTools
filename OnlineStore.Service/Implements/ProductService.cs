@@ -163,11 +163,20 @@ namespace OnlineStore.Service.Implements
                     SortOrder = newProduct.SortOrder,
                     Status = newProduct.Status
                 };
-
+                // Add the product images
                 share_Images coverImage = imageRepository.GetByID(newProduct.CoverImageId);
                 product.share_Images.Add(coverImage);
+                // Add the product categories
+                foreach (int category in newProduct.CategoryId)
+                {
+                    var selectedCategory = categoryRepository.GetByID(category);
+                    if(selectedCategory!=null){
+                        product.ecom_Categories.Add(selectedCategory);
+                    }
+                }
                 db.Insert(product);
                 db.Save();
+
                 return true;
             }
             catch (Exception)

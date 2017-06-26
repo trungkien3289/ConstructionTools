@@ -1,4 +1,5 @@
-﻿<!-- footer -->
+﻿@using OnlineStore.Model.ViewModel
+<!-- footer -->
 <div class="footer">
     <div class="container">
         <div class="col-md-3 footer-left">
@@ -21,8 +22,10 @@
                 <div class="col-md-4 sign-gd">
                     <h4>Danh Mục</h4>
                     <ul>
-                        <li><a href="/Home/Index">Trang Chủ</a></li>
-                        <li><a href="/Home/Contact">Liên Hệ</a></li>
+                        @foreach (SummaryCategoryViewModel category in ViewBag.TopCategoriesList)
+                        {
+                            <li><a href="/Product/GetProductByCategory/@category.Id">@category.Name</a></li>
+                        }
                     </ul>
                 </div>
                 <div class="col-md-4 sign-gd-two">

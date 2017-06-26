@@ -1,4 +1,5 @@
-﻿@{
+﻿@using OnlineStore.Model.ViewModel
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @{
@@ -41,9 +42,13 @@
             @Html.Action("GroupBanners")
         </div>
         <div class="container groupproduct-panel">
-            @Html.Action("GroupProductPatial", new { @categoryId = 21 })
+            @foreach (SummaryCategoryViewModel category in ViewBag.MainCategories)
+            {
+                @Html.Action("GroupProductPatial", new { @categoryId = category.Id })
+            }
+            @*@Html.Action("GroupProductPatial", new { @categoryId = 21 })
             @Html.Action("GroupProductPatial", new { @categoryId = 22 })
-            @Html.Action("GroupProductPatial", new { @categoryId = 1026 })
+            @Html.Action("GroupProductPatial", new { @categoryId = 1026 })*@
         </div>
     </div>
     <!-- //product-nav -->

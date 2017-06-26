@@ -80,9 +80,11 @@ namespace OnlineStoreMVC.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            PopulateNewProductList();
-            PopulateBestSellProductList();
+            //PopulateNewProductList();
+            //PopulateBestSellProductList();
             PopulateCategoryList();
+            // populate main categories
+            ViewBag.MainCategories =  GetChildrenCategories(null);
 
             return View();
         }
@@ -184,8 +186,13 @@ namespace OnlineStoreMVC.Controllers
             PopulateSearchType(searchType != null ? (SearchType)searchType : SearchType.AllProduct);
             PopulateCategoryList();
             ViewBag.TopCategoriesList = GetTopCategoriesList();
-            ViewBag.BakeryCategoryList = GetChildrenCategories(21);
-            ViewBag.KitchenToolsCategoryList = GetChildrenCategories(22);
+            return PartialView();
+        }
+
+        public ActionResult _FooterPartial()
+        {
+            ViewBag.TopCategoriesList = GetTopCategoriesList();
+
             return PartialView();
         }
 

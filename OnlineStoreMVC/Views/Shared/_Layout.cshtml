@@ -35,7 +35,7 @@
         <div class="columns-container top-space-body">
             @RenderBody()
         </div>
-        @RenderPage("_FooterPartial.cshtml")
+        @Html.Action("_FooterPartial", "Home", null)
     </div>
 </body>
 </html>

@@ -16,7 +16,7 @@
         <span> » </span><a href="@Url.Action("QuickQuote", "Home")">Báo giá nhanh</a>
     </div>
     <div class="quick_quotes_area" id="homebanners">
-        @using (Html.BeginForm("QuickQuote", "Home",null, FormMethod.Post, new { enctype = "multipart/form-data", @style="height:500px" }))
+        @using (Html.BeginForm("QuickQuote", "Home",null, FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
             <div class="form_slide form_web padd15">

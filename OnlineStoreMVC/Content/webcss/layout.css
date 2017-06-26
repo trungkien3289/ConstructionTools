@@ -94,6 +94,8 @@
         display: block;
         float: left;
         color: #fff;
+        text-align:left;
+        font-family:UTMAvo,sans-serif;
     }
 
         .header-right ul li a:hover {
@@ -212,7 +214,6 @@
 .header-middle {
     border: 1px solid #eee;
     padding: 0;
-    width:80%;
     max-width: 850px;
 }
 
