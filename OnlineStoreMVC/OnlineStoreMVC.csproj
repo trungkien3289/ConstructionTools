@@ -1475,6 +1475,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Utility\common.js" />
     <Content Include="Scripts\webjs\easyResponsiveTabs.js" />
+    <Content Include="Scripts\webjs\webjs.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
