@@ -47,17 +47,18 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         {
             try
             {
-                ImageUpload largeImage = new ImageUpload { SavePath = DisplayProductConstants.LargeProductImageFolderPath };
-                ImageUpload smallImage = new ImageUpload { SavePath = DisplayProductConstants.SmallProductImageFolderPath };
+                //ImageUpload largeImage = new ImageUpload { SavePath = DisplayProductConstants.LargeProductImageFolderPath };
+                //ImageUpload smallImage = new ImageUpload { SavePath = DisplayProductConstants.SmallProductImageFolderPath };
                 var fileName = Path.GetFileName(file.FileName);
                 string finalFileName = "ProductImage_" + ((counter).ToString()) + "_" + fileName;
                 if (System.IO.File.Exists(HttpContext.Request.MapPath("~" + DisplayProductConstants.LargeProductImageFolderPath + finalFileName)) || System.IO.File.Exists(HttpContext.Request.MapPath("~" + DisplayProductConstants.SmallProductImageFolderPath + finalFileName)))
                 {
                     return UploadProductImages(file, out largeFileName, ++counter);
                 }
-                ImageResult uploadLargeImage = largeImage.UploadProductImage(file, finalFileName, 1000);
-                ImageResult uploadSmallImage = smallImage.UploadProductImage(file, finalFileName, 700);
+                ImageResult uploadLargeImage = ImageUpload.UploadProductImage(file, finalFileName, 1000, DisplayProductConstants.LargeProductImageFolderPath);
+                ImageResult uploadSmallImage = ImageUpload.UploadProductImage(file, finalFileName, 300, DisplayProductConstants.SmallProductImageFolderPath);
                 largeFileName = uploadSmallImage.ImageName;
+
                 return true;
             }
             catch (Exception)
@@ -187,40 +188,48 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var file = Request.Files["coverImage"];
+                ecom_Brands updatedBrand = brand.ConvertToBrandModel();
+
                 if (file != null && file.ContentLength > 0)
                 {
                     string largeFileName = null;
-                        bool isSuccess = UploadProductImages(file, out largeFileName);
-                        if (isSuccess)
+                        if (UploadProductImages(file, out largeFileName))
                         {
-                            ecom_Brands updatedBrand = brand.ConvertToBrandModel();
                             share_Images largeImage = new share_Images
                             {
                                 ImageName = largeFileName,
                                 ImagePath = Path.Combine(ImageUpload.LargeImagePath, largeFileName)
                             };
-                            var imageId = service.AddImage(largeImage);
-                            // Add product
-                            updatedBrand.ImageId = imageId;
-                            bool isUpdateBrandSuccess = brandService.UpdateBrand(updatedBrand);
-                            if (isUpdateBrandSuccess)
-                            {
-                                return RedirectToAction("Index");
-                            }
-                            else
-                            {
-                                ModelState.AddModelError("ServerError", "Update brand fail!");
-                            }
+                            updatedBrand.ImageId = service.AddImage(largeImage);
                         } 
                         else
                         {
-                            // use imageResult.ErrorMessage to show the error
                             ViewBag.Error = "Upload product image fail";
+                            return RedirectToAction("Index");
                         }
-                    
+                }
+
+                if (brandService.UpdateBrand(updatedBrand))
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("ServerError", "Update brand fail!");
                 }
             }
-            return View(brand);
+
+            // Return to edit page with inputed value
+            EditBrandManagementGetResponse viewModel = new EditBrandManagementGetResponse()
+            {
+                Id = brand.Id,
+                Name = brand.Name,
+                Description = brand.Description,
+                Status = brand.Status,
+                ImagePath = brand.ImagePath
+            };
+            PopulateStatusDropDownList((Define.Status)brand.Status);
+            return View(viewModel);
         }
         /// <summary>
         /// Delete selected brand

@@ -113,6 +113,9 @@ h2.resp-accordion {
 
 .men-thumb-item {
     position: relative;
+    width:129px;
+    height:129px;
+    display:block;
 }
 
 .item-info-product {
@@ -122,6 +125,7 @@ h2.resp-accordion {
 
     .item-info-product .productname-item-info-product {
         height: 60px;
+        overflow:hidden;
     }
 
 .men-thumb-item::before {
@@ -140,6 +144,8 @@ h2.resp-accordion {
 .men-thumb-item .pro-image-front {
     opacity: 1;
     visibility: visible;
+    width:129px;
+    height:129px;
 }
 
 .men-thumb-item img {
@@ -175,13 +181,13 @@ h2.resp-accordion {
 }
 
 .productname-item-groupproduct {
-    height: 45px;
+    height: 42px;
     overflow: hidden;
 }
 
 .brandname-item-groupproduct {
     display: block;
-    height: 56px;
+    height: 52px;
     overflow: hidden;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
@@ -320,7 +326,7 @@ h2.resp-accordion {
 
     .info-product-price span {
         color: #f00;
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .info-product-price del {
@@ -853,7 +859,7 @@ ol {
     }
 
     .info-product-price span {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .bootstrap-tab-text-grid-right p, .new_arrivals p {
@@ -1960,6 +1966,7 @@ ol {
 
     .sign-gd {
         width: 28%;
+        margin-top:10px;
     }
 
     .sign-gd-two {
@@ -2170,7 +2177,7 @@ ol {
     }
 
     .info-product-price span {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     h3.tittle {
@@ -2675,6 +2682,7 @@ ol {
 
     .sign-gd {
         width: 100%;
+        margin-top:10px;
     }
 
     .sign-gd-two {
@@ -2903,6 +2911,10 @@ ol {
 }
 
 @media (max-width: 414px) {
+    .discount-productdetails {
+        display:none!important;
+    }
+
     .navbar-nav > li {
         width: 100%;
     }
@@ -2926,6 +2938,7 @@ ol {
     .header-middle {
         float: left;
         margin: 0;
+        margin-top:5px;
     }
 
     .header-left {
@@ -2959,6 +2972,7 @@ ol {
 
         .header-right ul {
             text-align: center;
+            height:50px;
         }
 
     .footer-bottom a span {
@@ -3140,6 +3154,10 @@ ol {
 }
 
 @media (max-width: 384px) {
+    .discount-productdetails {
+        display:none!important;
+    }
+
     .navbar-nav > li {
         width: 100%;
     }

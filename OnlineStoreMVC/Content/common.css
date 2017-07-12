@@ -50,3 +50,7 @@ table th{
 .margin-right-10{
     margin-right:10px;
 }
+
+.input-validation-error{
+    border: 1px solid red;
+}

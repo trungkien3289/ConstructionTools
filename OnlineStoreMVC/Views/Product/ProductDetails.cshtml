@@ -77,6 +77,12 @@
                     <span class="left-label">Mã sản phẩm</span><span class="cl-green">@Model.ProductCode</span>
                 </div>
                 <div class="productinforcontainer">
+                    <span class="left-label">Xuất xứ</span><span class="cl-green">@Model.MadeIn</span>
+                </div>
+                <div class="productinforcontainer">
+                    <span class="left-label">Bảo hành</span><span class="cl-green">@Model.WarrantyPeriod</span>
+                </div>
+                <div class="productinforcontainer">
                     <span class="left-label">Tags</span>@Html.Partial("_ProductTagList", Model.Groups)
                 </div>
                 <div class="productinforcontainer">@Html.Raw(Model.Description)</div>

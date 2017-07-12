@@ -19,16 +19,16 @@
 <script src="~/Scripts/webjs/easyResponsiveTabs.js"></script>
 <script src="~/Content/plugins/owl-sliderbar/js/owl.carousel.min.js"></script>
 <script src="~/Scripts/DisplayProduct/HomePage.js"></script>
-    <script>
-        $(function () {
-            $(window).resize(function () {
-                var groupProductTitleWidth = $(".title-groupproduct").outerWidth();
-                var subCategoriesWidth = groupProductTitleWidth - $(".category-title-groupproduct").outerWidth() - 60 - 40 - 30;
-                $(".childrencategory-groupproduct").outerWidth(subCategoriesWidth);
-            });
-            $(window).trigger('resize');
+<script>
+    $(function () {
+        $(window).resize(function () {
+            var groupProductTitleWidth = $(".title-groupproduct").outerWidth();
+            var subCategoriesWidth = groupProductTitleWidth - $(".category-title-groupproduct").outerWidth() - 60 - 40 - 30;
+            $(".childrencategory-groupproduct").outerWidth(subCategoriesWidth);
         });
-    </script>
+        $(window).trigger('resize');
+    });
+</script>
 }
 
 <div ng-app="ecom_HomePage">
@@ -46,9 +46,6 @@
             {
                 @Html.Action("GroupProductPatial", new { @categoryId = category.Id })
             }
-            @*@Html.Action("GroupProductPatial", new { @categoryId = 21 })
-            @Html.Action("GroupProductPatial", new { @categoryId = 22 })
-            @Html.Action("GroupProductPatial", new { @categoryId = 1026 })*@
         </div>
     </div>
     <!-- //product-nav -->

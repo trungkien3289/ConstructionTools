@@ -36,6 +36,10 @@ namespace OnlineStore.Model.ViewModel
         public decimal Price { get; set; }
         [DisplayName("Giá bán cũ")]
         public decimal? OldPrice { get; set; }
+        [DisplayName("Xuất xứ")]
+        public string MadeIn { get; set; }
+        [DisplayName("Bảo hành")]
+        public string WarrantyPeriod { get; set; }
         [DisplayName("Số lượng")]
         public Nullable<int> Quantity { get; set; }
         [DisplayName("Đơn vị")]

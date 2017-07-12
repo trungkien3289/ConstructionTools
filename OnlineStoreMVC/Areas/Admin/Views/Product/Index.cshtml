@@ -6,6 +6,7 @@
     ViewBag.Title = "Quản lý danh mục sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/admin/product-management.css" rel="stylesheet" />
 <script src="~/Scripts/Admin/product-management.js"></script>
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -25,8 +26,25 @@
             @Html.ActionLink("THÊM", "Create", null, new { @class = "btn btn-primary btn-sm" })
         </div>
     </div><!--Function group buttons panel-->
+
     <div class="row">
-        <div class="col-md-12">
+        @using (Html.BeginForm("Index","Product",FormMethod.Get))
+        {
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    @Html.TextBox("keyword", (string)ViewBag.SearchString,  new { @class = "form-control input-lg" } )
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 listproduct-panel">
             <div class="box ">
                 <div class="box-header with-border">
                     <h3 class="box-title">Danh sách</h3>
@@ -41,7 +59,7 @@
                                 TÊN
                             </th>
                             <th>
-                               GIÁ BÁN
+                                GIÁ BÁN
                             </th>
                             <th>
                                 ẢNH ĐẠI DIỆN
@@ -52,7 +70,7 @@
                             <th>
                                 TRẠNG THÁI
                             </th>
-                            <th></th>
+                            <th width="100px;"></th>
                         </tr>
 
                         @foreach (var item in Model)
@@ -89,8 +107,48 @@
                     </table>
                 </div><!--Body-->
                 <div class="box-footer clearfix">
-                    @Html.PagedListPager(Model, page =>Url.Action("Index", new{page,keyword = Request.QueryString["keyword"]}))
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, keyword = Request.QueryString["keyword"], categoryId = Request.QueryString["categoryId"], brandId = Request.QueryString["brandId"] }))
                 </div><!--Footer-->
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 filter-panel">
+            <div class="panel-group box" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Danh mục sản phẩm
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body" style="padding:0;height:500px;overflow:auto;">
+                            <a href="/Admin/Product/Index" class="list-group-item">Tất cả</a>
+                            @foreach (var category in ViewBag.ListCategory)
+                            {
+                                <a href="/Admin/Product/Index?categoryId=@category.Id" class="list-group-item"><span class="badge">@category.NumberOfProduct</span>@category.Name</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Thương hiệu
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body" style="padding:0;height:500px;overflow:auto;">
+                            <a href="/Admin/Product/Index" class="list-group-item">Tất cả</a>
+                            @foreach (var brand in ViewBag.ListBrand)
+                            {
+                                <a href="/Admin/Product/Index?brandId=@brand.Id" class="list-group-item"><span class="badge">@brand.NumberOfProduct</span>@brand.Name</a>
+                            }
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div><!--Content panel-->

@@ -10,7 +10,7 @@ var SearchProductRequest = function (index, searchString) {
     this.SortBy = ProductSortEnum.ProductNameAToZ;
     this.Index = index || 0; // int
     this.SearchString = searchString || ""; // string
-    this.NumberOfResultsPerPage = 10; // int
+    this.NumberOfResultsPerPage = 20; // int
 }
 var SearchProductManagement = {
     model: {
@@ -19,7 +19,7 @@ var SearchProductManagement = {
         SortBy: ProductSortEnum.ProductNameAToZ,// int 
         Index: 0, // int
         SearchString: "", // string
-        NumberOfResultsPerPage: 10 // int
+        NumberOfResultsPerPage: 20 // int
     },
     controls: {
         spin: null
@@ -206,11 +206,10 @@ var SearchProductManagement = {
         /// <param>N/A</param>
         /// <returns>N/A</returns>
 
-        var template = '   <div class="col-md-3 product-men" data-toggle="popover" title="' + product.Name + '" data-content="' + product.ShortDescription + '">  ';
+        var template = "   <div class='col-md-3 product-men' data-toggle='popover' title='" + product.Name + "' data-content='" + product.ShortDescription + "'>";
         template += '           <div class="men-pro-item simpleCart_shelfItem">  ';
         template += '               <a href="/Product/ProductDetails/' + product.Id + '" class="men-thumb-item">  ';
         template += '                   <img src="' + product.CoverImageUrl + '" alt="" class="pro-image-front">  ';
-        template += '                   <img src="' + product.CoverImageUrl + '" alt="" class="pro-image-back">  ';
         template += '                   <div class="men-cart-pro">  ';
         template += '                       <div class="inner-men-cart-pro">  ';
         template += '                           <a href="/Product/ProductDetails?id=' + product.Id + '" class="link-product-add-cart">Chi Tiết</a>';

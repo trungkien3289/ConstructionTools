@@ -1,0 +1,72 @@
+﻿.panel-heading .accordion-toggle:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+    float: right;        /* adjust as needed */
+    color: grey;         /* adjust as needed */
+}
+.panel-heading .accordion-toggle.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+}
+
+.panel-heading .accordion-toggle{
+    font-weight:800;
+    font-size:14px;
+}
+
+.list-group-item:first-child {
+    border-radius:0;
+}
+
+.filter-panel a.list-group-item {
+    font-size:12px;
+}
+
+.filter-panel{
+    padding:0;
+}
+
+.listproduct-panel{
+    padding:0;
+}
+
+/* style for search control */
+#custom-search-input{
+    padding: 3px;
+    border: solid 1px #E4E4E4;
+    border-radius: 6px;
+    background-color: #fff;
+    width: 60%;
+    float: left;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10px;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+    font-size:14px;
+    height:30px;
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search{
+    font-size: 21px;
+}

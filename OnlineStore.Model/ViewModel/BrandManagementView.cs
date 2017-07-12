@@ -27,6 +27,8 @@ namespace OnlineStore.Model.ViewModel
         public Nullable<int> Status { get; set; }
         [DisplayName("THÔNG TIN VỀ THƯƠNG HIỆU")]
         public string Description { get; set; }
+        public string ImagePath { get; set; }
+        public int ImageId { get; set; }
     }
 
     public class EditBrandManagementGetResponse
@@ -39,6 +41,7 @@ namespace OnlineStore.Model.ViewModel
         [DisplayName("THÔNG TIN VỀ THƯƠNG HIỆU")]
         public string Description { get; set; }
         public string ImagePath { get; set; }
+        public int? ImageId { get; set; }
     }
 
     public class BranchSummary

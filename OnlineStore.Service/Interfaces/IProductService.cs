@@ -13,30 +13,35 @@ namespace OnlineStore.Service.Interfaces
     {
         void RefreshAll();
         IEnumerable<ProductSummaryViewModel> GetListProducts();
-        IEnumerable<ProductSummaryViewModel> GetProducts(int pageNumber, int pageSize, out int totalItems);
+
+        IEnumerable<ProductSummaryViewModel> GetProducts(string keyword, int pageNumber, int pageSize, int? categoryId, int? brandId, out int totalItems);
 
         /// <summary>
         /// Get list brand using for create brand dropdownlist to let user choose brand for product 
         /// </summary>
         /// <returns></returns>
          IEnumerable<ecom_Brands> GetListBrand();
+
         /// <summary>
         /// Get list product group for create dropdownlist
         /// </summary>
         /// <returns></returns>
         IEnumerable<ecom_ProductGroups> GetListProductGroup();
+
         /// <summary>
         /// Add new image to database
         /// </summary>
         /// <param name="image"></param>
         /// <returns></returns>
          Nullable<int> AddImage(share_Images image);
+
         /// <summary>
         /// Add new product to database
         /// </summary>
         /// <param name="newProduct"></param>
         /// <returns></returns>
          bool AddProduct(CreateProductPostRequest newProduct);
+
         /// <summary>
         /// Add image for exist product 
         /// </summary>
@@ -45,18 +50,21 @@ namespace OnlineStore.Service.Interfaces
          /// <param name="listImages"> return list image after adding finish</param>
          /// <returns>return true if action is success or false action is fail</returns>
          bool AddImageForProduct(int IdProduct, share_Images photo);
+
         /// <summary>
         /// Update product
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
         bool UpdateProduct(ProductFullView product);
+
         /// <summary>
         /// Get product by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         ecom_Products GetProductById(int id);
+
         /// <summary>
         /// Delete image in product
         /// </summary>
@@ -66,12 +74,14 @@ namespace OnlineStore.Service.Interfaces
         /// <param name="imagePath">path of deteled image(using for delete image in folder)</param>
         /// <returns>return true if action is success or false if action is fail</returns>
         bool DeleteImage(int productId, int imageId, out share_Images deleteImages);
+
         /// <summary>
         /// Delete product (set status is Delete)
         /// </summary>
         /// <param name="?"></param>
         /// <returns></returns>
         bool DeleteProduct(int id);
+
         /// <summary>
         /// Set as cover image of product
         /// </summary>
@@ -80,6 +90,7 @@ namespace OnlineStore.Service.Interfaces
         /// <param name="listImages"></param>
         /// <returns></returns>
         bool SetAsCoverImage(int productId, int imageId);
+
         /// <summary>
         /// update image information of product
         /// </summary>
@@ -89,10 +100,26 @@ namespace OnlineStore.Service.Interfaces
         /// <param name="listImages">list images of product returned</param>
         /// <returns></returns>
         bool UpdateProductImage(int productId, OnlineStore.Service.Messaging.UpdateProductImage image, bool isCoverImage);
+
         /// <summary>
         /// Get all categories
         /// </summary>
         /// <returns></returns>
         IEnumerable<ecom_Categories> GetListCategory();
+
+        /// <summary>
+        /// Get number products of category
+        /// </summary>
+        /// <param name="categoryId">category identifier</param>
+        /// <returns>number of product belong to that category</returns>
+        int GetNumberProductOfCategory(int categoryId);
+
+        /// <summary>
+        /// Get number products of brand
+        /// </summary>
+        /// <param name="categoryId">brand identifier</param>
+        /// <returns>number of product belong to that brand</returns>
+        int GetNumberProductOfBrand(int brandId);
+
     }
 }

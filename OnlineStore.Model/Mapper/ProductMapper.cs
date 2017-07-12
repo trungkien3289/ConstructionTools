@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace OnlineStore.Model.Mapper
 {
@@ -35,7 +36,9 @@ namespace OnlineStore.Model.Mapper
                 IsBestSellProduct = product.IsBestSellProduct,
                 SortOrder = product.SortOrder,
                 Status = product.Status,
-                share_Images = product.share_Images.ConvertToImageProductViewModels()
+                share_Images = product.share_Images.ConvertToImageProductViewModels(),
+                MadeIn = product.MadeIn,
+                WarrantyPeriod = product.WarrantyPeriod
             };
 
             return productFullView;
@@ -77,7 +80,7 @@ namespace OnlineStore.Model.Mapper
                 Price = product.Price,
                 OldPrice = product.OldPrice,
                 SaleOff = product.OldPrice!=null && product.OldPrice!=0? FormatHelper.CalculatePercetage(product.Price,(decimal)product.OldPrice):0,
-                CoverImageUrl = product.CoverImage != null ? product.CoverImage.ImagePath : DisplayProductConstants.NoImagePath,
+                CoverImageUrl = product.CoverImage != null ? DisplayProductConstants.SmallProductImageFolderPath + product.CoverImage.ImageName : DisplayProductConstants.NoImagePath,
                 IsNew = product.IsNewProduct,
                 ShortDescription = product.Description
             };

@@ -35,6 +35,12 @@ namespace OnlineStoreMVC.Controllers
 
         #region Private functions
 
+        /// <summary>
+        /// Get top products of selected category
+        /// </summary>
+        /// <param name="mainCategoryId"></param>
+        /// <param name="top"></param>
+        /// <returns></returns>
         private IEnumerable<ProductSummaryView> GetTopProduct(int mainCategoryId, int top)
         {
             try
@@ -65,6 +71,10 @@ namespace OnlineStoreMVC.Controllers
             }
         }
 
+        /// <summary>
+        /// Get top categories
+        /// </summary>
+        /// <returns></returns>
         private IEnumerable<SummaryCategoryViewModel> GetTopCategoriesList()
         {
             return _categoryService.GetTopCategories();
@@ -80,10 +90,7 @@ namespace OnlineStoreMVC.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            //PopulateNewProductList();
-            //PopulateBestSellProductList();
             PopulateCategoryList();
-            // populate main categories
             ViewBag.MainCategories =  GetChildrenCategories(null);
 
             return View();
@@ -147,12 +154,21 @@ namespace OnlineStoreMVC.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Page request to get price tag from suplier for selected product
+        /// </summary>
+        /// <returns></returns>
         public ActionResult QuickQuote()
         {
             ViewBag.Message = "Báo giá nhanh";
             return View();
         }
 
+        /// <summary>
+        /// Request to to get product price
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> QuickQuote(QuickQuoteViewModel viewModel)
@@ -176,11 +192,20 @@ namespace OnlineStoreMVC.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Render sending request product price successfully page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult QuickQuoteCompleted()
         {
             return View();
         }
 
+        /// <summary>
+        /// Render header of page
+        /// </summary>
+        /// <param name="searchType"></param>
+        /// <returns></returns>
         public ActionResult _HeaderPartial(int? searchType)
         {
             PopulateSearchType(searchType != null ? (SearchType)searchType : SearchType.AllProduct);
@@ -189,6 +214,10 @@ namespace OnlineStoreMVC.Controllers
             return PartialView();
         }
 
+        /// <summary>
+        /// Render footer of page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult _FooterPartial()
         {
             ViewBag.TopCategoriesList = GetTopCategoriesList();

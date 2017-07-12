@@ -17,7 +17,7 @@ namespace OnlineStoreMVC.Controllers
     {
         #region properties
 
-        private static int productPerPage = 15;
+        private static int productPerPage = 20;
 
         #endregion
 

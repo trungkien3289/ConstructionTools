@@ -65,7 +65,6 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         private IEnumerable<SelectListItem> PopulateListBrand(int? selectedBrandId = null)
         {
             IEnumerable<ecom_Brands> brands = service.GetListBrand();
-
             IEnumerable<SelectListItem> listBrands = brands.Select(b => new SelectListItem()
             {
                 Text = b.Name,
@@ -110,16 +109,16 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         {
             try
             {
-                ImageUpload largeImage = new ImageUpload { SavePath = DisplayProductConstants.LargeProductImageFolderPath};
-                ImageUpload smallImage = new ImageUpload { SavePath = DisplayProductConstants.SmallProductImageFolderPath };
+                //ImageUpload largeImage = new ImageUpload { SavePath = DisplayProductConstants.LargeProductImageFolderPath};
+                //ImageUpload smallImage = new ImageUpload { SavePath = DisplayProductConstants.SmallProductImageFolderPath };
                 var fileName = Path.GetFileName(file.FileName);
                 string finalFileName = "ProductImage_" + ((counter).ToString()) + "_" + fileName;
                 if (System.IO.File.Exists(HttpContext.Request.MapPath("~" + DisplayProductConstants.LargeProductImageFolderPath + finalFileName)) || System.IO.File.Exists(HttpContext.Request.MapPath("~" + DisplayProductConstants.SmallProductImageFolderPath + finalFileName)))
                 {
                     return UploadProductImages(file, out largeFileName, ++counter);
                 }
-                ImageResult uploadLargeImage = largeImage.UploadProductImage(file, finalFileName,1000);
-                ImageResult uploadSmallImage = smallImage.UploadProductImage(file, finalFileName,700);
+                ImageResult uploadLargeImage = ImageUpload.UploadProductImage(file, finalFileName, 1000, DisplayProductConstants.LargeProductImageFolderPath);
+                ImageResult uploadSmallImage = ImageUpload.UploadProductImage(file, finalFileName, 300, DisplayProductConstants.SmallProductImageFolderPath);
                 largeFileName = uploadSmallImage.ImageName;
                 return true;
             }
@@ -140,10 +139,28 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         /// <param name="keyword"></param>
         /// <param name="page"></param>
         /// <returns></returns>
-        public ActionResult Index(string keyword, int page = 1)
+        public ActionResult Index(string keyword, int? categoryId, int? brandId, int page = 1)
         {
             int totalItems = 0;
-            var products = service.GetProducts(page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, out totalItems);
+            var products = service.GetProducts(keyword, page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, categoryId,brandId, out totalItems);
+            // Populate list category with number of product belong to that category
+            IEnumerable<ecom_Categories> categories = service.GetListCategory();
+            ViewBag.ListCategory = categories.Select(c => new CategoryFilterItem()
+            {
+                Id = c.Id,
+                Name = c.Name,
+                NumberOfProduct = service.GetNumberProductOfCategory(c.Id)
+            }).ToList();
+            // Populate list brand and number of product belong to that brand
+            IEnumerable<ecom_Brands> brands = service.GetListBrand();
+            ViewBag.ListBrand = brands.Select(b => new BrandFilterItem()
+            {
+                Id = b.Id,
+                Name = b.Name,
+                NumberOfProduct = service.GetNumberProductOfBrand(b.Id)
+            }).ToList();
+
+            ViewBag.SearchString = keyword;
 
             IPagedList<ProductSummaryViewModel> pageProducts = new StaticPagedList<ProductSummaryViewModel>(products, page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, totalItems);
             return View(pageProducts);
@@ -182,13 +199,13 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
 
                         if (isSuccess)
                         {
-                            share_Images largeImage = new share_Images
-                            {
-                                ImageName = largeFileName,
-                                ImagePath = Path.Combine(ImageUpload.LargeImagePath, largeFileName)
-                            };
-
-                            var imageId = service.AddImage(largeImage);
+                            var imageId = service.AddImage(
+                                new share_Images
+                                {
+                                    ImageName = largeFileName,
+                                    ImagePath = Path.Combine(ImageUpload.LargeImagePath, largeFileName)
+                                }
+                            );
                             // Add product
                             productRequest.CoverImageId = imageId;
                             service.AddProduct(productRequest);
@@ -259,6 +276,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             ViewBag.BrandId = PopulateListBrand(product.BrandId);
             ViewBag.Categories = PopulateListCategory(listCategory);
             ViewBag.ProductGroups = PopulateListProductGroup(listProductGroup);
+
             return View(product.ConvertToProductFullView());
         }
 
@@ -288,6 +306,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
                 PopulateStatusDropDownList();
             }
             ViewBag.BrandId = PopulateListBrand(product.BrandId);
+
             return View(product);
         }
 

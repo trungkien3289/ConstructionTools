@@ -37,6 +37,8 @@ namespace OnlineStore.Model.ViewModel
         public string OldPriceFormatCurrency { get; set; }
         public decimal Price { get; set; }
         public decimal? OldPrice { get; set; }
+        public string MadeIn { get; set; }
+        public string WarrantyPeriod { get; set; }
         public ImageInfor CoverImageUrl { get; set; }
         public string Description { get; set; }
         public string Description2 { get; set; }

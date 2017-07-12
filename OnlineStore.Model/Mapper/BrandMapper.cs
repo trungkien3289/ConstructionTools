@@ -51,7 +51,8 @@ namespace OnlineStore.Model.Mapper
                     Name = brand.Name,
                     Status = (int)brand.Status,
                     Description = brand.Description,
-                    ImagePath = brand.share_Images!=null? brand.share_Images.ImagePath: DisplayProductConstants.NoImagePath
+                    ImagePath = brand.share_Images!=null? brand.share_Images.ImagePath: DisplayProductConstants.NoImagePath,
+                    ImageId = brand.ImageId
                 };
 
             return returnModel;
@@ -63,7 +64,8 @@ namespace OnlineStore.Model.Mapper
                 Id = brandView.Id,
                 Name = brandView.Name,
                 Status = brandView.Status,
-                Description = brandView.Description
+                Description = brandView.Description,
+                ImageId = brandView.ImageId
             };
 
             return returnModel;

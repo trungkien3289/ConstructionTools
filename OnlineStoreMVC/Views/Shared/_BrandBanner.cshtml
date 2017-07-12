@@ -41,17 +41,15 @@
 <div class="b-brandbanner row">
     @for (int i = 0; i < numberBrands/2; i++)
     {
-        <div class="owl-carousel owl-theme col-md-3 col-sm-6 col-xs-6">
+        <div class="owl-carousel owl-theme col-lg-3 col-md-3 col-sm-6 col-xs-6">
             <div class="item" style="padding-bottom: 2px;">
                 <a href="/Product/DisplayProductsOfBranch/@Model[i*2].Id">
                     <img class="coverimage-brandlist-horizontalbar" title="@Model[i * 2].Name" src="@Model[i * 2].CoverImagePath" />
-                    @*<p class="brandname-brandlist-horizontalbar">@Model[i * 2].Name</p>*@
                 </a>
             </div>
             <div class="item">
                 <a href="/Product/DisplayProductsOfBranch/@Model[i * 2 + 1].Id">
                     <img class="coverimage-brandlist-horizontalbar" title="@Model[i * 2 + 1].Name" src="@Model[i * 2 + 1].CoverImagePath" />
-                    @*<p class="brandname-brandlist-horizontalbar">@Model[i * 2 + 1].Name</p>*@
                 </a>
             </div>
         </div>

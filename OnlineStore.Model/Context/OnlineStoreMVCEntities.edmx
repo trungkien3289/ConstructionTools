@@ -207,6 +207,8 @@
           <Property Name="ModifiedBy" Type="uniqueidentifier" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="Specification" Type="nvarchar(max)" />
+          <Property Name="WarrantyPeriod" Type="nvarchar" MaxLength="250" />
+          <Property Name="MadeIn" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="ecom_Products_Categories">
           <Key>
@@ -748,6 +750,8 @@
           <NavigationProperty Name="ecom_ProductGroups" Relationship="OnlineStoreMVCModel.ecom_Products_ProductGroups1" FromRole="ecom_Products" ToRole="ecom_ProductGroups" />
           <Property Name="Specification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="OldPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="WarrantyPeriod" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MadeIn" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="share_Categories">
           <Key>
@@ -1245,6 +1249,8 @@
           <EntitySetMapping Name="ecom_Products">
             <EntityTypeMapping TypeName="OnlineStoreMVCModel.ecom_Products">
               <MappingFragment StoreEntitySet="ecom_Products">
+                <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+                <ScalarProperty Name="WarrantyPeriod" ColumnName="WarrantyPeriod" />
                 <ScalarProperty Name="OldPrice" ColumnName="OldPrice" />
                 <ScalarProperty Name="Specification" ColumnName="Specification" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

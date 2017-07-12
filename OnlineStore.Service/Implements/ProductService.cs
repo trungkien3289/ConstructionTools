@@ -11,6 +11,7 @@ using OnlineStore.Infractructure.Helper;
 using OnlineStore.Infractructure.Utility;
 using OnlineStore.Model.MessageModel;
 using System.Data.Entity;
+using LinqKit;
 
 namespace OnlineStore.Service.Implements
 {
@@ -81,11 +82,35 @@ namespace OnlineStore.Service.Implements
         /// <param name="pageSize">total product are displayed on a page</param>
         /// <param name="totalItems">number of found product</param>
         /// <returns>List found product with summary information</returns>
-        public IEnumerable<ProductSummaryViewModel> GetProducts(int pageNumber, int pageSize, out int totalItems)
+        public IEnumerable<ProductSummaryViewModel> GetProducts(string keyword, int pageNumber, int pageSize, int? categoryId,int? brandId, out int totalItems)
         {
-            IEnumerable<ecom_Products> products = db.GetAllProductsWithoutDelete();
-            totalItems = products.Count();
-            IEnumerable<ProductSummaryViewModel> returnCategoryList = products.OrderBy(b => b.Name).Skip(pageSize * (pageNumber - 1)).Take(pageSize).Select(p => new ProductSummaryViewModel()
+            var query = PredicateBuilder.True<ecom_Products>();
+
+            if (!String.IsNullOrEmpty(keyword))
+            {
+                query = query.And(p => p.Name.Contains(keyword));
+            }
+
+            if (categoryId != null)
+            {
+                query = query.And(p => p.ecom_Categories.Select(c => c.Id).Contains(categoryId.Value));
+            }
+
+            if (brandId != null)
+            {
+                query = query.And(p => p.BrandId == brandId.Value);
+            }
+
+            query = query.And(p => p.Status != (int)Define.Status.Delete);
+            IEnumerable<ecom_Products> productsMatchingRefinement = db.Get(
+                filter: query,
+                orderBy: p => p.OrderBy(x => x.Name),
+                includeProperties: "share_Images",
+                skip: (pageNumber-1)*pageSize,
+                take: pageSize,
+                isDistinct: true);
+            totalItems = db.Count(query);
+            IEnumerable<ProductSummaryViewModel> returnCategoryList = productsMatchingRefinement.Select(p => new ProductSummaryViewModel()
             {
                 Id = p.Id,
                 Name = p.Name,
@@ -95,6 +120,7 @@ namespace OnlineStore.Service.Implements
                 Status = EnumHelper.GetDescriptionFromEnum((Define.Status)p.Status),
                 CoverImage = p.CoverImage
             }).ToList();
+
             return returnCategoryList;
         }
 
@@ -161,25 +187,32 @@ namespace OnlineStore.Service.Implements
                     IsNewProduct = newProduct.IsNewProduct,
                     IsBestSellProduct = newProduct.IsBestSellProduct,
                     SortOrder = newProduct.SortOrder,
-                    Status = newProduct.Status
+                    Status = newProduct.Status,
+                    MadeIn = newProduct.MadeIn,
+                    WarrantyPeriod = newProduct.WarrantyPeriod
                 };
                 // Add the product images
                 share_Images coverImage = imageRepository.GetByID(newProduct.CoverImageId);
                 product.share_Images.Add(coverImage);
                 // Add the product categories
-                foreach (int category in newProduct.CategoryId)
+                if (newProduct.CategoryId != null)
                 {
-                    var selectedCategory = categoryRepository.GetByID(category);
-                    if(selectedCategory!=null){
-                        product.ecom_Categories.Add(selectedCategory);
+                    foreach (int category in newProduct.CategoryId)
+                    {
+                        var selectedCategory = categoryRepository.GetByID(category);
+                        if (selectedCategory != null)
+                        {
+                            product.ecom_Categories.Add(selectedCategory);
+                        }
                     }
                 }
+                
                 db.Insert(product);
                 db.Save();
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }
@@ -236,6 +269,9 @@ namespace OnlineStore.Service.Implements
                 product.IsBestSellProduct = productViewModel.IsBestSellProduct;
                 product.SortOrder = productViewModel.SortOrder;
                 product.Status = productViewModel.Status;
+                product.MadeIn = productViewModel.MadeIn;
+                product.WarrantyPeriod = productViewModel.WarrantyPeriod;
+
 
                 if (productViewModel.CategoryId == null)
                 {
@@ -454,5 +490,20 @@ namespace OnlineStore.Service.Implements
         }
 
         #endregion
+
+
+        public int GetNumberProductOfCategory(int categoryId)
+        {
+            return db.Count(filter: p => p.ecom_Categories.Select(c => c.Id).Contains(categoryId) && p.Status != (int)Define.Status.Delete); 
+        }
+
+
+        public int GetNumberProductOfBrand(int brandId)
+        {
+            return db.Count(filter: p => p.BrandId == brandId && p.Status != (int)Define.Status.Delete); 
+        }
+
+
+        
     }
 }

@@ -18,4 +18,11 @@ namespace OnlineStore.Model.ViewModel
         public Nullable<int> Status { get; set; }
         public string StartEndDate { get; set; }
     }
+
+    public class BrandFilterItem
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int NumberOfProduct { get; set; }
+    }
 }

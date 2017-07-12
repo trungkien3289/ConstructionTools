@@ -46,6 +46,8 @@ namespace OnlineStore.Model.Context
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public string Specification { get; set; }
         public Nullable<decimal> OldPrice { get; set; }
+        public string WarrantyPeriod { get; set; }
+        public string MadeIn { get; set; }
     
         public virtual ecom_Brands ecom_Brands { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

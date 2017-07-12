@@ -25,128 +25,7 @@ namespace OnlineStoreMVC.Models.ImageModels
         // default = true
         public bool? IsScale { get; set; }
 
-        public ImageUpload()
-        {
-            // Default path
-            if (string.IsNullOrEmpty(SavePath))
-            {
-                SavePath = LoadPath;
-            }
-        }
-
-        public ImageResult RenameUploadFile(HttpPostedFileBase file, Int32 counter = 0)
-        {
-            var fileName = Path.GetFileName(file.FileName);
-            string prepend = "item_";
-            string finalFileName = prepend + ((counter).ToString()) + "_" + fileName;
-            if (System.IO.File.Exists(HttpContext.Current.Request.MapPath("~" + SavePath + finalFileName)))
-            {
-                return RenameUploadFile(file, ++counter);
-            }
-            return UploadFile(file, finalFileName);
-        }
-
-        public ImageResult UploadFile(HttpPostedFileBase file, string fileName)
-        {
-            ImageResult imageResult = new ImageResult { Success = true, ErrorMessage = null };
-
-            var path = Path.Combine(HttpContext.Current.Request.MapPath(SavePath), fileName);
-            string extension = Path.GetExtension(file.FileName);
-
-            //make sure the file is valid
-            if (!ValidateExtension(extension))
-            {
-                imageResult.Success = false;
-                imageResult.ErrorMessage = "Invalid Extension";
-                return imageResult;
-            }
-            try
-            {
-                file.SaveAs(path);
-
-                Image imgOriginal = Image.FromFile(path);
-                //pass in whatever value you want
-                if (IsScale == true || IsScale == null)
-                {
-                    Image imgActual = Scale(imgOriginal);
-                    imgOriginal.Dispose();
-                    imgActual.Save(path);
-                    imgActual.Dispose();
-                }
-
-                imageResult.ImageName = Path.GetFileName(fileName);
-                imageResult.ImagePath = Path.Combine(SavePath, fileName);
-                return imageResult;
-            }
-            catch (Exception ex)
-            {
-                // you might NOT want to show the exception error for the user
-                // this is generally logging or testing
-                imageResult.Success = false;
-                imageResult.ErrorMessage = ex.Message;
-                return imageResult;
-            }
-        }
-
-        public ImageResult UploadProductImage(HttpPostedFileBase file, string fileName, int size)
-        {
-            ImageResult imageResult = new ImageResult { Success = true, ErrorMessage = null };
-
-            var path = Path.Combine(HttpContext.Current.Request.MapPath(SavePath), fileName);
-            string extension = Path.GetExtension(file.FileName);
-
-            //make sure the file is valid
-            if (!ValidateExtension(extension))
-            {
-                imageResult.Success = false;
-                imageResult.ErrorMessage = "Invalid Extension";
-                return imageResult;
-            }
-            try
-            {
-                file.SaveAs(path);
-
-                Image imgOriginal = Image.FromFile(path);
-                //pass in whatever value you want
-                if (IsScale == true || IsScale == null)
-                {
-                    Image imgActual = CreateSquareImage(imgOriginal, size);
-                    imgOriginal.Dispose();
-                    imgActual.Save(path);
-                    imgActual.Dispose();
-                }
-
-                imageResult.ImageName = Path.GetFileName(fileName);
-                imageResult.ImagePath = Path.Combine(SavePath, fileName);
-                return imageResult;
-            }
-            catch (Exception ex)
-            {
-                // you might NOT want to show the exception error for the user
-                // this is generally logging or testing
-                imageResult.Success = false;
-                imageResult.ErrorMessage = ex.Message;
-                return imageResult;
-            }
-        }
-
-        private bool ValidateExtension(string extension)
-        {
-            extension = extension.ToLower();
-            switch (extension)
-            {
-                case ".jpg":
-                    return true;
-                case ".png":
-                    return true;
-                case ".gif":
-                    return true;
-                case ".jpeg":
-                    return true;
-                default:
-                    return false;
-            }
-        }
+        #region private functions
 
         private Image Scale(Image imgPhoto)
         {
@@ -193,8 +72,147 @@ namespace OnlineStoreMVC.Models.ImageModels
 
             return bmPhoto;
         }
+        private static bool ValidateExtension(string extension)
+        {
+            extension = extension.ToLower();
+            switch (extension)
+            {
+                case ".jpg":
+                    return true;
+                case ".png":
+                    return true;
+                case ".gif":
+                    return true;
+                case ".jpeg":
+                    return true;
+                default:
+                    return false;
+            }
+        }
 
-        private Image CreateSquareImage(Image img, int size)
+        #endregion 
+
+        #region public functions
+
+        public ImageUpload()
+        {
+            // Default path
+            if (string.IsNullOrEmpty(SavePath))
+            {
+                SavePath = LoadPath;
+            }
+        }
+
+        public ImageResult RenameUploadFile(HttpPostedFileBase file, Int32 counter = 0)
+        {
+            var fileName = Path.GetFileName(file.FileName);
+            string prepend = "item_";
+            string finalFileName = prepend + ((counter).ToString()) + "_" + fileName;
+            if (System.IO.File.Exists(HttpContext.Current.Request.MapPath("~" + SavePath + finalFileName)))
+            {
+                return RenameUploadFile(file, ++counter);
+            }
+
+            return UploadFile(file, finalFileName);
+        }
+
+        public ImageResult UploadFile(HttpPostedFileBase file, string fileName)
+        {
+            ImageResult imageResult = new ImageResult { Success = true, ErrorMessage = null };
+            var path = Path.Combine(HttpContext.Current.Request.MapPath(SavePath), fileName);
+            string extension = Path.GetExtension(file.FileName);
+
+            //make sure the file is valid
+            if (!ValidateExtension(extension))
+            {
+                imageResult.Success = false;
+                imageResult.ErrorMessage = "Invalid Extension";
+                return imageResult;
+            }
+            try
+            {
+                file.SaveAs(path);
+                Image imgOriginal = Image.FromFile(path);
+                //pass in whatever value you want
+                if (IsScale == true || IsScale == null)
+                {
+                    Image imgActual = Scale(imgOriginal);
+                    imgOriginal.Dispose();
+                    imgActual.Save(path);
+                    imgActual.Dispose();
+                }
+
+                imageResult.ImageName = Path.GetFileName(fileName);
+                imageResult.ImagePath = Path.Combine(SavePath, fileName);
+                return imageResult;
+            }
+            catch (Exception ex)
+            {
+                // you might NOT want to show the exception error for the user
+                // this is generally logging or testing
+                imageResult.Success = false;
+                imageResult.ErrorMessage = ex.Message;
+                return imageResult;
+            }
+        }
+
+        #endregion
+
+        #region static functions
+
+        /// <summary>
+        /// Upload product image
+        /// </summary>
+        /// <param name="file">image file</param>
+        /// <param name="fileName">file name</param>
+        /// <param name="size">expected size</param>
+        /// <param name="savePath">location to save file</param>
+        /// <returns>result</returns>
+        public static ImageResult UploadProductImage(HttpPostedFileBase file, string fileName, int size, string savePath)
+        {
+            ImageResult imageResult = new ImageResult { Success = true, ErrorMessage = null };
+            var path = Path.Combine(HttpContext.Current.Request.MapPath(savePath), fileName);
+            string extension = Path.GetExtension(file.FileName);
+
+            //make sure the file is valid
+            if (!ValidateExtension(extension))
+            {
+                imageResult.Success = false;
+                imageResult.ErrorMessage = "Invalid Extension";
+                return imageResult;
+            }
+            try
+            {
+                file.SaveAs(path);
+                Image imgOriginal = Image.FromFile(path);
+                //pass in whatever value you want
+                Image imgActual = CreateSquareImage(imgOriginal, size);
+                imgOriginal.Dispose();
+                imgActual.Save(path);
+                imgActual.Dispose();
+
+                imageResult.ImageName = Path.GetFileName(fileName);
+                imageResult.ImagePath = Path.Combine(savePath, fileName);
+                return imageResult;
+            }
+            catch (Exception ex)
+            {
+                // you might NOT want to show the exception error for the user
+                // this is generally logging or testing
+                imageResult.Success = false;
+                imageResult.ErrorMessage = ex.Message;
+                return imageResult;
+            }
+        }
+
+        /// <summary>
+        /// Create square image from an exist image,
+        /// old image will be resize to new size and align center in new image
+        /// </summary>
+        /// <param name="img">old image</param>
+        /// <param name="size">size of new image</param>
+        /// <returns>image result</returns>
+        private static Image CreateSquareImage(Image img, int size)
         {
             float sourceWidth = img.Width;
             float sourceHeight = img.Height;
@@ -217,12 +235,8 @@ namespace OnlineStoreMVC.Models.ImageModels
                 destY = (int)(size - destHeight)/2;
             }
 
-            //Bitmap bmPhoto = new Bitmap((int)destWidth, (int)destHeight,
-            //                            PixelFormat.Format32bppPArgb);
-            //bmPhoto.SetResolution(img.HorizontalResolution, img.VerticalResolution);
-
+            // Create new empty image with choosed size and draw old image on the center of the new image
             Bitmap bmPhoto = ResizeImage(img, (int)destWidth, (int)destHeight);
-
             Bitmap resultImage = new Bitmap(size, size, PixelFormat.Format32bppPArgb);
             resultImage.SetResolution(bmPhoto.HorizontalResolution, bmPhoto.VerticalResolution);
             Graphics g = System.Drawing.Graphics.FromImage(resultImage);
@@ -241,7 +255,7 @@ namespace OnlineStoreMVC.Models.ImageModels
         /// <param name="width">The destination width.</param>
         /// <param name="height">The destination height</param>
         /// <returns>The image resized</returns>
-        public Bitmap ResizeImage(Image image, int width, int height)
+        public static Bitmap ResizeImage(Image image, int width, int height)
         {
             var destRect = new Rectangle(0, 0, width, height);
             var destImage = new Bitmap(width, height);
@@ -260,11 +274,12 @@ namespace OnlineStoreMVC.Models.ImageModels
                 {
                     wrapMode.SetWrapMode(WrapMode.TileFlipXY);
                     graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
-                    //graphics.DrawImage(image, destRect, new Rectangle(0, 0, (int)image.Width, (int)image.Height), GraphicsUnit.Pixel);
                 }
             }
 
             return destImage;
         }
+
+        #endregion
     }
 }

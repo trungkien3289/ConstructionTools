@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,14 +10,22 @@ using System.Threading.Tasks;
 namespace OnlineStore.Model.MessageModel
 {
     public class CreateProductPostRequest{
+        [Required]
         [DisplayName("Mã sản phẩm")]
         public string ProductCode { get; set; }
+        [Required]
         [DisplayName("Tên sản phẩm")]
         public string Name { get; set; }
         [DisplayName("Giá bán")]
+        [Required]
         public decimal Price { get; set; }
+        [Required]
         [DisplayName("Giá bán cũ")]
         public decimal OldPrice { get; set; }
+        [DisplayName("Xuất xứ")]
+        public string MadeIn { get; set; }
+        [DisplayName("Bảo hành")]
+        public string WarrantyPeriod { get; set; }
         [DisplayName("Số lượng")]
         public Nullable<int> Quantity { get; set; }
         [DisplayName("Đơn vị")]

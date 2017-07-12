@@ -206,11 +206,10 @@ var GroupProductsManagement = {
         /// <param>N/A</param>
         /// <returns>N/A</returns>
 
-        var template = '   <div class="col-md-3 product-men" data-toggle="popover" title="' + product.Name + '" data-content="' + product.ShortDescription + '">  ';
+        var template = "   <div class='col-md-3 product-men' data-toggle='popover' title='" + product.Name + "' data-content='" + product.ShortDescription + "'>";
         template += '           <div class="men-pro-item simpleCart_shelfItem">  ';
         template += '               <a href="/Product/ProductDetails/' + product.Id + '" class="men-thumb-item">  ';
         template += '                   <img src="' + product.CoverImageUrl + '" alt="" class="pro-image-front">  ';
-        template += '                   <img src="' + product.CoverImageUrl + '" alt="" class="pro-image-back">  ';
         template += '                   <div class="men-cart-pro">  ';
         template += '                       <div class="inner-men-cart-pro">  ';
         template += '                           <a href="/Product/ProductDetails?id=' + product.Id + '" class="link-product-add-cart">Chi Tiết</a>';

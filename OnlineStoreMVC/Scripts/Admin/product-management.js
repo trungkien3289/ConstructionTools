@@ -60,7 +60,7 @@ ProductManagement = {
         // install CKEditor
         var editor = CKEDITOR.instances['Description2'];
         if (editor) { editor.destroy(true); }
-        CKEDITOR.replace('Description', { enterMode: CKEDITOR.ENTER_BR });
+        CKEDITOR.replace('Description', {enterMode: CKEDITOR.ENTER_BR });
         CKEDITOR.replace('Description2', { enterMode: CKEDITOR.ENTER_BR });
         CKEDITOR.replace('Specification', { enterMode: CKEDITOR.ENTER_BR });
         CKFinder.setupCKEditor(null, "/Content/ckfinder/", null, null);

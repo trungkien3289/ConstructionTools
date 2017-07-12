@@ -382,6 +382,8 @@ namespace OnlineStore.Service.Implements
                     IsNewProduct = product.IsNewProduct,
                     IsBestSellProduct = product.IsBestSellProduct,
                     Branch = branch,
+                    MadeIn = product.MadeIn,
+                    WarrantyPeriod = product.WarrantyPeriod,
                     MainCategoryId = product.ecom_Categories.FirstOrDefault().Id,
                     Groups = product.ecom_ProductGroups.Select(g => new ProductGroupSummary()
                     {
