@@ -680,6 +680,7 @@ ol {
 .breadcrumb {
     font-style: italic;
     margin-bottom: 10px;
+    background-color:#fff;
 }
 
     .breadcrumb a {

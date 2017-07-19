@@ -143,6 +143,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         {
             int totalItems = 0;
             var products = service.GetProducts(keyword, page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, categoryId,brandId, out totalItems);
+            
             // Populate list category with number of product belong to that category
             IEnumerable<ecom_Categories> categories = service.GetListCategory();
             ViewBag.ListCategory = categories.Select(c => new CategoryFilterItem()
@@ -151,6 +152,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
                 Name = c.Name,
                 NumberOfProduct = service.GetNumberProductOfCategory(c.Id)
             }).ToList();
+            
             // Populate list brand and number of product belong to that brand
             IEnumerable<ecom_Brands> brands = service.GetListBrand();
             ViewBag.ListBrand = brands.Select(b => new BrandFilterItem()
@@ -162,7 +164,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
 
             ViewBag.SearchString = keyword;
 
-            IPagedList<ProductSummaryViewModel> pageProducts = new StaticPagedList<ProductSummaryViewModel>(products, page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, totalItems);
+            IPagedList<ProductManagementViewModel> pageProducts = new StaticPagedList<ProductManagementViewModel>(products, page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, totalItems);
             return View(pageProducts);
         }
 

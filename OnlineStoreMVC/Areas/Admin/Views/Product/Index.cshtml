@@ -1,6 +1,6 @@
 ﻿@using PagedList.Mvc
 @using PagedList;
-@model IPagedList<OnlineStore.Model.ViewModel.ProductSummaryViewModel>
+@model IPagedList<OnlineStore.Model.ViewModel.ProductManagementViewModel>
 
 @{
     ViewBag.Title = "Quản lý danh mục sản phẩm";
@@ -88,7 +88,7 @@
                                 <td>
                                     @if (item.CoverImage != null)
                                     {
-                                        <img src="@item.CoverImage.ImagePath" height="70" width="70" alt="ảnh không tồn tại" />
+                                        <img src="@item.CoverImage" height="70" width="70" alt="ảnh không tồn tại" />
                                     }
                                 </td>
                                 <td>

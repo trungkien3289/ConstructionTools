@@ -82,7 +82,7 @@ namespace OnlineStore.Service.Implements
         /// <param name="pageSize">total product are displayed on a page</param>
         /// <param name="totalItems">number of found product</param>
         /// <returns>List found product with summary information</returns>
-        public IEnumerable<ProductSummaryViewModel> GetProducts(string keyword, int pageNumber, int pageSize, int? categoryId,int? brandId, out int totalItems)
+        public IEnumerable<ProductManagementViewModel> GetProducts(string keyword, int pageNumber, int pageSize, int? categoryId, int? brandId, out int totalItems)
         {
             var query = PredicateBuilder.True<ecom_Products>();
 
@@ -109,8 +109,10 @@ namespace OnlineStore.Service.Implements
                 skip: (pageNumber-1)*pageSize,
                 take: pageSize,
                 isDistinct: true);
+
             totalItems = db.Count(query);
-            IEnumerable<ProductSummaryViewModel> returnCategoryList = productsMatchingRefinement.Select(p => new ProductSummaryViewModel()
+
+            IEnumerable<ProductManagementViewModel> returnCategoryList = productsMatchingRefinement.Select(p => new ProductManagementViewModel()
             {
                 Id = p.Id,
                 Name = p.Name,
@@ -118,7 +120,7 @@ namespace OnlineStore.Service.Implements
                 Price = p.Price,
                 SortOrder = p.SortOrder,
                 Status = EnumHelper.GetDescriptionFromEnum((Define.Status)p.Status),
-                CoverImage = p.CoverImage
+                CoverImage = p.CoverImage != null ? DisplayProductConstants.SmallProductImageFolderPath + p.CoverImage.ImageName : DisplayProductConstants.NoImagePath,
             }).ToList();
 
             return returnCategoryList;

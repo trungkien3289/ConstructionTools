@@ -25,6 +25,23 @@ namespace OnlineStore.Model.ViewModel
         public string Status { get; set; }
     }
 
+    public class ProductManagementViewModel
+    {
+        public int Id { get; set; }
+        [DisplayName("Mã sản phẩm")]
+        public string ProductCode { get; set; }
+        [DisplayName("Tên sản phẩm")]
+        public string Name { get; set; }
+        [DisplayName("Giá bán")]
+        public decimal Price { get; set; }
+        [DisplayName("Ảnh đại diện")]
+        public string CoverImage { get; set; }
+        [DisplayName("Ưu tiên sắp xếp")]
+        public Nullable<int> SortOrder { get; set; }
+        [DisplayName("Trạng thái")]
+        public string Status { get; set; }
+    }
+
     public class ProductFullView
     {
         public int Id { get; set; }

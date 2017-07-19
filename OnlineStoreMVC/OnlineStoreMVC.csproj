@@ -1645,6 +1645,7 @@
     <Content Include="Content\ckeditor\plugins\wsc\LICENSE.md" />
     <Content Include="Content\ckeditor\plugins\scayt\README.md" />
     <Content Include="Content\ckeditor\plugins\wsc\README.md" />
+    <Content Include="Content\font-awesome\4.3.0\fonts\utmavo.ttf" />
     <None Include="Properties\PublishProfiles\Construction.pubxml" />
     <None Include="Properties\PublishProfiles\ConstructionToolsStore.pubxml" />
     <None Include="Properties\PublishProfiles\xaviadecor.pubxml" />

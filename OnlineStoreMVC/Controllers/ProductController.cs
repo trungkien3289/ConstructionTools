@@ -152,6 +152,7 @@ namespace OnlineStoreMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             GetProductsByCategoryRequest request = CreateInitialProductSearchRequest((int)id);
             GetProductsByCategoryResponse response = service.GetProductsByCategory(request);
             PopulateStatusDropDownList();

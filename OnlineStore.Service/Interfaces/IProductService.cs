@@ -14,7 +14,7 @@ namespace OnlineStore.Service.Interfaces
         void RefreshAll();
         IEnumerable<ProductSummaryViewModel> GetListProducts();
 
-        IEnumerable<ProductSummaryViewModel> GetProducts(string keyword, int pageNumber, int pageSize, int? categoryId, int? brandId, out int totalItems);
+        IEnumerable<ProductManagementViewModel> GetProducts(string keyword, int pageNumber, int pageSize, int? categoryId, int? brandId, out int totalItems);
 
         /// <summary>
         /// Get list brand using for create brand dropdownlist to let user choose brand for product 

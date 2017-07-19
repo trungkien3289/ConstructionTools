@@ -16,7 +16,7 @@ input[type=search] {
 }
 
 html, body {
-    margin: 0;
+    margin: 0; 
     font-size: 100%;
     font-family: UTMAvo, sans-serif;
     background: #fff;
