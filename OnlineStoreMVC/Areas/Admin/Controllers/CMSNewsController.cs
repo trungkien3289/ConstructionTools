@@ -13,6 +13,7 @@ using PagedList;
 using OnlineStore.Model.ViewModel;
 using OnlineStoreMVC.Models.ImageModels;
 using System.IO;
+using System.Data.Entity.Validation;
 
 namespace OnlineStoreMVC.Areas.Admin.Controllers
 {
@@ -98,6 +99,22 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
                     _cmsNewsService.AddCMSNews(model);
 
                     return RedirectToAction("Index");
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException e)
+                {
+                    string error = string.Empty;
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        error += string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            error += string.Format("- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName, ve.ErrorMessage);
+                        }
+                    }
+
+                    ModelState.AddModelError("", error);
                 }
                 catch (Exception ex)
                 {

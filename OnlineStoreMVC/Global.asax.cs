@@ -20,6 +20,12 @@ namespace OnlineStoreMVC
 
             Application["OnlineVisitors"] = 0;
             Application["TotalVisitors"] = (new SystemConfigService()).GetTotalVisitors();
+
+            // Removing all the view engines
+            ViewEngines.Engines.Clear();
+
+            //Add Razor Engine
+            ViewEngines.Engines.Add(new MyCustomViewEngine());
         }
 
         protected void Application_End(object sender, EventArgs e)
@@ -47,6 +53,20 @@ namespace OnlineStoreMVC
             Application.Lock();
             Application["OnlineVisitors"] = (int)Application["OnlineVisitors"] - 1;
             Application.UnLock();
+        }
+    }
+
+    public class MyCustomViewEngine : RazorViewEngine
+    {
+        public MyCustomViewEngine()
+        {
+            base.AreaViewLocationFormats = new string[] { "~/Areas/{2}/Views/{1}/{0}.cshtml", "~/Areas/{2}/Views/Shared/{0}.cshtml" };
+            base.AreaMasterLocationFormats = new string[] { "~/Areas/{2}/Views/{1}/{0}.cshtml", "~/Areas/{2}/Views/Shared/{0}.cshtml" };
+            base.AreaPartialViewLocationFormats = new string[] { "~/Areas/{2}/Views/{1}/{0}.cshtml", "~/Areas/{2}/Views/Shared/{0}.cshtml" };
+            base.ViewLocationFormats = new string[] { "~/Views/{1}/{0}.cshtml", "~/Views/Shared/{0}.cshtml" };
+            base.MasterLocationFormats = new string[] { "~/Views/{1}/{0}.cshtml", "~/Views/Shared/{0}.cshtml" };
+            base.PartialViewLocationFormats = new string[] { "~/Views/{1}/{0}.cshtml", "~/Views/Shared/{0}.cshtml" };
+            base.FileExtensions = new string[] { "cshtml" };
         }
     }
 }
