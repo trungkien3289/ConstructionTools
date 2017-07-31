@@ -92,9 +92,9 @@ namespace OnlineStore.Service.Implements
                         Tags = x.Tags,
                         TotalView = x.TotalView,
                         Status = x.Status
-                    });
+                    }).ToList();
 
-                //news.AddRange(GetCMSNewsRecursive(categoryId));
+                news.AddRange(GetCMSNewsRecursive(categoryId));
                 totalItems = news.Count();
 
                 return news.ToList().OrderByDescending(x => x.SortOrder).ThenByDescending(x => x.CreatedDate).Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
